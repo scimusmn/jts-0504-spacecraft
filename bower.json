@@ -1,0 +1,12 @@
+{
+
+  "name": "umn_mental_health",
+
+  "dependencies": {
+
+    "gsap": 			"latest",
+    "jquery": 			"latest"
+
+  }
+
+}

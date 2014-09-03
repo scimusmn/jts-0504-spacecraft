@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Powering Your Spacecraft</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="stylesheet" href="css/normalize.css">
+        <link rel="stylesheet" href="css/main.css">
+        <link rel="stylesheet" href="css/fonts/Aller/stylesheet.css">
+        
+        <script src="js/vendor/jwerty/jwerty.js"></script>
+        <script src="js/vendor/requirejs/require.js" data-main="js/app.js"></script>
+        
+    </head>
+    <body>
+
+        <div id="wrapper" class="container">
+	    	
+	    	<!-- POWER WINDOW -->
+	    	<div id="window_power" class="window container row1 bordered full">
+	    	
+	    		<div class="window_title bordered bottom">
+	    			<h1 id="power_supply" >+</h1>
+	    		</div>
+	    		
+	    		<div id="container_orbit" class="container lower">
+	    			<!-- insert orbit animation here -->
+	    			<h2 id="solar" class="top">+</h2>
+	    			<h2 id="available" class="top">+</h2>
+	    		</div>
+	    		
+	    		<div id="container_batteries" class="container lower  bordered left">
+	    			<div id="battery_bars" class="container bordered bottom">
+	    				<h2 id="batteries" class="control_title top">+</h2>
+	    				<!-- insert battery displays here -->
+	    			</div>
+	    			<h2 id="batteries_level_percent" class="control_title">100%</h2>
+	    		</div>
+	    		
+	    	</div>
+	    		    	
+	    	<!-- INSTRUCTIONS WINDOW -->
+	    	<div id="window_instructions" class="window container row1 bordered full">
+	    		<div id="console_text">
+	    			<h1 id="instructions_headline">+</h1>
+	    			<p id="instructions_subhead">+</p>
+	    			<p id="tip_1">+</p>
+	    		</div>
+	    	</div>
+	    	
+	    	<!-- LIFE SUPPORT WINDOW -->
+	    	<div id="window_life_support" class="window container row2 bordered full">
+	    	
+	    		<div class="window_title bordered bottom">
+	    			<h2 id="life_support_equipment">+</h2>
+	    		</div>
+	    		
+	    		<!-- Oxygen -->
+	    		<div id="o2_control" class="control container bordered right">
+	    			<div class="control-animation bordered bottom">
+		    			<h3 id="oxygen_generator" class="control_title top">+</h3>
+		    			<!-- insert o2 animation here -->
+	    			</div>
+					<div class="control_icons container">
+						<div class="state_solar bordered right"></div>
+						<div class="state_battery"></div>
+						<div class="state_off bordered left"></div>
+					</div>
+	    		</div>
+	    		<div id="o2_level_container" class="control container level-state bordered right">
+	    			<h3 id="o2_level" class="control_title top">+</h3>
+	    			<!-- insert level bar here -->
+	    			<h3 id="batteries_level_percent" class="control_title bottom">100%</h3>
+	    		</div>
+	    		
+	    		<!-- Fan -->
+	    		<div id="fan_control" class="control container bordered left">
+	    			<div class="control-animation bordered bottom">
+	    				<h3 id="fan" class="control_title top">+</h3>
+	    				<!-- insert fan animation here -->
+	    			</div>
+	    			<div class="control_icons container">
+	    				<div class="state_solar bordered right"></div>
+	    				<div class="state_battery"></div>
+	    				<div class="state_off bordered left"></div>
+	    			</div>
+	    		</div>
+	    		<div id="fan_level" class="control container level-state bordered left">
+	    			<h3 id="circulation" class="control_title top">+</h3>
+	    			<!-- insert level bar here -->
+	    			<h3 id="circulation_feedack_excellent" class="control_title bottom">+</h3>
+	    		</div>
+	    	</div>
+	    	
+	    	<!-- AUXILLARY EQ. WINDOW -->
+	    	<div id="window_auxillary" class="window container row2 bordered full">
+	    	
+	    		<div class="window_title bordered bottom">
+	    			<h2 id="auxillary_equipment">+</h2>
+	    		</div>
+	    		
+	    		<!-- Food -->
+	    		<div id="food_control" class="control container bordered right">
+	    			<div class="control-animation bordered bottom">
+	    				<h3 id="growing_food" class="control_title">+</h3>
+	    				<!-- insert animation here -->
+	    			</div>
+	    			<div class="control_icons container">
+	    				<div class="state_solar bordered right"></div>
+	    				<div class="state_battery"></div>
+	    				<div class="state_off bordered left"></div>
+	    			</div>
+	    		</div>
+	    		
+	    		<!-- Communication -->
+	    		<div id="comm_control" class="control container bordered right">
+	    			<div class="control-animation bordered bottom">
+	    				<h3 id="communication" class="control_title">+</h3>
+	    				<!-- insert animation here -->
+	    			</div>
+	    			<div class="control_icons container">
+	    				<div class="state_solar bordered right"></div>
+	    				<div class="state_battery"></div>
+	    				<div class="state_off bordered left"></div>
+	    			</div>
+	    		</div>
+	    		
+	    		<!-- Heat -->
+	    		<div id="heat_control" class="control container bordered left">
+	    			<div class="control-animation bordered bottom">
+	    				<h3 id="heat_to_cook" class="control_title">+</h3>
+	    				<!-- insert animation here -->
+	    			</div>
+	    			<div class="control_icons container">
+	    				<div class="state_solar bordered right"></div>
+	    				<div class="state_battery"></div>
+	    				<div class="state_off bordered left"></div>
+	    			</div>
+	    		</div>
+	    		
+	    		<!-- Light -->
+	    		<div id="light_control" class="control container bordered left">
+	    			<div class="control-animation bordered bottom">
+	    				<h3 id="interior_lights" class="control_title">+</h3>
+	    				<!-- insert animation here -->
+	    			</div>
+	    			<div class="control_icons container">
+	    				<div class="state_solar bordered right"></div>
+	    				<div class="state_battery"></div>
+	    				<div class="state_off bordered left"></div>
+	    			</div>
+	    		</div>
+	    		
+	    	</div>
+	    	
+    	</div>
+
+    </body>
+</html>
