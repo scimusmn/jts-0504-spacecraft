@@ -1,11 +1,12 @@
 {
 
-  "name": "umn_mental_health",
+  "name": "jts-0504-spacecraft",
 
   "dependencies": {
 
     "gsap": 			"latest",
     "jquery": 			"latest",
+    "animatesprite":	"latest",
     "jwerty": 			"latest",
     "requirejs": 		"latest"
     

@@ -116,8 +116,8 @@ body {
 	height: 1080px;
 	
 	/* - uncomment to test responsive */
-	width: 100%;
-	height: 100%;
+/*	width: 100%;
+	height: 100%;*/
 	
 }
 
@@ -381,10 +381,32 @@ p {
 
 
 
+/*
+ * Animations
+ */
+.animation {
+    width:256px; 
+    height:217px; 
+}
 
-
-
-
+#o2_control .animation{
+    background-image:url(../img/bubblesTexture.png);
+}
+#fan_control .animation{
+    background-image:url(../img/bubblesTexture.png);
+}
+#food_control .animation{
+    background-image:url(../img/bubblesTexture.png);
+}
+#comm_control .animation{
+    background-image:url(../img/bubblesTexture.png);
+}
+#heat_control .animation{
+    background-image:url(../img/bubblesTexture.png);
+}
+#light_control .animation {
+    background-image:url(../img/bubblesTexture.png);
+}
 
 
 

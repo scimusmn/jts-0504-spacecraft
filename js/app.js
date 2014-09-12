@@ -5,14 +5,15 @@ require.config({
     
     //setup up shortcuts for commonly used libraries and components
     paths: {
-	      'jquery'      	: 'vendor/jquery/dist/jquery.min',
-	      'tween'      		: 'vendor/gsap/src/minified/TweenMax.min'
+	      'jquery'      	: 'vendor/jquery/jquery.min',
+	      'tween'      		: 'vendor/gsap/src/minified/TweenMax.min',
+          'animatesprite'   : 'vendor/animatesprite/scripts/jquery.animateSprite'
     }
     
 });
 
 
-require(['jquery', 'net/AppData', 'net/Keyboard', 'net/Language' ], function( $, AppData, Keyboard, Language ) {
+require(['jquery', 'net/AppData', 'net/Keyboard', 'net/Language', 'net/ControlManager' ], function( $, AppData, Keyboard, Language, ControlManager ) {
 
 	/*--------------*/
 	/* Initial Load */
@@ -39,7 +40,10 @@ require(['jquery', 'net/AppData', 'net/Keyboard', 'net/Language' ], function( $,
     	
 		Keyboard.init();
 		Language.setupTranslations( $(AppData.configXML).find("component").first() );
-		
+
+        ControlManager.setupControls();
+        
     }
+
 
 });
