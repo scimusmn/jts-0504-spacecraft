@@ -21,6 +21,10 @@
     <body>
 
         <div id="wrapper" class="container">
+
+        	<video width="1920" height="1080" autoplay loop>
+				<source src="img/bg-vid.mp4" type="video/mp4">
+			</video>
 	    	
 	    	<!-- POWER WINDOW -->
 	    	<div id="window_power" class="window container row1 bordered full">
@@ -31,6 +35,15 @@
 	    		
 	    		<div id="container_orbit" class="container lower">
 	    			<!-- insert orbit animation here -->
+	    			<div id="orbit_display" class="container comp">
+	    				<img id="sun" src="img/solarPower0002.png"/>
+	    				<img id="earth" src="img/solarPower0001.png"/>
+	    				<img id="ring" src="img/solarPower0003.png"/>
+	    				<div id="space_station_container">
+	    					<img id="space_station" src="img/ISS.png"/>
+	    				</div>
+	    				<!-- <img id="shadow" src="img/solarPower0005.png"/> -->
+	    			</div>
 	    			<h2 id="solar" class="top">+</h2>
 	    			<h2 id="available" class="top">+</h2>
 	    		</div>
@@ -78,6 +91,10 @@
 	    		<div id="o2_level_container" class="control container level-state bordered right">
 	    			<h3 id="o2_level" class="control_title top">+</h3>
 	    			<!-- insert level bar here -->
+	    			<div id="level_bar_display" class="container comp">
+	    				<img id="level_bar" src="img/battery.png"/>
+	    				<img id="mask" src="img/bar_mask.png"/>
+	    			</div>
 	    			<h3 id="batteries_level_percent" class="control_title bottom">100%</h3>
 	    		</div>
 	    		
@@ -98,6 +115,10 @@
 	    		<div id="fan_level" class="control container level-state bordered left">
 	    			<h3 id="circulation" class="control_title top">+</h3>
 	    			<!-- insert level bar here -->
+	    			<div id="level_bar_display" class="container comp">
+	    				<img id="level_bar" src="img/battery.png"/>
+	    				<img id="mask" src="img/bar_mask.png"/>
+	    			</div>
 	    			<h3 id="circulation_feedack_excellent" class="control_title bottom">+</h3>
 	    		</div>
 	    	</div>

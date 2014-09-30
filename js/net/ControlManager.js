@@ -1,4 +1,4 @@
-define(['net/AppData', 'net/ControlUI'], function( AppData, ControlUI ){
+define(['net/AppData', 'net/ControlUI', 'net/Battery'], function( AppData, ControlUI, Battery ){
 	
 	//Constants
 	ControlManager.ENGLISH = 'en';
@@ -20,6 +20,9 @@ define(['net/AppData', 'net/ControlUI'], function( AppData, ControlUI ){
         ControlManager.controls.push( new ControlUI("#comm_control") );
         ControlManager.controls.push( new ControlUI("#heat_control") );
         ControlManager.controls.push( new ControlUI("#light_control") );
+
+        ControlManager.o2Level = new Battery("#o2_level_container");
+        ControlManager.fanLevel = new Battery("#fan_level");
 		
 	}
 

@@ -8,12 +8,12 @@ require.config({
 	      'jquery'      	: 'vendor/jquery/jquery.min',
 	      'tween'      		: 'vendor/gsap/src/minified/TweenMax.min',
           'animatesprite'   : 'vendor/animatesprite/scripts/jquery.animateSprite'
-    }
+    }, 
     
 });
 
 
-require(['jquery', 'net/AppData', 'net/Keyboard', 'net/Language', 'net/ControlManager' ], function( $, AppData, Keyboard, Language, ControlManager ) {
+require(['jquery', 'net/AppData', 'net/Keyboard', 'net/Language', 'net/ControlManager', 'tween' ], function( $, AppData, Keyboard, Language, ControlManager, tween ) {
 
 	/*--------------*/
 	/* Initial Load */
@@ -42,7 +42,53 @@ require(['jquery', 'net/AppData', 'net/Keyboard', 'net/Language', 'net/ControlMa
 		Language.setupTranslations( $(AppData.configXML).find("component").first() );
 
         ControlManager.setupControls();
+
+        startSpaceStationOrbit();
+
+    }
+
+    function startSpaceStationOrbit() {
         
+
+        TweenMax.to( $("#space_station_container"), AppData.ORBIT_CYCLE_TIME, { css: { rotation:360 }, ease:Linear.easeNone, repeat:-1, onUpdate: onStationRotateUpdate } );
+        // TweenMax.to( $("#space_station"), AppData.ORBIT_CYCLE_TIME * 3, { css: { rotation:360 }, ease:Linear.easeNone, repeat:-1 } );
+
+    }
+
+    function onStationRotateUpdate() {
+
+        var rotation = $("#space_station_container")[0]._gsTransform.rotation;
+
+        if ( rotation < 265 && rotation > 170 ) {
+
+            //In Earth's shadow
+            if (AppData.getSolarAvailable() == true) {
+
+                AppData.setSolarAvailable(false);
+                $("#available").html("NOT AVAILABLE");
+                $("#available").css("color", "red");
+
+                ControlManager.o2Level.updateBatteryLevel( Math.random()*100 );
+                ControlManager.fanLevel.updateBatteryLevel( Math.random()*100 );
+
+            }
+
+        } else {
+            //In Sun's light
+            if (AppData.getSolarAvailable() == false) {
+
+                AppData.setSolarAvailable(true);
+                $("#available").html("AVAILABLE");
+                $("#available").css("color", "green");
+                
+                ControlManager.o2Level.updateBatteryLevel( Math.random()*100 );
+                ControlManager.fanLevel.updateBatteryLevel( Math.random()*100 );
+
+            }
+            
+
+        }
+
     }
 
 

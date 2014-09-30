@@ -225,6 +225,10 @@ p {
 	height: 75%;
 }
 
+.window .comp img {
+    position: absolute;
+}
+
  /*Power*/
 #window_power {
 	width: 1290px;
@@ -244,9 +248,19 @@ p {
 	position: absolute;
 }
 
+
 #window_power #container_orbit{
 	width: 64%;
 	left: 0%;
+}
+
+#window_power #orbit_display #space_station_container {
+    top: 193px;
+    left: 173px;
+
+    position: absolute;;
+    width:435px;
+    height:92px;
 }
 
 #window_power #container_batteries{
@@ -275,7 +289,6 @@ p {
 #window_power #batteries_level_percent {
 	bottom: 0%;
 }
-
 
 
 /*Instructions*/
@@ -322,6 +335,12 @@ p {
 	right: 0%;
 }
 
+#window_life_support #level_bar_display {
+    top: 70px;
+    left: 20px;
+
+}
+
 
 /*Auxillary*/
 #window_auxillary {
@@ -350,8 +369,6 @@ p {
 }
 
 
-
-
 /*Control Icons*/
 .control_icons {
 	bottom: 0%;
@@ -363,21 +380,23 @@ p {
 	height: 100%;	
 	float: left;
 	position: absolute;
+
+    background: black;
+}
+.control_icons div.active {
+
+    background: green;
+
 }
 .control_icons .state_solar {
-	background: red;
 	left: 0%;
 }
 .control_icons .state_battery {
-	background: blue;
 	left: 34%;
 }
 .control_icons .state_off {
-	background: green;
 	right: 0%;
 }
-
-
 
 
 
