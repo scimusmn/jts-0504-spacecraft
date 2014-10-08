@@ -5,8 +5,8 @@ define([], function(){
 
     }
 
-    //constants
-    AppData.ORBIT_CYCLE_TIME = 10; // Secs it take for complete obit around Earth
+    //Constants
+    AppData.ORBIT_CYCLE_TIME = 30; // Secs it take for complete obit around Earth
 	
     AppData.updateSettings = function(configXML){
     

@@ -1,14 +1,18 @@
 define(['net/Language', 'net/ControlManager', 'net/ControlUI'], function(Language, ControlManager, ControlUI){
-	
+
 	function Keyboard( ){
-	
+
 	}
-	
+
 	//constant method
 	Keyboard.init = function(){
-	
+
 		jwerty.key('1', function () { Language.setLanguage( Language.ENGLISH ); });
 		jwerty.key('2', function () { Language.setLanguage( Language.SPANISH ); });
+
+		$("#backdrop_vid").css('opacity', 0);//temp
+		jwerty.key('4', function () { $("#backdrop_vid").show().fadeTo('slow', 0.0 )});
+		jwerty.key('5', function () { $("#backdrop_vid").show().fadeTo('slow', 0.6 )});
 
 		jwerty.key('q', function () { ControlManager.setControlState('o2_control', ControlUI.STATE_ACTIVE ); });
 		jwerty.key('w', function () { ControlManager.setControlState('o2_control', ControlUI.STATE_WARNING ); });
@@ -32,13 +36,13 @@ define(['net/Language', 'net/ControlManager', 'net/ControlUI'], function(Languag
 
 		jwerty.key('8', function () { ControlManager.setControlState('light_control', ControlUI.STATE_ACTIVE ); });
 		jwerty.key('9', function () { ControlManager.setControlState('light_control', ControlUI.STATE_WARNING ); });
-		jwerty.key('[', function () { ControlManager.setControlState('light_control', ControlUI.STATE_OFF ); });
-		
+		jwerty.key('0', function () { ControlManager.setControlState('light_control', ControlUI.STATE_OFF ); });
+
 	}
-	
+
 	//instance method
 	Keyboard.prototype.methodName = function( ) {
-				
+
 	}
 
 	return Keyboard;

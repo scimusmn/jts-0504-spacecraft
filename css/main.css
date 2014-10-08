@@ -114,11 +114,11 @@ body {
 #wrapper {
 	width: 1920px;
 	height: 1080px;
-	
+
 	/* - uncomment to test responsive */
 /*	width: 100%;
 	height: 100%;*/
-	
+
 }
 
 .container {
@@ -153,22 +153,22 @@ p {
 }
 
 /*Borders*/
-.bordered {	
+.bordered {
 	box-sizing:border-box;
 	-moz-box-sizing:border-box;
 	-webkit-box-sizing:border-box;
 	border-color: rgba(100,100,100,0.4);
 }
-.bordered.full {	
+.bordered.full {
 	border: 15px solid;
 }
-.bordered.bottom {	
+.bordered.bottom {
 	border-bottom: 15px solid;
 }
-.bordered.left {	
+.bordered.left {
 	border-left: 15px solid;
 }
-.bordered.right {	
+.bordered.right {
 	border-right: 15px solid;
 }
 
@@ -190,18 +190,18 @@ p {
 	width: 100%;
 }
 .window.row1 .window_title {
-	height: 69px;	
+	height: 69px;
 }
 .window.row2 .window_title {
-	height: 62px;	
+	height: 62px;
 }
 .window .window_title h1 {
 	margin: 0px;
-	padding-top: 6px;	
+	padding-top: 6px;
 }
 .window .window_title h2 {
 	margin: 0px;
-	padding-top: 8px;	
+	padding-top: 8px;
 }
 
 .window .control_title {
@@ -295,7 +295,7 @@ p {
 #window_instructions {
 	right: 0px;
 	width: 575px;
-	
+
 	background: #006E96;
 	border-color: #006E96;
 }
@@ -338,7 +338,6 @@ p {
 #window_life_support #level_bar_display {
     top: 70px;
     left: 20px;
-
 }
 
 
@@ -371,60 +370,133 @@ p {
 
 /*Control Icons*/
 .control_icons {
+
 	bottom: 0%;
 	width: 100%;
 	height: 26%;
+
 }
 .control_icons div {
-	width: 34%;
-	height: 100%;	
+
+	height: 100%;
 	float: left;
 	position: absolute;
 
-    background: black;
 }
 .control_icons div.active {
-
-    background: green;
-
+    /*background: green;*/
+}
+#window_life_support .control_icons div {
+    width: 93.5px;
+}
+#window_auxillary .control_icons div {
+    width: 78px;
+}
+#window_life_support .control_icons .state_battery {
+    left: 93.5px;
+    padding-top: 3px;
+}
+#window_auxillary .control_icons .state_battery {
+    left: 78px;
+    padding-top: 3px;
 }
 .control_icons .state_solar {
 	left: 0%;
-}
-.control_icons .state_battery {
-	left: 34%;
+    padding-top: 4px;
 }
 .control_icons .state_off {
 	right: 0%;
+    padding-top: 4px;
+    padding-left: 1px;
 }
 
+/*Icons*/
+.control_icons .icon {
+    display:inline-block;
+    overflow:hidden;
+    background-repeat: no-repeat;
+}
+#window_life_support .icon {
+    margin-left: -2px;
+}
+#window_auxillary .icon {
+    margin-left: -9px;
+    background-size: auto;
+}
 
+/*Solar*/
+.state_solar .icon          {background-image:url(../img/btnSolar.png);}
+.state_solar .icon.active   {background-position: -2px -2px}
+.state_solar .icon.off      {background-position: -85px -2px}
+.state_solar .icon.red      {background-position: -168px -2px}
+/*Battery*/
+.state_battery .icon        {background-image:url(../img/btnBattery.png);}
+.state_battery .icon.active {background-position: -2px -2px}
+.state_battery .icon.off    {background-position: -85px -2px}
+.state_battery .icon.red    {background-position: -168px -2px}
+/*Off*/
+.state_off .icon            {background-image:url(../img/btnOff.png);}
+.state_off .icon.active     {background-position: -2px -2px}
+.state_off .icon.off        {background-position: -85px -2px}
 
 /*
  * Animations
  */
 .animation {
-    width:256px; 
-    height:217px; 
+    display:inline-block;
+    overflow:hidden;
+    background-repeat: no-repeat;
+    padding: 0px;
+    margin: 0px;
+    background: rgba(22,99,66,0.0);
 }
-
+/*O2*/
 #o2_control .animation{
-    background-image:url(../img/bubblesTexture.png);
+    background-image:url(../img/oxygenGen.png);
+    width:256px;
+    height:215px;
+    margin-top:9px;
+    margin-left:0px;
 }
+/*Fan*/
 #fan_control .animation{
-    background-image:url(../img/bubblesTexture.png);
+    background-image:url(../img/fan.png);
+    width:241px;
+    height:203px;
+    margin-top:14px;
+    margin-left:2px;
 }
+/*Food*/
 #food_control .animation{
-    background-image:url(../img/bubblesTexture.png);
+    background-image:url(../img/growingPlants.png);
+    width:239px;
+    height:203px;
+    margin-top:7px;
+    margin-left:-13px;
 }
+/*Communication*/
 #comm_control .animation{
-    background-image:url(../img/bubblesTexture.png);
+    background-image:url(../img/communications.png);
+    width:239px;
+    height:203px;
+    margin-top:13px;
+    margin-left:-17px;
 }
+/*Heat*/
 #heat_control .animation{
-    background-image:url(../img/bubblesTexture.png);
+    background-image:url(../img/cookingHeat.png);
+    width:239px;
+    height:203px;
+    margin-top:-1px;
+    margin-left:-12px;
 }
+/*Light*/
 #light_control .animation {
-    background-image:url(../img/bubblesTexture.png);
+    background-image:url(../img/cabinLights.png);
+    width:241px;
+    height:203px;
+    margin-top:21px;
+    margin-left:-18px;
 }
 
 
