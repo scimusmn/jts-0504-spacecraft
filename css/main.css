@@ -286,6 +286,22 @@ p {
 	top: 0%;
 }
 
+#window_power #battery_bars #mask {
+    top: 68px;
+}
+
+#window_power #battery_bars .comp {
+    top: 75px;
+}
+
+#window_power #battery_bars #battery_left {
+    left: 25px;
+}
+
+#window_power #battery_bars #battery_right {
+    left: 206px;
+}
+
 #window_power #batteries_level_percent {
 	bottom: 0%;
 }
@@ -299,6 +315,12 @@ p {
 	background: #006E96;
 	border-color: #006E96;
 }
+
+#window_instructions #instructions_headline {
+    color: #e6b630;
+}
+
+
 
 #window_instructions #console_text {
 	margin: 77px 100px;
@@ -336,8 +358,12 @@ p {
 }
 
 #window_life_support #level_bar_display {
-    top: 70px;
-    left: 20px;
+    top: 60px;
+    left: -12px;
+}
+
+#window_life_support #level_bar_display #mask {
+    top: 25px;
 }
 
 

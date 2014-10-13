@@ -1,4 +1,4 @@
-define(['net/AppData', 'net/ControlUI', 'net/Battery'], function( AppData, ControlUI, Battery ){
+define(['net/AppData', 'net/ControlUI', 'net/Battery', 'net/BatteryPack'], function( AppData, ControlUI, Battery, BatteryPack ){
 
 	//Constants
 	ControlManager.ENGLISH = 'en';
@@ -9,12 +9,6 @@ define(['net/AppData', 'net/ControlUI', 'net/Battery'], function( AppData, Contr
 	function ControlManager( ){
 
 	}
-
-	/**
-	 * @brief [brief description]
-	 * @details [long description]
-	 * @return [description]
-	 */
 
 	/* setup() | Setup all controls */
 	ControlManager.setupControls = function( ){
@@ -28,6 +22,7 @@ define(['net/AppData', 'net/ControlUI', 'net/Battery'], function( AppData, Contr
         ControlManager.controls.push( new ControlUI("#heat_control", 15, true) );
         ControlManager.controls.push( new ControlUI("#light_control", 3, true) );
 
+        ControlManager.batteryPack = new BatteryPack("#battery_left", "#battery_right");
         ControlManager.o2Level = new Battery("#o2_level_container");
         ControlManager.fanLevel = new Battery("#fan_level");
 

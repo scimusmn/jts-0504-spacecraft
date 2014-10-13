@@ -2,14 +2,14 @@ require.config({
 
     //By default load any module IDs from js/ directory
     baseUrl: 'js',
-    
+
     //setup up shortcuts for commonly used libraries and components
     paths: {
 	      'jquery'      	: 'vendor/jquery/jquery.min',
 	      'tween'      		: 'vendor/gsap/src/minified/TweenMax.min',
           'animatesprite'   : 'vendor/animatesprite/scripts/jquery.animateSprite'
-    }, 
-    
+    },
+
 });
 
 
@@ -18,26 +18,26 @@ require(['jquery', 'net/AppData', 'net/Keyboard', 'net/Language', 'net/ControlMa
 	/*--------------*/
 	/* Initial Load */
 	/*--------------*/
-	    
+
 	//Load XML
     $.ajax({
         type: "GET",
         url: "data/config.xml",
         dataType: "xml",
         success: function (xml) {
-        
+
         	AppData.updateSettings(xml);
         	initialize();
-			
+
         },
         error: function (jqXHR, textStatus, errorThrown) {
             // Show error message if desired
-            
+
         }
     });
-    
+
     function initialize() {
-    	
+
 		Keyboard.init();
 		Language.setupTranslations( $(AppData.configXML).find("component").first() );
 
@@ -48,10 +48,9 @@ require(['jquery', 'net/AppData', 'net/Keyboard', 'net/Language', 'net/ControlMa
     }
 
     function startSpaceStationOrbit() {
-        
 
         TweenMax.to( $("#space_station_container"), AppData.ORBIT_CYCLE_TIME, { css: { rotation:360 }, ease:Linear.easeNone, repeat:-1, onUpdate: onStationRotateUpdate } );
-        // TweenMax.to( $("#space_station"), AppData.ORBIT_CYCLE_TIME * 3, { css: { rotation:360 }, ease:Linear.easeNone, repeat:-1 } );
+        // TweenMax.to( $("#space_station"), AppData.ORBIT_CYCLE_TIME * 2, { css: { rotation:-360 }, ease:Linear.easeNone, repeat:-1 } );
 
     }
 
@@ -65,11 +64,14 @@ require(['jquery', 'net/AppData', 'net/Keyboard', 'net/Language', 'net/ControlMa
             if (AppData.getSolarAvailable() == true) {
 
                 AppData.setSolarAvailable(false);
+
+                //TODO - Need current translation
                 $("#available").html("NOT AVAILABLE");
                 $("#available").css("color", "red");
 
-                ControlManager.o2Level.updateBatteryLevel( Math.random()*100 );
-                ControlManager.fanLevel.updateBatteryLevel( Math.random()*100 );
+                ControlManager.o2Level.updateBatteryLevel( Math.random()*100, true );
+                ControlManager.fanLevel.updateBatteryLevel( Math.random()*100, true );
+                ControlManager.batteryPack.updatePackLevel( Math.random()*100 );
 
             }
 
@@ -80,12 +82,13 @@ require(['jquery', 'net/AppData', 'net/Keyboard', 'net/Language', 'net/ControlMa
                 AppData.setSolarAvailable(true);
                 $("#available").html("AVAILABLE");
                 $("#available").css("color", "green");
-                
-                ControlManager.o2Level.updateBatteryLevel( Math.random()*100 );
-                ControlManager.fanLevel.updateBatteryLevel( Math.random()*100 );
+
+                ControlManager.o2Level.updateBatteryLevel( Math.random()*100, true );
+                ControlManager.fanLevel.updateBatteryLevel( Math.random()*100, true );
+                ControlManager.batteryPack.updatePackLevel( Math.random()*100 );
 
             }
-            
+
 
         }
 

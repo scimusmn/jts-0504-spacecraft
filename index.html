@@ -13,26 +13,26 @@
         <link rel="stylesheet" href="css/normalize.css">
         <link rel="stylesheet" href="css/main.css">
         <link rel="stylesheet" href="css/fonts/Aller/stylesheet.css">
-        
+
         <script src="js/vendor/jwerty/jwerty.js"></script>
         <script src="js/vendor/requirejs/require.js" data-main="js/app.js"></script>
-        
+
     </head>
     <body>
 
         <div id="wrapper" class="container">
-
-        	<video id="backdrop_vid" width="1920" height="1080" autoplay loop style="display:none">
+<!--
+        	<video id="backdrop_vid" width="100%" height="100%" autoplay loop style="display:none">
 				<source src="img/starfield.mp4" type="video/mp4">
 			</video>
-	    	
+ -->
 	    	<!-- POWER WINDOW -->
 	    	<div id="window_power" class="window container row1 bordered full">
-	    	
+
 	    		<div class="window_title bordered bottom">
 	    			<h1 id="power_supply" >+</h1>
 	    		</div>
-	    		
+
 	    		<div id="container_orbit" class="container lower">
 	    			<!-- insert orbit animation here -->
 	    			<div id="orbit_display" class="container comp">
@@ -47,17 +47,35 @@
 	    			<h2 id="solar" class="top">+</h2>
 	    			<h2 id="available" class="top">+</h2>
 	    		</div>
-	    		
+
 	    		<div id="container_batteries" class="container lower  bordered left">
 	    			<div id="battery_bars" class="container bordered bottom">
 	    				<h2 id="batteries" class="control_title top">+</h2>
 	    				<!-- insert battery displays here -->
+	    				<div id="battery_left" class="container comp">
+		    				<img id="chunk_1" src="img/batteryPower0002.png"/>
+		    				<img id="chunk_2" src="img/batteryPower0003.png"/>
+		    				<img id="chunk_3" src="img/batteryPower0004.png"/>
+		    				<img id="chunk_4" src="img/batteryPower0005.png"/>
+		    				<img id="mask" src="img/batteryPower0006.png"/>
+		    				<img id="frame" src="img/batteryPower0001.png"/>
+		    				<img id="fail" src="img/batteryPower0007.png"/>
+		    			</div>
+		    			<div id="battery_right" class="container comp">
+		    				<img id="chunk_1" src="img/batteryPower0002.png"/>
+		    				<img id="chunk_2" src="img/batteryPower0003.png"/>
+		    				<img id="chunk_3" src="img/batteryPower0004.png"/>
+		    				<img id="chunk_4" src="img/batteryPower0005.png"/>
+		    				<img id="mask" src="img/batteryPower0006.png"/>
+		    				<img id="frame" src="img/batteryPower0001.png"/>
+		    				<img id="fail" src="img/batteryPower0007.png"/>
+		    			</div>
 	    			</div>
 	    			<h2 id="batteries_level_percent" class="control_title">100%</h2>
 	    		</div>
-	    		
+
 	    	</div>
-	    		    	
+
 	    	<!-- INSTRUCTIONS WINDOW -->
 	    	<div id="window_instructions" class="window container row1 bordered full">
 	    		<div id="console_text">
@@ -66,14 +84,14 @@
 	    			<p id="tip_1">+</p>
 	    		</div>
 	    	</div>
-	    	
+
 	    	<!-- LIFE SUPPORT WINDOW -->
 	    	<div id="window_life_support" class="window container row2 bordered full">
-	    	
+
 	    		<div class="window_title bordered bottom">
 	    			<h2 id="life_support_equipment">+</h2>
 	    		</div>
-	    		
+
 	    		<!-- Oxygen -->
 	    		<div id="o2_control" class="control container bordered right">
 	    			<div class="control-animation bordered bottom">
@@ -91,13 +109,14 @@
 	    		<div id="o2_level_container" class="control container level-state bordered right">
 	    			<h3 id="o2_level" class="control_title top">+</h3>
 	    			<!-- insert level bar here -->
-	    			<!-- <div id="level_bar_display" class="container comp">
-	    				<img id="level_bar" src="img/battery.png"/>
-	    				<img id="mask" src="img/bar_mask.png"/>
-	    			</div> -->
+	    			<div id="level_bar_display" class="container comp">
+	    				<img id="level_bar" src="img/levels0002.png"/>
+	    				<img id="mask" src="img/levels0003.png"/>
+	    				<img id="frame" src="img/levels0001.png"/>
+	    			</div>
 	    			<h3 id="batteries_level_percent" class="control_title bottom">100%</h3>
 	    		</div>
-	    		
+
 	    		<!-- Fan -->
 	    		<div id="fan_control" class="control container bordered left">
 	    			<div class="control-animation bordered bottom">
@@ -115,21 +134,22 @@
 	    		<div id="fan_level" class="control container level-state bordered left">
 	    			<h3 id="circulation" class="control_title top">+</h3>
 	    			<!-- insert level bar here -->
-	    			<!-- <div id="level_bar_display" class="container comp">
-	    				<img id="level_bar" src="img/battery.png"/>
-	    				<img id="mask" src="img/bar_mask.png"/>
-	    			</div> -->
+	    			<div id="level_bar_display" class="container comp">
+	    				<img id="level_bar" src="img/levels0002.png"/>
+	    				<img id="mask" src="img/levels0003.png"/>
+	    				<img id="frame" src="img/levels0001.png"/>
+	    			</div>
 	    			<h3 id="circulation_feedack_excellent" class="control_title bottom">+</h3>
 	    		</div>
 	    	</div>
-	    	
+
 	    	<!-- AUXILLARY EQ. WINDOW -->
 	    	<div id="window_auxillary" class="window container row2 bordered full">
-	    	
+
 	    		<div class="window_title bordered bottom">
 	    			<h2 id="auxillary_equipment">+</h2>
 	    		</div>
-	    		
+
 	    		<!-- Food -->
 	    		<div id="food_control" class="control container bordered right">
 	    			<div class="control-animation bordered bottom">
@@ -144,7 +164,7 @@
 						<div class="state_off bordered left"><div class="icon"></div></div>
 	    			</div>
 	    		</div>
-	    		
+
 	    		<!-- Communication -->
 	    		<div id="comm_control" class="control container bordered right">
 	    			<div class="control-animation bordered bottom">
@@ -159,7 +179,7 @@
 						<div class="state_off bordered left"><div class="icon"></div></div>
 	    			</div>
 	    		</div>
-	    		
+
 	    		<!-- Heat -->
 	    		<div id="heat_control" class="control container bordered left">
 	    			<div class="control-animation bordered bottom">
@@ -174,7 +194,7 @@
 						<div class="state_off bordered left"><div class="icon"></div></div>
 	    			</div>
 	    		</div>
-	    		
+
 	    		<!-- Light -->
 	    		<div id="light_control" class="control container bordered left">
 	    			<div class="control-animation bordered bottom">
@@ -189,9 +209,9 @@
 						<div class="state_off bordered left"><div class="icon"></div></div>
 	    			</div>
 	    		</div>
-	    		
+
 	    	</div>
-	    	
+
     	</div>
 
     </body>
