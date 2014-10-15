@@ -13,7 +13,7 @@ require.config({
 });
 
 
-require(['jquery', 'net/AppData', 'net/Keyboard', 'net/Language', 'net/ControlManager', 'tween' ], function( $, AppData, Keyboard, Language, ControlManager, tween ) {
+require(['jquery', 'net/AppData', 'net/Keyboard', 'net/Language', 'net/ControlManager', 'tween', 'net/Hardware' ], function( $, AppData, Keyboard, Language, ControlManager, tween, hardware ) {
 
 	/*--------------*/
 	/* Initial Load */
@@ -44,6 +44,7 @@ require(['jquery', 'net/AppData', 'net/Keyboard', 'net/Language', 'net/ControlMa
         ControlManager.setupControls();
 
         startSpaceStationOrbit();
+        hardware.link();
 
     }
 
@@ -68,6 +69,8 @@ require(['jquery', 'net/AppData', 'net/Keyboard', 'net/Language', 'net/ControlMa
                 //TODO - Need current translation
                 $("#available").html("NOT AVAILABLE");
                 $("#available").css("color", "red");
+        
+        		hardware.sunState(0);
 
                 ControlManager.o2Level.updateBatteryLevel( Math.random()*100, true );
                 ControlManager.fanLevel.updateBatteryLevel( Math.random()*100, true );
@@ -82,6 +85,8 @@ require(['jquery', 'net/AppData', 'net/Keyboard', 'net/Language', 'net/ControlMa
                 AppData.setSolarAvailable(true);
                 $("#available").html("AVAILABLE");
                 $("#available").css("color", "green");
+        
+        		hardware.sunState(1);
 
                 ControlManager.o2Level.updateBatteryLevel( Math.random()*100, true );
                 ControlManager.fanLevel.updateBatteryLevel( Math.random()*100, true );
