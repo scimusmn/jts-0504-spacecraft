@@ -1,7 +1,7 @@
 define(['net/webSockets'],function(wsClient){
        
     function arduino(){
-       //wsClient.connect();
+       
     }
 
     arduino.handlers =[];
