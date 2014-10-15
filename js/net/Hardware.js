@@ -5,14 +5,18 @@ function(arduino){
     function device(solPin,batPin){
         device.state = 0;
         
+        device.onchange=null;
+        
         arduino.watchPin(solPin,function(pin,val){
                          	if(!val) device.state = 1;
                          	else device.state = 0;
+                         	if(device.onchange) device.onchange();
                          });
         
         arduino.watchPin(batPin,function(pin,val){
-                         if(!val) device.state = 2;
-                         else device.state = 0;
+                         	if(!val) device.state = 2;
+                         	else device.state = 0;
+                         	if(device.onchange) device.onchange();
                          });
     }
 
