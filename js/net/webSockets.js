@@ -12,7 +12,7 @@ define([], function(){
 	
 	var customCB = null;
 
-	wsClient.connect = function(){
+	wsClient.connect = function(connectCB){
         if ("WebSocket" in window){
             ws = new WebSocket(addr); //ws://echo.websocket.org is the default testing server
             
@@ -21,12 +21,10 @@ define([], function(){
                 // Web Socket is connected, send data using send()
                 clearInterval(wsClient.connectInterval);
                 if(customCB) ws.onmessage = customCB
-                    
-                    else ws.onmessage = function (evt) {
-                        console.log(evt.data);
-                    };
-                ws.send("test");
-                
+                else ws.onmessage = function (evt) {
+                    //console.log(evt.data);
+                };
+       			if(connectCB) connectCB(),"connected";
             };
             
             ws.onerror = function ( error ) {

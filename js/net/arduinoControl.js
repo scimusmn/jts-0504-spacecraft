@@ -6,8 +6,8 @@ define(['net/webSockets'],function(wsClient){
 
     arduino.handlers =[];
        
-    arduino.connect = function(){
-       wsClient.connect();
+    arduino.connect = function(cb){
+       wsClient.connect(cb);
     }
 
     arduino.digitalWrite = function(pin,dir){
@@ -20,12 +20,12 @@ define(['net/webSockets'],function(wsClient){
     }
 
     arduino.analogReport = function(pin,interval,handler){
-        webSockClient.send("r|analogReport("+pin+","+interval+")");
-		self.handlers[pin] = handler;
+        wsClient.send("r|analogReport("+pin+","+interval+")");
+		arduino.handlers[pin] = handler;
     }
 
     arduino.stopReport = function(pin){
-		webSockClient.send("r|stopReport("+pin+")");
+		wsClient.send("r|stopReport("+pin+")");
     }
 
     arduino.onMessage = function(data){
