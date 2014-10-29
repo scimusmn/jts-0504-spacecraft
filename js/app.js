@@ -35,6 +35,12 @@ require(['jquery', 'net/AppData', 'net/Keyboard', 'net/Language', 'net/ControlMa
 
         }
     });
+        
+        function cbConstructor(id){
+        return function(){
+        	ControlManager.setControlState(id,((!this.state)?'off':(this.state==1)?'active':'warning'));
+        }
+        }
 
     function initialize() {
 
@@ -45,13 +51,12 @@ require(['jquery', 'net/AppData', 'net/Keyboard', 'net/Language', 'net/ControlMa
 
         startSpaceStationOrbit();
         hardware.link(function(){
-                      	hardware.oxygen.onchange = function (){
-                      		ControlManager.setControlState("#o2_control",hardware.oxygen.state);
-                      		console.log("oxy changed");
-                        };
-                      	hardware.fan.onchange = function (){
-                      		ControlManager.setControlState("#fan_control",hardware.fan.state);
-                      	};
+                      	hardware.oxygen.onchange = cbConstructor("o2_control");
+                      	hardware.fan.onchange = cbConstructor("fan_control");
+                      	hardware.food.onchange = cbConstructor("food_control");
+                      	hardware.comm.onchange = cbConstructor("comm_control");
+                      	hardware.heat.onchange = cbConstructor("heat_control");
+                      	hardware.lights.onchange = cbConstructor("light_control");
                       });
     }
 
