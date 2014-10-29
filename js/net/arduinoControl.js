@@ -5,8 +5,21 @@ define(['net/webSockets'],function(wsClient){
     }
 
     arduino.handlers =[];
-       
+
+    arduino.onMessage = function(evt){
+        var dataRay = evt.data.split(/[\s|,()=]+/);
+        switch(dataRay[1]){
+            case "pinChange":
+            case "analogRead":
+                if(arduino.handlers[parseInt(dataRay[2])]) arduino.handlers[parseInt(dataRay[2])](parseInt(dataRay[2]),parseInt(dataRay[3]));
+                break;
+            default:
+                break;
+        }
+    }
+
     arduino.connect = function(cb){
+       wsClient.setMsgCallback(arduino.onMessage);
        wsClient.connect(cb);
     }
 
@@ -26,20 +39,6 @@ define(['net/webSockets'],function(wsClient){
 
     arduino.stopReport = function(pin){
 		wsClient.send("r|stopReport("+pin+")");
-    }
-
-    arduino.onMessage = function(data){
-        var dataRay = data.split(/[\s,()=]+/);
-        //console.log(evt.data);
-        switch(dataRay[0]){
-            case "pinChange":
-            case "analogRead":
-                if(arduino.handlers[dataRay[1]]) arduino.handlers[dataRay[1]](dataRay[1],dataRay[2]);
-                break;
-            default:
-                //console.log(evt.data);
-                break;
-        }
     }
 
     return arduino;

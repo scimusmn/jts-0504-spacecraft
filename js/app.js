@@ -44,8 +44,15 @@ require(['jquery', 'net/AppData', 'net/Keyboard', 'net/Language', 'net/ControlMa
         ControlManager.setupControls();
 
         startSpaceStationOrbit();
-        hardware.link();
-
+        hardware.link(function(){
+                      	hardware.oxygen.onchange = function (){
+                      		ControlManager.setControlState("#o2_control",hardware.oxygen.state);
+                      		console.log("oxy changed");
+                        };
+                      	hardware.fan.onchange = function (){
+                      		ControlManager.setControlState("#fan_control",hardware.fan.state);
+                      	};
+                      });
     }
 
     function startSpaceStationOrbit() {

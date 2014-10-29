@@ -2,19 +2,20 @@ define(['net/arduinoControl'],
        
 function(arduino){
        function device(solPin,batPin){
-       device.state = 0;
+       var self = this;
+       self.state = 0;
 
-       device.onchange=null;
+       self.onchange=null;
 
        arduino.watchPin(solPin,function(pin,val){
-                        device.state = (val)?0:1;
-                        if(device.onchange) device.onchange();
+                        self.state = (val)?0:1;
+                        if(self.onchange) self.onchange();
 
                         });
 
        arduino.watchPin(batPin,function(pin,val){
-                        device.state = (val)?0:2;
-                        if(device.onchange) device.onchange();
+                        self.state = (val)?0:2;
+                        if(self.onchange) self.onchange();
                         });
        }
 
@@ -23,10 +24,11 @@ function(arduino){
        }
 
        hardware.battery = 0;
+       hardware.initCB =null;
 
-       hardware.link = function(){
-       arduino.connect(hardware.init);
-
+       hardware.link = function(cb){
+       		arduino.connect(hardware.init);
+       		hardware.initCB=cb;
        }
 
        hardware.init = function(){
@@ -37,9 +39,10 @@ function(arduino){
            hardware.heat = new device(19,18);
            hardware.lights = new device(17,16);
 
-           arduino.analogReport(0,250,function(pin,val){
+           arduino.analogReport(0,100,function(pin,val){
                                 hardware.battery = Math.floor(val/4);
                                 });
+       		if(hardware.initCB) hardware.initCB();
        }
 
        hardware.sunState = function(mode){
