@@ -39,8 +39,8 @@ function(arduino){
            hardware.heat = new device(19,18);
            hardware.lights = new device(17,16);
 
-           arduino.analogReport(0,100,function(pin,val){
-                                hardware.battery = Math.floor(val/4);
+           arduino.analogReport(0,75,function(pin,val){
+                                hardware.battery = Math.floor(val/2.55);
                                 });
        		if(hardware.initCB) hardware.initCB();
        }

@@ -63,7 +63,7 @@ var dummyParse = new function(){
     
     self.fakeBattery = function(){
         if(self.lights>0){
-            if(self.battLevel++>=1023) self.battLevel=1023;
+            if(self.battLevel++>=255) self.battLevel=255;
         }
         else if((self.battLevel-=3)<=0) self.battLevel=0;
         if(webSock) webSock.send("r|analogRead(0)="+self.battLevel);

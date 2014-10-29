@@ -70,6 +70,8 @@ require(['jquery', 'net/AppData', 'net/Keyboard', 'net/Language', 'net/ControlMa
     function onStationRotateUpdate() {
 
         var rotation = $("#space_station_container")[0]._gsTransform.rotation;
+        
+        //ControlManager.batteryPack.updatePackLevel( hardware.battery );
 
         if ( rotation < 265 && rotation > 170 ) {
 
@@ -86,7 +88,7 @@ require(['jquery', 'net/AppData', 'net/Keyboard', 'net/Language', 'net/ControlMa
 
                 ControlManager.o2Level.updateBatteryLevel( Math.random()*100, true );
                 ControlManager.fanLevel.updateBatteryLevel( Math.random()*100, true );
-                ControlManager.batteryPack.updatePackLevel( Math.random()*100 );
+                ControlManager.batteryPack.updatePackLevel( hardware.battery );
 
             }
 
@@ -102,7 +104,7 @@ require(['jquery', 'net/AppData', 'net/Keyboard', 'net/Language', 'net/ControlMa
 
                 ControlManager.o2Level.updateBatteryLevel( Math.random()*100, true );
                 ControlManager.fanLevel.updateBatteryLevel( Math.random()*100, true );
-                ControlManager.batteryPack.updatePackLevel( Math.random()*100 );
+                ControlManager.batteryPack.updatePackLevel( hardware.battery);
 
             }
 
