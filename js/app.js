@@ -13,7 +13,7 @@ require.config({
 });
 
 
-require(['jquery', 'net/AppData', 'net/Keyboard', 'net/Language', 'net/ControlManager', 'tween' ], function( $, AppData, Keyboard, Language, ControlManager, tween ) {
+require(['jquery', 'net/AppData', 'net/Keyboard', 'net/Language', 'net/ControlManager', 'tween', 'net/Hardware' ], function( $, AppData, Keyboard, Language, ControlManager, tween, hardware ) {
 
 	/*--------------*/
 	/* Initial Load */
@@ -36,6 +36,12 @@ require(['jquery', 'net/AppData', 'net/Keyboard', 'net/Language', 'net/ControlMa
         }
     });
 
+        function cbConstructor(id){
+        return function(){
+        	ControlManager.setControlState(id,((!this.state)?'off':(this.state==1)?'active':'warning'));
+        }
+        }
+
     function initialize() {
 
 		Keyboard.init();
@@ -44,7 +50,14 @@ require(['jquery', 'net/AppData', 'net/Keyboard', 'net/Language', 'net/ControlMa
         ControlManager.setupControls();
 
         startSpaceStationOrbit();
-
+        hardware.link(function(){
+                      	hardware.oxygen.onchange = cbConstructor("o2_control");
+                      	hardware.fan.onchange = cbConstructor("fan_control");
+                      	hardware.food.onchange = cbConstructor("food_control");
+                      	hardware.comm.onchange = cbConstructor("comm_control");
+                      	hardware.heat.onchange = cbConstructor("heat_control");
+                      	hardware.lights.onchange = cbConstructor("light_control");
+                      });
     }
 
     function startSpaceStationOrbit() {
@@ -58,6 +71,8 @@ require(['jquery', 'net/AppData', 'net/Keyboard', 'net/Language', 'net/ControlMa
 
         var rotation = $("#space_station_container")[0]._gsTransform.rotation;
 
+        //ControlManager.batteryPack.updatePackLevel( hardware.battery );
+
         if ( rotation < AppData.SHADOW_EXIT_ANGLE && rotation > AppData.SHADOW_ENTER_ANGLE ) {
 
             //In Earth's shadow
@@ -69,9 +84,11 @@ require(['jquery', 'net/AppData', 'net/Keyboard', 'net/Language', 'net/ControlMa
                 $("#available").html("NOT AVAILABLE");
                 $("#available").css("color", "#cb242c");
 
+                hardware.sunState(0);
+
                 ControlManager.o2Level.updateBatteryLevel( Math.random()*100, true );
                 ControlManager.fanLevel.updateBatteryLevel( Math.random()*100, true );
-                ControlManager.batteryPack.updatePackLevel( Math.random()*100 );
+                ControlManager.batteryPack.updatePackLevel( hardware.battery );
 
             }
 
@@ -83,9 +100,11 @@ require(['jquery', 'net/AppData', 'net/Keyboard', 'net/Language', 'net/ControlMa
                 $("#available").html("AVAILABLE");
                 $("#available").css("color", "#65a55b");
 
+                hardware.sunState(1);
+
                 ControlManager.o2Level.updateBatteryLevel( Math.random()*100, true );
                 ControlManager.fanLevel.updateBatteryLevel( Math.random()*100, true );
-                ControlManager.batteryPack.updatePackLevel( Math.random()*100 );
+                ControlManager.batteryPack.updatePackLevel( hardware.battery);
 
             }
 
