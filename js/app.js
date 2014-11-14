@@ -58,7 +58,7 @@ require(['jquery', 'net/AppData', 'net/Keyboard', 'net/Language', 'net/ControlMa
 
         var rotation = $("#space_station_container")[0]._gsTransform.rotation;
 
-        if ( rotation < 265 && rotation > 170 ) {
+        if ( rotation < AppData.SHADOW_EXIT_ANGLE && rotation > AppData.SHADOW_ENTER_ANGLE ) {
 
             //In Earth's shadow
             if (AppData.getSolarAvailable() == true) {
@@ -67,7 +67,7 @@ require(['jquery', 'net/AppData', 'net/Keyboard', 'net/Language', 'net/ControlMa
 
                 //TODO - Need current translation
                 $("#available").html("NOT AVAILABLE");
-                $("#available").css("color", "red");
+                $("#available").css("color", "#cb242c");
 
                 ControlManager.o2Level.updateBatteryLevel( Math.random()*100, true );
                 ControlManager.fanLevel.updateBatteryLevel( Math.random()*100, true );
@@ -81,7 +81,7 @@ require(['jquery', 'net/AppData', 'net/Keyboard', 'net/Language', 'net/ControlMa
 
                 AppData.setSolarAvailable(true);
                 $("#available").html("AVAILABLE");
-                $("#available").css("color", "green");
+                $("#available").css("color", "#65a55b");
 
                 ControlManager.o2Level.updateBatteryLevel( Math.random()*100, true );
                 ControlManager.fanLevel.updateBatteryLevel( Math.random()*100, true );

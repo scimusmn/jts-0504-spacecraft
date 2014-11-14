@@ -157,7 +157,7 @@ p {
 	box-sizing:border-box;
 	-moz-box-sizing:border-box;
 	-webkit-box-sizing:border-box;
-	border-color: rgba(100,100,100,0.4);
+	border-color: #5d5959;
 }
 .bordered.full {
 	border: 15px solid;
@@ -181,7 +181,7 @@ p {
 }
 
 .window.row2 {
-	bottom: 0px;
+	bottom: 30px;
 	height: 410px;
 }
 
@@ -232,6 +232,12 @@ p {
  /*Power*/
 #window_power {
 	width: 1290px;
+
+}
+
+#window_power,
+#window_power .bordered{
+    border-color: #797979;
 }
 
 #window_power #container_batteries div,
@@ -312,8 +318,8 @@ p {
 	right: 0px;
 	width: 575px;
 
-	background: #006E96;
-	border-color: #006E96;
+	background: #3b6c95;
+	border-color: #3b6c95;
 }
 
 #window_instructions #instructions_headline {
@@ -334,7 +340,7 @@ p {
 
 #window_life_support.bordered,
 #window_life_support .bordered {
-	border-color: #006E96;
+	border-color: #3b6c95;
 }
 
 #window_life_support #o2_control{
@@ -371,6 +377,11 @@ p {
 #window_auxillary {
 	right: 0px;
 	width: 970px;
+}
+
+#window_auxillary,
+#window_auxillary .bordered{
+    border-color: #5d5959;
 }
 
 #window_auxillary .control {
@@ -418,11 +429,11 @@ p {
 #window_auxillary .control_icons div {
     width: 78px;
 }
-#window_life_support .control_icons .state_battery {
+#window_life_support .control_icons .state_off {
     left: 93.5px;
     padding-top: 3px;
 }
-#window_auxillary .control_icons .state_battery {
+#window_auxillary .control_icons .state_off {
     left: 78px;
     padding-top: 3px;
 }
@@ -430,7 +441,7 @@ p {
 	left: 0%;
     padding-top: 4px;
 }
-.control_icons .state_off {
+.control_icons .state_battery {
 	right: 0%;
     padding-top: 4px;
     padding-left: 1px;
@@ -452,18 +463,18 @@ p {
 
 /*Solar*/
 .state_solar .icon          {background-image:url(../img/btnSolar.png);}
-.state_solar .icon.active   {background-position: -2px -2px}
-.state_solar .icon.off      {background-position: -85px -2px}
-.state_solar .icon.red      {background-position: -168px -2px}
+.state_solar .icon.active {width:81px; height:76px; background-position: -0px -0px}
+.state_solar .icon.off {width:81px; height:76px; background-position: -81px -0px}
+.state_solar .icon.red {width:81px; height:76px; background-position: -162px -0px}
 /*Battery*/
 .state_battery .icon        {background-image:url(../img/btnBattery.png);}
-.state_battery .icon.active {background-position: -2px -2px}
-.state_battery .icon.off    {background-position: -85px -2px}
-.state_battery .icon.red    {background-position: -168px -2px}
+.state_battery .icon.active {width:81px; height:76px; background-position: -0px -0px}
+.state_battery .icon.off {width:81px; height:76px; background-position: -81px -0px}
+.state_battery .icon.red {width:81px; height:76px; background-position: -162px -0px}
 /*Off*/
 .state_off .icon            {background-image:url(../img/btnOff.png);}
-.state_off .icon.active     {background-position: -2px -2px}
-.state_off .icon.off        {background-position: -85px -2px}
+.state_off .icon.active {width:81px; height:76px; background-position: -0px -0px}
+.state_off .icon.off {width:81px; height:76px; background-position: -81px -0px}
 
 /*
  * Animations
@@ -487,7 +498,7 @@ p {
 /*Fan*/
 #fan_control .animation{
     background-image:url(../img/fan.png);
-    width:241px;
+    width:239px;
     height:203px;
     margin-top:14px;
     margin-left:2px;

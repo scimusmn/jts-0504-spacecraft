@@ -18,7 +18,6 @@ define(['tween'], function( tween ){
 
     this.failState = $(this.containerDiv).find("#fail");
     $(this.failState).hide();
-    console.log( $(this.failState).attr('id') );
 
     this.powerLevel = 100;
 
@@ -31,23 +30,20 @@ define(['tween'], function( tween ){
 
     if (this.powerLevel > 100) this.powerLevel = 100;
 
-    if (this.powerLevel <= 0) {
+    if (this.powerLevel == 0) {
       this.powerLevel = 0;
 
-      //TODO - show broken battery state
-
-
-    } else {
-
-      var visLevel = this.powerLevel;
-
-      if (snapToBars == true) visLevel = snapToFourth(visLevel);
-
-      var levelScale = 1 - (visLevel / 100);
-
-      TweenLite.to( $(this.mask), 0.5, { css: { scaleY:levelScale, transformOrigin: "50% 0%" } } );
+      //OPTION - show special failed battery state
 
     }
+
+    var visLevel = this.powerLevel;
+
+    if (snapToBars == true) visLevel = snapToFourth(visLevel);
+
+    var levelScale = 1 - (visLevel / 100);
+
+    TweenLite.to( $(this.mask), 0.5, { css: { scaleY:levelScale, transformOrigin: "50% 0%" } } );
 
     $(this.textDisplay).html(this.powerLevel+"%");
 

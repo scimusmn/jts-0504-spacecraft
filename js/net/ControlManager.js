@@ -51,10 +51,29 @@ define(['net/AppData', 'net/ControlUI', 'net/Battery', 'net/BatteryPack'], funct
 
 	/* setControlState() | Setup the state of a specific control by id */
 	ControlManager.setControlState = function( controlId, stateId ) {
-		console.log( "setControlState:" + controlId, stateId );
+
 		ControlManager.getControlById( controlId ).setState( stateId );
 
 	}
+
+    /* setDifficulty() | Update control states and levels based on new difficulty */
+    ControlManager.setDifficulty = function( value ){
+
+        AppData.setDifficulty( value );
+
+        if (value==AppData.DIFFICULTY_EASY) {
+            //enable batteries
+            ControlManager.batteryPack.setFailStates( false, false );
+        }else{
+            //disable right-side battery
+            ControlManager.batteryPack.setFailStates( false, true );
+        }
+
+
+        //shift remaining power to one battery
+        // ControlManager.batteryPack.updatePackLevel( );
+
+    };
 
 
 	return ControlManager;
