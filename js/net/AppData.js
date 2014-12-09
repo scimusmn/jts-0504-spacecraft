@@ -6,22 +6,28 @@ define([], function(){
     }
 
     //Constants
-    AppData.ORBIT_CYCLE_TIME = 9; // Secs it take for complete obit around Earth
     AppData.SHADOW_ENTER_ANGLE = 136; // Angle space-station enters shadow
     AppData.SHADOW_EXIT_ANGLE = 275; // Angle space-station exits shadow
 
     AppData.DIFFICULTY_EASY = 0;
     AppData.DIFFICULTY_HARD = 1;
 
+    //Colors
+    AppData.WARNING_RED = "#cb242c";
+    AppData.GO_GREEN = "#cb242c";
+
+
     AppData.updateSettings = function(configXML){
 
     	this.configXML = configXML;
 
-    	this.developerMode = ($(this.configXML).find('setting[id=developerMode]').attr('value') == "true");
-
-    	//how to set string setting
-//    	this.EXAMPLE_SETTING = $(this.configXML).find('setting[id=EXAMPLE_SETTING_ID]').attr('value');
-
+        //Settings from xml.
+    	this.developerMode = this.getBool('developerMode');
+        this.orbit_duration = this.getInt('orbit_duration');
+        this.o2_fill_rate = this.getFloat('o2_fill_rate');
+        this.o2_depletion_rate = this.getFloat('o2_depletion_rate');
+        this.circulation_fill_rate = this.getFloat('circulation_fill_rate');
+        this.circulation_depletion_rate = this.getFloat('circulation_depletion_rate');
 
         //Global Vars
         this.currentStateId = '';
@@ -31,6 +37,22 @@ define([], function(){
         this.currentDifficulty = AppData.DIFFICULTY_EASY;
 
     };
+
+    AppData.getInt = function(id){
+        return parseInt( this.getSetting(id) );
+    }
+
+    AppData.getFloat = function(id){
+        return parseFloat( this.getSetting(id) );
+    }
+
+    AppData.getBool = function(id){
+        return (this.getSetting(id) == "true");
+    }
+
+    AppData.getSetting = function(id){
+        return $(this.configXML).find('setting[id='+id+']').attr('value');
+    }
 
     AppData.setCurrentState = function(stateId){
 

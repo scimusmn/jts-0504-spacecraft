@@ -9,6 +9,8 @@ define(['tween'], function( tween ){
   Battery.STATE_FULL = 'full';
   Battery.STATE_DEPLETING = 'depleting';
 
+  Battery.COLORS = ['#DF0E1F','#DF191E','#DC321A','#DF4A1D','#DC6D1A','#DE8018','#D29519','#AD961A','#A8951D','#98961D','#8F9320','#4F9126','#328B29','#288A2B'];
+
   function Battery( containerDiv ){
 
     this.containerDiv = containerDiv;
@@ -19,6 +21,8 @@ define(['tween'], function( tween ){
     this.failState = $(this.containerDiv).find("#fail");
     $(this.failState).hide();
 
+    this.fillTimer = {};
+    this.warningState = false;
     this.powerLevel = 100;
 
   }
@@ -29,13 +33,7 @@ define(['tween'], function( tween ){
     this.powerLevel = Math.round(level);
 
     if (this.powerLevel > 100) this.powerLevel = 100;
-
-    if (this.powerLevel == 0) {
-      this.powerLevel = 0;
-
-      //OPTION - show special failed battery state
-
-    }
+    if (this.powerLevel <= 0) this.powerLevel = 0;
 
     var visLevel = this.powerLevel;
 
@@ -43,11 +41,57 @@ define(['tween'], function( tween ){
 
     var levelScale = 1 - (visLevel / 100);
 
-    TweenLite.to( $(this.mask), 0.5, { css: { scaleY:levelScale, transformOrigin: "50% 0%" } } );
+    TweenLite.to( $(this.mask), 0.3, { css: { scaleY:levelScale, transformOrigin: "50% 0%" }, ease:Linear.easeNone } );
+
+    this.refreshText();
+
+  };
+
+  Battery.prototype.refreshText = function( ) {
 
     $(this.textDisplay).html(this.powerLevel+"%");
 
-  };
+    if (this.powerLevel < 25 && this.powerLevel > 0 && this.warningState == false){
+
+      $(this.textDisplay).addClass('warning-red');
+      TweenMax.set( $(this.textDisplay), { css: { scale:1, transformOrigin: "50% 50%" } } );
+      TweenMax.to( $(this.textDisplay), 0.5, { css: { scale:1.5, transformOrigin: "50% 50%" }, repeat:-1, yoyo:true } );
+      this.warningState = true;
+
+    } else if (this.powerLevel >= 25 && this.warningState == true) {
+
+      $(this.textDisplay).removeClass('warning-red');
+      TweenMax.to( $(this.textDisplay), 0.25, { css: { scale:1, transformOrigin: "50% 50%" }} );
+      this.warningState = false;
+
+    } else if (this.powerLevel <= 0) {
+
+      $(this.textDisplay).addClass('warning-red');
+      TweenMax.killTweensOf( $(this.textDisplay) );
+      TweenMax.to( $(this.textDisplay), 0.5, { css: { scale:1.5, transformOrigin: "50% 50%" } } );
+      this.warningState = false;
+
+    }
+
+  }
+
+  Battery.prototype.currentLevelColor = function( ) {
+    var c = Math.floor((this.powerLevel/100) * Battery.COLORS.length);
+    return Battery.COLORS[c];
+  }
+
+  Battery.prototype.timedFill = function( increment ) {
+
+    clearInterval(this.fillTimer);
+
+    var thisRef = this;
+    thisRef.fillTimer = setInterval(function(){
+
+      thisRef.updateBatteryLevel(thisRef.powerLevel + increment);
+
+    }, 350);
+
+  }
 
   Battery.prototype.clearFailState = function( ) {
 

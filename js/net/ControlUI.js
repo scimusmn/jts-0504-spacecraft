@@ -2,13 +2,12 @@
    ControlUI
    ===================================================================================== */
 
-define(['animatesprite'], function( animateSprite ){
+define(['animatesprite', 'net/AppData'], function( animateSprite, AppData ){
 
   //STATES
-  ControlUI.STATE_OFF = 'off';
-  ControlUI.STATE_ACTIVE = 'active';
-  ControlUI.STATE_WARNING = 'unavailable';
-  ControlUI.STATE_WARNING = 'warning';
+  ControlUI.STATE_OFF = 0;
+  ControlUI.STATE_SOLAR = 1;
+  ControlUI.STATE_BATTERY = 2;
 
   function ControlUI( containerDiv, numFrames, loopActiveAnimation ){
 
@@ -16,6 +15,7 @@ define(['animatesprite'], function( animateSprite ){
     this.numFrames = numFrames;
     this.id = $(this.containerDiv).attr('id');
     this.setState(ControlUI.STATE_OFF);
+    this.isActive = false;
 
     //setup animation
     this.controlAnimation = $(this.containerDiv).find(".animation").first();
@@ -42,33 +42,58 @@ define(['animatesprite'], function( animateSprite ){
   ControlUI.prototype.setState = function( stateId ) {
 
     this.currentState = stateId;
+    this.refreshStateDisplay();
+
+  }
+
+  // refreshStateDisplay() | refresh animation and icons to match current state.
+  ControlUI.prototype.refreshStateDisplay = function( ) {
 
     $(this.containerDiv).find('.state_off').parent().find('div .icon').removeClass('red').removeClass('active').addClass('off');
+    this.isActive = false;
 
     switch (this.currentState) {
 
       case ControlUI.STATE_OFF:
 
         $( this.controlAnimation ).animateSprite('frame', 0);
-        $( this.controlAnimation ).animateSprite( 'play', ControlUI.STATE_OFF );
-
+        $( this.controlAnimation ).animateSprite('play', 'off' );
         $(this.containerDiv).find('.state_off .icon').first().removeClass('off').addClass('active');
 
       break;
-      case ControlUI.STATE_ACTIVE:
+      case ControlUI.STATE_SOLAR:
 
-        $( this.controlAnimation ).animateSprite('frame', 1);
-        $( this.controlAnimation ).animateSprite( 'play', ControlUI.STATE_ACTIVE );
+        if (AppData.solarAvailable == true) {
 
-        $(this.containerDiv).find('.state_solar .icon').first().removeClass('off').addClass('active');
+          $( this.controlAnimation ).animateSprite('frame', 1);
+          $( this.controlAnimation ).animateSprite('play', 'active' );
+          $(this.containerDiv).find('.state_solar .icon').first().removeClass('off red').addClass('active');
+          this.isActive = true;
 
+        } else {
+
+          $( this.controlAnimation ).animateSprite('frame', 1);
+          $( this.controlAnimation ).animateSprite('play', 'unavailable');
+          $(this.containerDiv).find('.state_solar .icon').first().removeClass('off active').addClass('red');
+
+        }
       break;
-      case ControlUI.STATE_WARNING:
+      case ControlUI.STATE_BATTERY:
 
-        $( this.controlAnimation ).animateSprite('frame', 1);
-        $( this.controlAnimation ).animateSprite( 'play', 'unavailable' );
-        $(this.containerDiv).find('.state_battery .icon').first().removeClass('off').addClass('active');
+        if (AppData.currentPowerLevel > 0) {
 
+          $( this.controlAnimation ).animateSprite('frame', 1);
+          $( this.controlAnimation ).animateSprite('play', 'active' );
+          $(this.containerDiv).find('.state_battery .icon').first().removeClass('off red').addClass('active');
+          this.isActive = true;
+
+        } else {
+
+          $( this.controlAnimation ).animateSprite('frame', 1);
+          $( this.controlAnimation ).animateSprite('play', 'unavailable');
+          $(this.containerDiv).find('.state_battery .icon').first().removeClass('off active').addClass('red');
+
+        }
 
       break;
 

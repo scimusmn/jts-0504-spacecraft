@@ -13,7 +13,7 @@ require.config({
 });
 
 
-require(['jquery', 'net/AppData', 'net/Keyboard', 'net/Language', 'net/ControlManager', 'tween', 'net/Hardware' ], function( $, AppData, Keyboard, Language, ControlManager, tween, hardware ) {
+require(['jquery', 'net/AppData', 'net/Keyboard', 'net/Language', 'net/ControlManager', 'tween' ], function( $, AppData, Keyboard, Language, ControlManager, tween ) {
 
 	/*--------------*/
 	/* Initial Load */
@@ -36,12 +36,6 @@ require(['jquery', 'net/AppData', 'net/Keyboard', 'net/Language', 'net/ControlMa
         }
     });
 
-        function cbConstructor(id){
-        return function(){
-        	ControlManager.setControlState(id,((!this.state)?'off':(this.state==1)?'active':'warning'));
-        }
-        }
-
     function initialize() {
 
 		Keyboard.init();
@@ -50,20 +44,25 @@ require(['jquery', 'net/AppData', 'net/Keyboard', 'net/Language', 'net/ControlMa
         ControlManager.setupControls();
 
         startSpaceStationOrbit();
-        hardware.link(function(){
-                      	hardware.oxygen.onchange = cbConstructor("o2_control");
-                      	hardware.fan.onchange = cbConstructor("fan_control");
-                      	hardware.food.onchange = cbConstructor("food_control");
-                      	hardware.comm.onchange = cbConstructor("comm_control");
-                      	hardware.heat.onchange = cbConstructor("heat_control");
-                      	hardware.lights.onchange = cbConstructor("light_control");
-                      });
+
+        //Temp
+        //Mute all styles
+        $("div").each(function(){
+            $(this).css("border-color", "rgba(33,33,33,1)");
+            $(this).css("background-color", "rgba(33,33,33,0.0)");
+        });
+        $("h1,h2,h3,p").each(function(){
+            $(this).css("color", "rgba(155,155,155,1)");
+        });
+        $("p").each(function(){
+            $(this).css("color", "rgba(155,155,155,0.5)");
+        });
+
     }
 
     function startSpaceStationOrbit() {
 
-        TweenMax.to( $("#space_station_container"), AppData.ORBIT_CYCLE_TIME, { css: { rotation:360 }, ease:Linear.easeNone, repeat:-1, onUpdate: onStationRotateUpdate } );
-        // TweenMax.to( $("#space_station"), AppData.ORBIT_CYCLE_TIME * 2, { css: { rotation:-360 }, ease:Linear.easeNone, repeat:-1 } );
+        TweenMax.to( $("#space_station_container"), AppData.orbit_duration, { css: { rotation:360 }, ease:Linear.easeNone, repeat:-1, onUpdate: onStationRotateUpdate } );
 
     }
 
@@ -71,43 +70,29 @@ require(['jquery', 'net/AppData', 'net/Keyboard', 'net/Language', 'net/ControlMa
 
         var rotation = $("#space_station_container")[0]._gsTransform.rotation;
 
-        //ControlManager.batteryPack.updatePackLevel( hardware.battery );
-
         if ( rotation < AppData.SHADOW_EXIT_ANGLE && rotation > AppData.SHADOW_ENTER_ANGLE ) {
 
             //In Earth's shadow
             if (AppData.getSolarAvailable() == true) {
 
-                AppData.setSolarAvailable(false);
-
-                //TODO - Need current translation
+                ControlManager.setSolarAvailable(false);
                 $("#available").html("NOT AVAILABLE");
-                $("#available").css("color", "#cb242c");
-
-                hardware.sunState(0);
-
-                ControlManager.o2Level.updateBatteryLevel( Math.random()*100, true );
-                ControlManager.fanLevel.updateBatteryLevel( Math.random()*100, true );
-                ControlManager.batteryPack.updatePackLevel( hardware.battery );
+                $("#available").removeClass('go-green');
+                $("#available").addClass('warning-red');
 
             }
 
         } else {
+
             //In Sun's light
             if (AppData.getSolarAvailable() == false) {
 
-                AppData.setSolarAvailable(true);
+                ControlManager.setSolarAvailable(true);
                 $("#available").html("AVAILABLE");
-                $("#available").css("color", "#65a55b");
-
-                hardware.sunState(1);
-
-                ControlManager.o2Level.updateBatteryLevel( Math.random()*100, true );
-                ControlManager.fanLevel.updateBatteryLevel( Math.random()*100, true );
-                ControlManager.batteryPack.updatePackLevel( hardware.battery);
+                $("#available").removeClass('warning-red');
+                $("#available").addClass('go-green');
 
             }
-
 
         }
 
