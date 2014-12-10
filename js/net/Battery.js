@@ -51,12 +51,12 @@ define(['tween', 'net/Language'], function( tween, Language ){
 
   Battery.prototype.refreshText = function( ) {
 
-    if (this.useTextFeedback==false){
+    // if (this.useTextFeedback==false){
       $(this.textDisplay).html(this.powerLevel+"%");
-    } else {
-      $(this.textDisplay).attr('id', this.currentLevelFeedback());
-      Language.refreshTranslation($(this.textDisplay));
-    }
+    // } else {
+    //   $(this.textDisplay).attr('id', this.currentLevelFeedback());
+    //   Language.refreshTranslation($(this.textDisplay));
+    // }
 
     if (this.powerLevel < 25 && this.powerLevel > 0 && this.warningState == false){
 
