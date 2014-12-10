@@ -76,9 +76,9 @@ require(['jquery', 'net/AppData', 'net/Keyboard', 'net/Language', 'net/ControlMa
             if (AppData.getSolarAvailable() == true) {
 
                 ControlManager.setSolarAvailable(false);
-                $("#available").html("NOT AVAILABLE");
-                $("#available").removeClass('go-green');
-                $("#available").addClass('warning-red');
+                $("#available").attr('id', 'unavailable');
+                Language.refreshTranslation($("#unavailable"));
+                $("#unavailable").removeClass('go-green').addClass('warning-red');
 
             }
 
@@ -88,9 +88,9 @@ require(['jquery', 'net/AppData', 'net/Keyboard', 'net/Language', 'net/ControlMa
             if (AppData.getSolarAvailable() == false) {
 
                 ControlManager.setSolarAvailable(true);
-                $("#available").html("AVAILABLE");
-                $("#available").removeClass('warning-red');
-                $("#available").addClass('go-green');
+                $("#unavailable").attr('id', 'available');
+                Language.refreshTranslation($("#available"));
+                $("#available").removeClass('warning-red').addClass('go-green');
 
             }
 

@@ -1,4 +1,4 @@
-define(['net/AppData', 'net/ControlUI', 'net/Battery', 'net/BatteryPack', 'net/Hardware'], function( AppData, ControlUI, Battery, BatteryPack, hardware ){
+define(['net/AppData', 'net/ControlUI', 'net/Battery', 'net/BatteryPack', 'net/Hardware', 'net/Language'], function( AppData, ControlUI, Battery, BatteryPack, hardware, Language ){
 
 	//Constants
 	ControlManager.ENGLISH = 'en';
@@ -23,7 +23,7 @@ define(['net/AppData', 'net/ControlUI', 'net/Battery', 'net/BatteryPack', 'net/H
 
         ControlManager.batteryPack = new BatteryPack("#battery_left", "#battery_right");
         ControlManager.o2Level = new Battery("#o2_level_container");
-        ControlManager.fanLevel = new Battery("#fan_level");
+        ControlManager.fanLevel = new Battery("#fan_level", true);
 
         ControlManager.linkHardware();
 
@@ -33,12 +33,17 @@ define(['net/AppData', 'net/ControlUI', 'net/Battery', 'net/BatteryPack', 'net/H
     ControlManager.linkHardware = function( ) {
 
         hardware.link( function(){
+
                         hardware.oxygen.onchange = function(){ControlManager.setControlState("o2_control", this.state)};
                         hardware.fan.onchange = function(){ControlManager.setControlState("fan_control", this.state)};
                         hardware.food.onchange = function(){ControlManager.setControlState("food_control", this.state)};
                         hardware.comm.onchange = function(){ControlManager.setControlState("comm_control", this.state)};
                         hardware.heat.onchange = function(){ControlManager.setControlState("heat_control", this.state)};
                         hardware.lights.onchange = function(){ControlManager.setControlState("light_control", this.state)};
+
+                        hardware.language.onchange = function(){Language.setLanguage(Language.convertState(this.state))};
+                        hardware.difficulty.onchange = function(){ControlManager.setDifficulty(this.state)};
+
                       });
 
         setInterval(ControlManager.checkBatteries, 1000);
@@ -59,8 +64,6 @@ define(['net/AppData', 'net/ControlUI', 'net/Battery', 'net/BatteryPack', 'net/H
         } else if (prevReading <= 0 && reading > 0){
             ControlManager.refreshControlDisplays();
         }
-
-
 
     }
 
@@ -98,7 +101,6 @@ define(['net/AppData', 'net/ControlUI', 'net/Battery', 'net/BatteryPack', 'net/H
 	/* setControlState() | Set state of specific control */
 	ControlManager.setControlState = function( controlId, stateId ) {
 
-        console.log('setControlState', controlId, stateId);
 		ControlManager.getControlById( controlId ).setState( stateId );
 
         if (controlId == 'o2_control' || controlId == 'fan_control') {
@@ -145,6 +147,9 @@ define(['net/AppData', 'net/ControlUI', 'net/Battery', 'net/BatteryPack', 'net/H
 
     /* setDifficulty() | Update control states and levels based on new difficulty */
     ControlManager.setDifficulty = function( value ){
+
+        //temp
+        if(value>1)value=1;
 
         AppData.setDifficulty( value );
 

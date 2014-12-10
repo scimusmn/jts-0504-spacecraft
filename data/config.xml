@@ -98,13 +98,13 @@
 				<es>LOREM IPSUM</es>
 			</text>
 
-			<text id="circulation_feedack_poor">
-				<en>POOR</en>
+			<text id="circulation_feedback_poor">
+				<en>WARNING</en>
 				<es>LOREM</es>
 			</text>
 
-			<text id="circulation_feedack_average">
-				<en>AVERAGE</en>
+			<text id="circulation_feedback_fair">
+				<en>FAIR</en>
 				<es>DOLOR</es>
 			</text>
 
@@ -113,7 +113,7 @@
 				<es>IPSUM</es>
 			</text>
 
-			<text id="circulation_feedack_excellent">
+			<text id="circulation_feedback_excellent">
 				<en>EXCELLENT</en>
 				<es>AMET</es>
 			</text>

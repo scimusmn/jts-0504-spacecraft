@@ -2,7 +2,7 @@
    Battery
    ===================================================================================== */
 
-define(['tween'], function( tween ){
+define(['tween', 'net/Language'], function( tween, Language ){
 
   //STATES
   Battery.STATE_DEAD = 'dead';
@@ -10,8 +10,9 @@ define(['tween'], function( tween ){
   Battery.STATE_DEPLETING = 'depleting';
 
   Battery.COLORS = ['#DF0E1F','#DF191E','#DC321A','#DF4A1D','#DC6D1A','#DE8018','#D29519','#AD961A','#A8951D','#98961D','#8F9320','#4F9126','#328B29','#288A2B'];
+  Battery.TEXT_FEEDBACK = ['circulation_feedback_poor','circulation_feedback_fair','circulation_feedback_good','circulation_feedback_excellent'];
 
-  function Battery( containerDiv ){
+  function Battery( containerDiv, useFeedbackText ){
 
     this.containerDiv = containerDiv;
     this.mask = $(this.containerDiv).find("#mask");
@@ -24,6 +25,7 @@ define(['tween'], function( tween ){
     this.fillTimer = {};
     this.warningState = false;
     this.powerLevel = 100;
+    this.useTextFeedback = useFeedbackText || false;
 
   }
 
@@ -49,7 +51,12 @@ define(['tween'], function( tween ){
 
   Battery.prototype.refreshText = function( ) {
 
-    $(this.textDisplay).html(this.powerLevel+"%");
+    if (this.useTextFeedback==false){
+      $(this.textDisplay).html(this.powerLevel+"%");
+    } else {
+      $(this.textDisplay).attr('id', this.currentLevelFeedback());
+      Language.refreshTranslation($(this.textDisplay));
+    }
 
     if (this.powerLevel < 25 && this.powerLevel > 0 && this.warningState == false){
 
@@ -78,6 +85,11 @@ define(['tween'], function( tween ){
   Battery.prototype.currentLevelColor = function( ) {
     var c = Math.floor((this.powerLevel/100) * Battery.COLORS.length);
     return Battery.COLORS[c];
+  }
+
+  Battery.prototype.currentLevelFeedback = function( ) {
+    var f = Math.floor((this.powerLevel/100) * Battery.TEXT_FEEDBACK.length);
+    return Battery.TEXT_FEEDBACK[f];
   }
 
   Battery.prototype.timedFill = function( increment ) {

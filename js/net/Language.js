@@ -25,22 +25,42 @@ define(['net/AppData'], function(AppData){
 	/* setLanguage() | Find and replace all text by translation ids */
 	Language.setLanguage = function( languageId ){
 
-
 		//Find all swappable language
 		$("#wrapper").find("p,h1,h2,h3,span").each(function(){
 
-			//Retrieve translation text from translation xml
-			var translationId = $(this).attr('id');
-			var translationText = $( Language.translationXML ).find('text[id="'+translationId+'"]').children( languageId ).first().text();
-
-			//Apply to html
-			if (translationText != '') $(this).html( translationText );
+			Language.refreshTranslation(this);
 
 		});
 
 		Language.currentLanguage = languageId;
 
 	}
+
+	Language.convertState = function(state){
+		if (state == 0) {
+            Language.setLanguage(Language.ENGLISH);
+        } else {
+            Language.setLanguage(Language.SPANISH);
+        }
+	}
+
+	Language.refreshTranslation = function( translateElement ){
+
+        //Retrieve translation text from translation xml
+		var translationId = $(translateElement).attr('id');
+		var translationText = Language.getTranslation(translationId);
+
+		//Apply to html
+		if (translationText != '') $(translateElement).html( translationText );
+
+    };
+
+	Language.getTranslation = function( translationId ){
+
+        var translationText = $( Language.translationXML ).find('text[id="'+translationId+'"]').children( Language.currentLanguage ).first().text();
+        return translationText;
+
+    };
 
 	/* getCurrentLanguage() | Return the current displayed language key. */
 	Language.getCurrentLanguage = function(){

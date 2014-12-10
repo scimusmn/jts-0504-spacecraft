@@ -287,7 +287,8 @@ p {
 	text-align: right;
 }
 
-#window_power #container_orbit #available {
+#window_power #container_orbit #available,
+#window_power #container_orbit #unavailable {
 	left: 54%;
 	position: absolute;
 	text-align: left;
