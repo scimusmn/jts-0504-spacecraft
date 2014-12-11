@@ -12,8 +12,9 @@ define(['tween', 'net/Language'], function( tween, Language ){
   Battery.COLORS = ['#DF0E1F','#DF191E','#DC321A','#DF4A1D','#DC6D1A','#DE8018','#D29519','#AD961A','#A8951D','#98961D','#8F9320','#4F9126','#328B29','#288A2B'];
   Battery.TEXT_FEEDBACK = ['circulation_feedback_poor','circulation_feedback_fair','circulation_feedback_good','circulation_feedback_excellent'];
 
-  function Battery( containerDiv, useFeedbackText ){
+  function Battery( containerDiv, useFeedbackText, alertDiv ){
 
+    this.alertDiv = alertDiv || null;
     this.containerDiv = containerDiv;
     this.mask = $(this.containerDiv).find("#mask");
     this.levelBar = $(this.containerDiv).find("#level_bar");
@@ -58,25 +59,31 @@ define(['tween', 'net/Language'], function( tween, Language ){
     //   Language.refreshTranslation($(this.textDisplay));
     // }
 
+    //WARNING
     if (this.powerLevel < 25 && this.powerLevel > 0 && this.warningState == false){
 
       $(this.textDisplay).addClass('warning-red');
       TweenMax.set( $(this.textDisplay), { css: { scale:1, transformOrigin: "50% 50%" } } );
       TweenMax.to( $(this.textDisplay), 0.5, { css: { scale:1.5, transformOrigin: "50% 50%" }, repeat:-1, yoyo:true } );
       this.warningState = true;
+      if(this.alertDiv) $(this.alertDiv).stop().fadeTo('slow',0);
 
+    //NORMAL
     } else if (this.powerLevel >= 25 && this.warningState == true) {
 
       $(this.textDisplay).removeClass('warning-red');
       TweenMax.to( $(this.textDisplay), 0.25, { css: { scale:1, transformOrigin: "50% 50%" }} );
       this.warningState = false;
+      if(this.alertDiv) $(this.alertDiv).stop().fadeTo('slow',0);
 
+    //EMPTY
     } else if (this.powerLevel <= 0) {
 
       $(this.textDisplay).addClass('warning-red');
       TweenMax.killTweensOf( $(this.textDisplay) );
-      TweenMax.to( $(this.textDisplay), 0.5, { css: { scale:1.5, transformOrigin: "50% 50%" } } );
+      TweenMax.to( $(this.textDisplay), 0.5, { css: { scale:1, transformOrigin: "50% 50%" } } );
       this.warningState = false;
+      if(this.alertDiv) $(this.alertDiv).stop().fadeTo('fast',1);
 
     }
 

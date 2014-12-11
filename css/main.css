@@ -217,7 +217,7 @@ p {
 	width: 100%;
 }
 .window .control_title.top {
-	top: 3%;
+	top: 0%;
 }
 .window .control_title.bottom {
 	bottom: 3%;
@@ -381,6 +381,8 @@ p {
 }
 
 
+
+
 /*Auxillary*/
 #window_auxillary {
 	right: 0px;
@@ -507,7 +509,7 @@ p {
     background-image:url(../img/fan.png);
     width:239px;
     height:203px;
-    margin-top:14px;
+    margin-top:12px;
     margin-left:2px;
 }
 /*Food*/
@@ -515,7 +517,7 @@ p {
     background-image:url(../img/growingPlants.png);
     width:239px;
     height:203px;
-    margin-top:7px;
+    margin-top:14px;
     margin-left:-13px;
 }
 /*Communication*/
@@ -523,7 +525,7 @@ p {
     background-image:url(../img/communications.png);
     width:239px;
     height:203px;
-    margin-top:13px;
+    margin-top:23px;
     margin-left:-17px;
 }
 /*Heat*/
@@ -531,7 +533,7 @@ p {
     background-image:url(../img/cookingHeat.png);
     width:239px;
     height:203px;
-    margin-top:-1px;
+    margin-top:6px;
     margin-left:-12px;
 }
 /*Light*/
@@ -539,8 +541,29 @@ p {
     background-image:url(../img/cabinLights.png);
     width:241px;
     height:203px;
-    margin-top:21px;
+    margin-top:26px;
     margin-left:-18px;
+}
+
+
+/* Alerts */
+.alert {
+    display: none;
+    position: absolute;
+    top: 40px;
+    left: 18px;
+    width: 190px;
+    height: 133px;
+    color: white;
+    padding: 10px 20px;
+    background-color: rgba(233,41,53,0.8);
+    font-size: 16px;
+}
+
+#window_power .alert {
+    width: 364px;
+    height: 301px;
+    font-size: 20px;
 }
 
 

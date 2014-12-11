@@ -21,11 +21,11 @@
     <body>
 
         <div id="wrapper" class="container">
-<!--
+
         	<video id="backdrop_vid" width="100%" height="100%" autoplay loop style="display:none">
 				<source src="img/starfield.mp4" type="video/mp4">
 			</video>
- -->
+
 	    	<!-- POWER WINDOW -->
 	    	<div id="window_power" class="window container row1 bordered full">
 
@@ -34,7 +34,6 @@
 	    		</div>
 
 	    		<div id="container_orbit" class="container lower">
-	    			<!-- insert orbit animation here -->
 	    			<div id="orbit_display" class="container comp">
 	    				<img id="sun" src="img/solarPower0002.png"/>
 	    				<img id="ring" src="img/solarPower0003.png"/>
@@ -51,7 +50,6 @@
 	    		<div id="container_batteries" class="container lower  bordered left">
 	    			<div id="battery_bars" class="container bordered bottom">
 	    				<h2 id="batteries" class="control_title top">+</h2>
-	    				<!-- insert battery displays here -->
 	    				<div id="battery_left" class="container comp">
 		    				<img id="chunk_1" src="img/batteryPower0002.png"/>
 		    				<img id="chunk_2" src="img/batteryPower0003.png"/>
@@ -72,6 +70,7 @@
 		    			</div>
 	    			</div>
 	    			<h2 id="batteries_level_percent" class="control_title">100%</h2>
+	    			<h3 id="batteries_depleted" class="alert batteries">+</h3>
 	    		</div>
 
 	    	</div>
@@ -97,8 +96,9 @@
 	    			<div class="control-animation bordered bottom">
 		    			<h3 id="oxygen_generator" class="control_title top">+</h3>
 		    			<div id="animation" class="animation">
-		    				<!-- insert o2 animation here -->
+		    				<!-- insert animation here -->
 		    			</div>
+		    			<h3 id="oxygen_depleted" class="alert oxygen">+</h3>
 	    			</div>
 					<div class="control_icons container">
 						<div class="state_solar bordered right"><div class="icon"></div></div>
@@ -108,7 +108,6 @@
 	    		</div>
 	    		<div id="o2_level_container" class="control container level-state bordered right">
 	    			<h3 id="o2_level" class="control_title top">+</h3>
-	    			<!-- insert level bar here -->
 	    			<div id="level_bar_display" class="container comp">
 	    				<img id="level_bar" src="img/levels0002.png"/>
 	    				<img id="mask" src="img/levels0003.png"/>
@@ -124,6 +123,7 @@
 	    				<div id="animation" class="animation">
 		    				<!-- insert animation here -->
 		    			</div>
+		    			<h3 id="circulation_depleted" class="alert circulation">+</h3>
 	    			</div>
 	    			<div class="control_icons container">
 	    				<div class="state_solar bordered right"><div class="icon"></div></div>
@@ -133,7 +133,6 @@
 	    		</div>
 	    		<div id="fan_level" class="control container level-state bordered left">
 	    			<h3 id="circulation" class="control_title top">+</h3>
-	    			<!-- insert level bar here -->
 	    			<div id="level_bar_display" class="container comp">
 	    				<img id="level_bar" src="img/levels0002.png"/>
 	    				<img id="mask" src="img/levels0003.png"/>

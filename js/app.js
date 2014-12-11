@@ -47,16 +47,16 @@ require(['jquery', 'net/AppData', 'net/Keyboard', 'net/Language', 'net/ControlMa
 
         //Temp
         //Mute all styles
-        $("div").each(function(){
-            $(this).css("border-color", "rgba(33,33,33,1)");
-            $(this).css("background-color", "rgba(33,33,33,0.0)");
-        });
-        $("h1,h2,h3,p").each(function(){
-            $(this).css("color", "rgba(155,155,155,1)");
-        });
-        $("p").each(function(){
-            $(this).css("color", "rgba(155,155,155,0.5)");
-        });
+        // $("div").each(function(){
+        //     $(this).css("border-color", "rgba(33,33,33,1)");
+        //     $(this).css("background-color", "rgba(33,33,33,0.0)");
+        // });
+        // $("h1,h2,h3,p").each(function(){
+        //     $(this).css("color", "rgba(155,155,155,1)");
+        // });
+        // $("p").each(function(){
+        //     $(this).css("color", "rgba(155,155,155,0.5)");
+        // });
 
     }
 

@@ -1,9 +1,5 @@
 define(['net/AppData', 'net/ControlUI', 'net/Battery', 'net/BatteryPack', 'net/Hardware', 'net/Language'], function( AppData, ControlUI, Battery, BatteryPack, hardware, Language ){
 
-	//Constants
-	ControlManager.ENGLISH = 'en';
-	ControlManager.SPANISH = 'es';
-
 	ControlManager.controls = [];
 
 	function ControlManager( ){
@@ -21,9 +17,9 @@ define(['net/AppData', 'net/ControlUI', 'net/Battery', 'net/BatteryPack', 'net/H
         ControlManager.controls.push( new ControlUI("#heat_control", 15, true) );
         ControlManager.controls.push( new ControlUI("#light_control", 3, true) );
 
-        ControlManager.batteryPack = new BatteryPack("#battery_left", "#battery_right");
-        ControlManager.o2Level = new Battery("#o2_level_container");
-        ControlManager.fanLevel = new Battery("#fan_level", true);
+        ControlManager.batteryPack = new BatteryPack("#battery_left", "#battery_right", $('#batteries_depleted'));
+        ControlManager.o2Level = new Battery("#o2_level_container", false, $('#oxygen_depleted'));
+        ControlManager.fanLevel = new Battery("#fan_level", true, $('#circulation_depleted'));
 
         ControlManager.linkHardware();
 

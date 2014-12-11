@@ -33,9 +33,6 @@ function(arduino){
 
        hardware.init = function(){
 
-           hardware.language = new device(16);
-           hardware.difficulty = new device(17);
-
            hardware.oxygen = new device(4,5);
            hardware.fan = new device(6,7);
            hardware.food = new device(8,9);
@@ -43,7 +40,10 @@ function(arduino){
            hardware.heat = new device(12,13);
            hardware.lights = new device(18,19);
 
-           arduino.analogReport(1,75,function(pin,val){
+           hardware.language = new device(16,16);
+           hardware.difficulty = new device(17,17);
+
+           arduino.analogReport(0,75,function(pin,val){
                                 hardware.battery = Math.floor(val/2.55);
                                 });
        		if(hardware.initCB) hardware.initCB();

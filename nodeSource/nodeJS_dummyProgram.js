@@ -11,7 +11,7 @@ function dummyDev(num){
     var oldDevState = 0;
     var oldState=0;
     self.onChange =null;
-    
+
     self.toggle=function(){
         var newState = random(0,3);
         while (newState==oldDevState) newState = random(0,3);
@@ -24,17 +24,17 @@ function dummyDev(num){
         self.timer = setTimeout(self.toggle,random(7000,30000));
         oldDevState=newState;
     }
-    
+
     self.checkChange = function(){
         if(self.onChange&&oldState!=self.state) self.onChange(self),oldState=self.state;
     }
-    
+
     self.bind=function(tie){
         self.bound=tie;
         tie.bound=self;
         clearTimeout(tie.timer);
     }
-    
+
     self.timer = setTimeout(self.toggle,random(7000,30000));
 }
 
@@ -44,7 +44,7 @@ var dummyParse = new function(){
     self.lights =1;
     var analogInt = null;
     self.battLevel =0;
-    
+
     function setup(){
         for(var i=0; i<20; i++){
             pins[i] = new dummyDev(i);
@@ -53,14 +53,14 @@ var dummyParse = new function(){
             pins[i].bind(pins[i+1]);
         }
     }
-    
+
     setup();
-    
+
     var onChange = function(dev){
         if(webSock) webSock.send("r|pinChange("+dev.pin+","+dev.state+")");
         console.log("pinChange("+dev.pin+","+dev.state+")");
     }
-    
+
     self.fakeBattery = function(){
         if(self.lights>0){
             if(self.battLevel++>=255) self.battLevel=255;
@@ -68,7 +68,7 @@ var dummyParse = new function(){
         else if((self.battLevel-=3)<=0) self.battLevel=0;
         if(webSock) webSock.send("r|analogRead(0)="+self.battLevel);
     }
-    
+
     self.parse = function(message){
         var spl = message.split(/[\s,()=]+/);
         switch (spl[0]){
@@ -99,15 +99,15 @@ var dummyParse = new function(){
 
 var WebSocketServer = require('ws').Server, wss = new WebSocketServer({port: 8080});
 
-//Tell the wsServer what to do on connnection to a client; 
+//Tell the wsServer what to do on connnection to a client;
 
 var webSock = null;
 var sp = null;
 
 wss.on('connection', function(ws) {
-	
+
 	webSock = ws;
-	
+
     ws.on('message', function(message) {
     	var data = message.split("|");
         switch(data[0]){
@@ -123,11 +123,11 @@ wss.on('connection', function(ws) {
           		dummyParse.parse(data[1]);
         		break;
 			default:
-				
+
 				break;
 		}
     });
-	
+
 	ws.on('close',function(){
 		webSock=null;
 	});
@@ -136,14 +136,14 @@ wss.on('connection', function(ws) {
 		webSock=null;
 		console.log("Error: "+error);
 	});
-	
+
 });
 
 ////////////////////////////////////////////////////////
 // Use the library                                    //
 // git://github.com/voodootikigod/node-serialport.git //
 // to read the serial port where arduino is sitting.  //
-////////////////////////////////////////////////////////               
+////////////////////////////////////////////////////////
 /*var com = require("serialport");
 var bufSize = 512;
 
