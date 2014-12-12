@@ -7,13 +7,14 @@ require.config({
     paths: {
 	      'jquery'      	: 'vendor/jquery/jquery.min',
 	      'tween'      		: 'vendor/gsap/src/minified/TweenMax.min',
-          'animatesprite'   : 'vendor/animatesprite/scripts/jquery.animateSprite'
+          'animatesprite'   : 'vendor/animatesprite/scripts/jquery.animateSprite',
+          'howler'          : 'vendor/howler/howler.min'
     },
 
 });
 
 
-require(['jquery', 'net/AppData', 'net/Keyboard', 'net/Language', 'net/ControlManager', 'tween' ], function( $, AppData, Keyboard, Language, ControlManager, tween ) {
+require(['jquery', 'net/AppData', 'net/Keyboard', 'net/Language', 'net/ControlManager', 'net/Sound', 'tween' ], function( $, AppData, Keyboard, Language, ControlManager, Sound, tween ) {
 
 	/*--------------*/
 	/* Initial Load */
@@ -42,6 +43,8 @@ require(['jquery', 'net/AppData', 'net/Keyboard', 'net/Language', 'net/ControlMa
 		Language.setupTranslations( $(AppData.configXML).find("component").first() );
 
         ControlManager.setupControls();
+
+        Sound.preloadSounds('sounds/', ['alert', 'cooking', 'fan', 'light', 'radiochatter']);
 
         startSpaceStationOrbit();
 

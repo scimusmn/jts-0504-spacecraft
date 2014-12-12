@@ -154,27 +154,17 @@
 		<alerts id="alerts">
 
 			<text id="batteries_depleted">
-				<en>Your battery power is completely drained. Turn everything off so they can recharge during next solar cycle. You might want to grab an oxygen mask so you don’t get a headache or suffocate.</en>
+				<en><![CDATA[<br/>Your battery power is completely drained. Turn everything off so they can recharge during next solar cycle.]]></en>
 				<es>LOREM IPSUM</es>
 			</text>
 
 			<text id="oxygen_depleted">
-				<en>Turn on the oxygen generator. You can’t survive on CO2 for very long.</en>
+				<en><![CDATA[Turn on the oxygen!]]></en>
 				<es>LOREM IPSUM</es>
 			</text>
 
 			<text id="circulation_depleted">
-				<en>CO2 saturation imminent. Turn on the fan before you suffocate.</en>
-				<es>LOREM IPSUM</es>
-			</text>
-
-			<text id="difficuly_change_easy">
-				<en>Batteries now operating at full capacity. FPO</en>
-				<es>LOREM IPSUM</es>
-			</text>
-
-			<text id="difficuly_change_hard">
-				<en>One of your batteries has been damaged! You will now use power twice as fast. FPO</en>
+				<en>Turn on the fan before you suffocate.</en>
 				<es>LOREM IPSUM</es>
 			</text>
 

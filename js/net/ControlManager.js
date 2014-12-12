@@ -1,4 +1,4 @@
-define(['net/AppData', 'net/ControlUI', 'net/Battery', 'net/BatteryPack', 'net/Hardware', 'net/Language'], function( AppData, ControlUI, Battery, BatteryPack, hardware, Language ){
+define(['net/AppData', 'net/ControlUI', 'net/Battery', 'net/BatteryPack', 'net/Hardware', 'net/Language', 'net/Sound'], function( AppData, ControlUI, Battery, BatteryPack, hardware, Language, Sound ){
 
 	ControlManager.controls = [];
 
@@ -9,13 +9,13 @@ define(['net/AppData', 'net/ControlUI', 'net/Battery', 'net/BatteryPack', 'net/H
 	/* setup() | Setup all controls */
 	ControlManager.setupControls = function( ){
 
-        ControlManager.controls.push( new ControlUI("#o2_control", 32, true) );
-        ControlManager.controls.push( new ControlUI("#fan_control", 4, true) );
+        ControlManager.controls.push( new ControlUI("#o2_control", 32, true, '') );
+        ControlManager.controls.push( new ControlUI("#fan_control", 4, true, 'fan') );
 
-        ControlManager.controls.push( new ControlUI("#food_control", 67, false) );
-        ControlManager.controls.push( new ControlUI("#comm_control", 9, true) );
-        ControlManager.controls.push( new ControlUI("#heat_control", 15, true) );
-        ControlManager.controls.push( new ControlUI("#light_control", 3, true) );
+        ControlManager.controls.push( new ControlUI("#food_control", 67, false, '') );
+        ControlManager.controls.push( new ControlUI("#comm_control", 9, true, 'radiochatter') );
+        ControlManager.controls.push( new ControlUI("#heat_control", 15, true, 'cooking') );
+        ControlManager.controls.push( new ControlUI("#light_control", 3, true, 'light') );
 
         ControlManager.batteryPack = new BatteryPack("#battery_left", "#battery_right", $('#batteries_depleted'));
         ControlManager.o2Level = new Battery("#o2_level_container", false, $('#oxygen_depleted'));

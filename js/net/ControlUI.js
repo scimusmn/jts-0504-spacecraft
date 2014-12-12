@@ -2,17 +2,18 @@
    ControlUI
    ===================================================================================== */
 
-define(['animatesprite', 'net/AppData'], function( animateSprite, AppData ){
+define(['animatesprite', 'net/AppData', 'net/Sound'], function( animateSprite, AppData, Sound ){
 
   //STATES
   ControlUI.STATE_OFF = 0;
   ControlUI.STATE_SOLAR = 1;
   ControlUI.STATE_BATTERY = 2;
 
-  function ControlUI( containerDiv, numFrames, loopActiveAnimation ){
+  function ControlUI( containerDiv, numFrames, loopActiveAnimation, sndId ){
 
     this.containerDiv = containerDiv;
     this.numFrames = numFrames;
+    this.sndId = sndId || '';
     this.id = $(this.containerDiv).attr('id');
     this.setState(ControlUI.STATE_OFF);
     this.isActive = false;
@@ -43,6 +44,11 @@ define(['animatesprite', 'net/AppData'], function( animateSprite, AppData ){
 
     this.currentState = stateId;
     this.refreshStateDisplay();
+
+    Sound.stop(this.sndId);
+    if(this.isActive == true){
+      Sound.play(this.sndId);
+    }
 
   }
 

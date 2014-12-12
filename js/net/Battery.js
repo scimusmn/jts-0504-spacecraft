@@ -2,7 +2,7 @@
    Battery
    ===================================================================================== */
 
-define(['tween', 'net/Language'], function( tween, Language ){
+define(['tween', 'net/Language', 'net/Sound'], function( tween, Language, Sound ){
 
   //STATES
   Battery.STATE_DEAD = 'dead';
@@ -46,7 +46,9 @@ define(['tween', 'net/Language'], function( tween, Language ){
 
     TweenLite.to( $(this.mask), 0.3, { css: { scaleY:levelScale, transformOrigin: "50% 0%" }, ease:Linear.easeNone } );
 
-    this.refreshText();
+    if(this.textDisplay.length > 0) {
+      this.refreshText();
+    }
 
   };
 
@@ -77,13 +79,15 @@ define(['tween', 'net/Language'], function( tween, Language ){
       if(this.alertDiv) $(this.alertDiv).stop().fadeTo('slow',0);
 
     //EMPTY
-    } else if (this.powerLevel <= 0) {
+    } else if (this.powerLevel <= 0 && this.warningState == true) {
 
       $(this.textDisplay).addClass('warning-red');
       TweenMax.killTweensOf( $(this.textDisplay) );
       TweenMax.to( $(this.textDisplay), 0.5, { css: { scale:1, transformOrigin: "50% 50%" } } );
       this.warningState = false;
       if(this.alertDiv) $(this.alertDiv).stop().fadeTo('fast',1);
+
+      Sound.play('alert');
 
     }
 

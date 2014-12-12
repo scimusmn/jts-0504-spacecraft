@@ -51,7 +51,7 @@ define(['net/Battery', 'tween'], function( Battery, tween ){
       if(this.alertDiv) $(this.alertDiv).stop().fadeTo('slow',0);
 
     //EMPTY
-    } else if (this.powerLevel <= 0) {
+    } else if (this.powerLevel <= 0  && this.warningState == true) {
 
       $(this.textDisplay).addClass('warning-red');
       TweenMax.killTweensOf( $(this.textDisplay) );
