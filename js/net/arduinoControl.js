@@ -8,10 +8,10 @@ define(['net/webSockets'],function(wsClient){
 
     arduino.onMessage = function(evt){
         var dataRay = evt.data.split(/[\s|,()=]+/);
-        switch(dataRay[1]){
+        switch(dataRay[0]){
             case "pinChange":
             case "analogRead":
-                if(arduino.handlers[parseInt(dataRay[2])]) arduino.handlers[parseInt(dataRay[2])](parseInt(dataRay[2]),parseInt(dataRay[3]));
+                if(arduino.handlers[parseInt(dataRay[1])]) arduino.handlers[parseInt(dataRay[1])](parseInt(dataRay[1]),parseInt(dataRay[2]));
                 break;
             default:
                 break;

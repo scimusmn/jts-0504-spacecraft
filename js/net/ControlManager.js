@@ -30,7 +30,7 @@ define(['net/AppData', 'net/ControlUI', 'net/Battery', 'net/BatteryPack', 'net/H
 
         hardware.link( function(){
 
-                        hardware.oxygen.onchange = function(){ControlManager.setControlState("o2_control", this.state)};
+                        hardware.oxygen.onchange = function(){ControlManager.setControlState("o2_control", this.state); console.log("State:" + this.state)};
                         hardware.fan.onchange = function(){ControlManager.setControlState("fan_control", this.state)};
                         hardware.food.onchange = function(){ControlManager.setControlState("food_control", this.state)};
                         hardware.comm.onchange = function(){ControlManager.setControlState("comm_control", this.state)};

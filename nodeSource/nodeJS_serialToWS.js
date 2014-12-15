@@ -54,7 +54,7 @@ wss.on('connection', function(ws) {
 var com = require("serialport");
 var bufSize = 512;
 
-sp = new com.SerialPort("/dev/tty.usbserial-A900ceAX", {
+sp = new com.SerialPort("/dev/tty.usbserial-FTT3L200", {
     baudrate: 9600,
     parser: com.parsers.readline('\r\n'),
     buffersize:bufSize
@@ -63,6 +63,8 @@ sp = new com.SerialPort("/dev/tty.usbserial-A900ceAX", {
 sp.on('open',function() {
   sp.on('data', function(data) {
     if(webSock) webSock.send(data);
+    if(data.split("log").length<=1){
+}
   });
 
   
