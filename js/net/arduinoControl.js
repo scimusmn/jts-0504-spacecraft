@@ -26,6 +26,10 @@ define(['net/webSockets'],function(wsClient){
     arduino.digitalWrite = function(pin,dir){
         wsClient.send("r|digitalWrite("+pin+","+dir+")");
     }
+       
+    arduino.analogWrite = function(pin,val){
+       wsClient.send("r|analogWrite("+pin+","+val+")");
+    }
 
     arduino.watchPin = function(pin,handler){
         wsClient.send("r|watchPin("+pin+")");

@@ -7,7 +7,7 @@
 	<settings>
 
 		<setting id="developerMode" value="false" />
-		<setting id="orbit_duration" value="90" />
+		<setting id="orbit_duration" value="30" />
 		<setting id="o2_fill_rate" value="2" />
 		<setting id="o2_depletion_rate" value="-1" />
 		<setting id="circulation_fill_rate" value="5" />

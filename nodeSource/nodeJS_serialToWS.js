@@ -64,6 +64,7 @@ sp.on('open',function() {
   sp.on('data', function(data) {
     if(webSock) webSock.send(data);
     if(data.split("log").length<=1){
+        console.log(data);
 }
   });
 

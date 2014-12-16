@@ -47,7 +47,7 @@ function(arduino){
        hardware.init = function(){
 
            hardware.oxygen = new device(4,5);
-           hardware.fan = new device(7,6);
+           hardware.fan = new device(6,7);
            hardware.food = new device(8,9);
            hardware.comm = new device(10,11);
            hardware.heat = new device(12,13);
@@ -61,10 +61,27 @@ function(arduino){
                                 });
        		if(hardware.initCB) hardware.initCB();
        }
+       
+       var sunLevel = 100;
+       var snState =false;
+       var sunInt = null;
 
        hardware.sunState = function(mode){
-           if(mode) arduino.digitalWrite(3,1);
-           else arduino.digitalWrite(3,0);
+       		snState=mode;
+       		setTimeout(hardware.rampSun,10);
+       }
+       
+       hardware.rampSun = function(){
+           if(snState&&sunLevel<255){
+           		arduino.analogWrite(3,sunLevel++);
+       			console.log(sunLevel);
+           		if(sunLevel<255) setTimeout(hardware.rampSun,10);
+           }
+           else if(!snState&&sunLevel>100){
+           		arduino.analogWrite(3,sunLevel--);
+       			console.log(sunLevel);
+           		if(sunLevel>100) setTimeout(hardware.rampSun,10);
+           }
        }
 
        return hardware;
