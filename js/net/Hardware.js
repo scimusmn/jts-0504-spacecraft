@@ -53,7 +53,7 @@ function(arduino){
            hardware.heat = new device(12,13);
            hardware.lights = new device(18,19);
 
-           hardware.language = new device(16,17);
+           hardware.language = new Switch(16);
            hardware.difficulty = new Switch(17);
 
            arduino.analogReport(0,75,function(pin,val){
