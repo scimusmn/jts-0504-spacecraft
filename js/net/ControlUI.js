@@ -45,11 +45,6 @@ define(['animatesprite', 'net/AppData', 'net/Sound'], function( animateSprite, A
     this.currentState = stateId;
     this.refreshStateDisplay();
 
-    Sound.stop(this.sndId);
-    if(this.isActive == true){
-      Sound.play(this.sndId);
-    }
-
   }
 
   // refreshStateDisplay() | refresh animation and icons to match current state.
@@ -103,6 +98,12 @@ define(['animatesprite', 'net/AppData', 'net/Sound'], function( animateSprite, A
 
       break;
 
+    }
+
+    //Play sound if necessary
+    Sound.stop(this.sndId);
+    if(this.isActive == true){
+      Sound.play(this.sndId);
     }
 
   };

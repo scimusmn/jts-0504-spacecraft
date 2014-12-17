@@ -9,17 +9,17 @@ define(['net/AppData', 'net/ControlUI', 'net/Battery', 'net/BatteryPack', 'net/H
 	/* setup() | Setup all controls */
 	ControlManager.setupControls = function( ){
 
-        ControlManager.controls.push( new ControlUI("#o2_control", 32, true, '') );
+        ControlManager.controls.push( new ControlUI("#o2_control", 32, true, 'bubbles') );
         ControlManager.controls.push( new ControlUI("#fan_control", 4, true, 'fan') );
 
-        ControlManager.controls.push( new ControlUI("#food_control", 67, false, '') );
-        ControlManager.controls.push( new ControlUI("#comm_control", 9, true, 'radiochatter') );
+        ControlManager.controls.push( new ControlUI("#food_control", 67, false, 'rustling') );
+        ControlManager.controls.push( new ControlUI("#comm_control", 9, true, 'telecom') );
         ControlManager.controls.push( new ControlUI("#heat_control", 15, true, 'cooking') );
-        ControlManager.controls.push( new ControlUI("#light_control", 3, true, 'light') );
+        ControlManager.controls.push( new ControlUI("#light_control", 3, true, 'lights') );
 
         ControlManager.batteryPack = new BatteryPack("#battery_left", "#battery_right", $('#batteries_depleted'));
-        ControlManager.o2Level = new Battery("#o2_level_container", false, $('#oxygen_depleted'));
-        ControlManager.fanLevel = new Battery("#fan_level", true, $('#circulation_depleted'));
+        ControlManager.o2Level = new Battery("#o2_level_container", false, $('#oxygen_depleted'), 'male-breathing');
+        ControlManager.fanLevel = new Battery("#fan_level", true, $('#circulation_depleted'), 'female-breathing');
 
         ControlManager.linkHardware();
 

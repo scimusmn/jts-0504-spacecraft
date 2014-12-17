@@ -44,7 +44,7 @@ require(['jquery', 'net/AppData', 'net/Keyboard', 'net/Language', 'net/ControlMa
 
         ControlManager.setupControls();
 
-        Sound.preloadSounds('sounds/', ['alert', 'cooking', 'fan', 'light', 'radiochatter']);
+        Sound.preloadSounds('sounds/', ['alarms', 'rustling', 'cooking', 'fan', 'lights', 'telecom', 'male-breathing', 'female-breathing', 'bubbles']);
 
         startSpaceStationOrbit();
 

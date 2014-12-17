@@ -12,10 +12,11 @@ define(['tween', 'net/Language', 'net/Sound'], function( tween, Language, Sound 
   Battery.COLORS = ['#DF0E1F','#DF191E','#DC321A','#DF4A1D','#DC6D1A','#DE8018','#D29519','#AD961A','#A8951D','#98961D','#8F9320','#4F9126','#328B29','#288A2B'];
   Battery.TEXT_FEEDBACK = ['circulation_feedback_poor','circulation_feedback_fair','circulation_feedback_good','circulation_feedback_excellent'];
 
-  function Battery( containerDiv, useFeedbackText, alertDiv ){
+  function Battery( containerDiv, useFeedbackText, alertDiv, sndId ){
 
     this.alertDiv = alertDiv || null;
     this.containerDiv = containerDiv;
+    this.sndId = sndId || '';
     this.mask = $(this.containerDiv).find("#mask");
     this.levelBar = $(this.containerDiv).find("#level_bar");
     this.textDisplay = $(this.containerDiv).find(".bottom").last();
@@ -87,7 +88,8 @@ define(['tween', 'net/Language', 'net/Sound'], function( tween, Language, Sound 
       this.warningState = false;
       if(this.alertDiv) $(this.alertDiv).stop().fadeTo('fast',1);
 
-      Sound.play('alert');
+      Sound.play('alarms');
+      Sound.play(this.sndId);
 
     }
 
