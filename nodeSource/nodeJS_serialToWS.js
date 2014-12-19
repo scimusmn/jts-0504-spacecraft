@@ -63,9 +63,8 @@ sp = new com.SerialPort("/dev/tty.usbserial-FTT3L200", {
 sp.on('open',function() {
   sp.on('data', function(data) {
     if(webSock) webSock.send(data);
-    if(data.split("log").length<=1){
+    //if(data.split("log").length<=1){
         console.log(data);
-}
   });
 
   

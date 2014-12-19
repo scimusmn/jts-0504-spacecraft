@@ -44,21 +44,28 @@ function(arduino){
        		hardware.initCB=cb;
        }
 
+       hardware.batteryInt =null;
+
        hardware.init = function(){
 
-           hardware.oxygen = new device(4,5);
-           hardware.fan = new device(6,7);
-           hardware.food = new device(8,9);
-           hardware.comm = new device(10,11);
-           hardware.heat = new device(12,13);
-           hardware.lights = new device(18,19);
+           hardware.oxygen = new device(5,4);
+           hardware.fan = new device(7,6);
+           hardware.food = new device(9,8);
+           hardware.comm = new device(11,10);
+           hardware.heat = new device(13,12);
+           hardware.lights = new device(19,18);
 
            hardware.language = new Switch(16);
            hardware.difficulty = new Switch(17);
 
            arduino.analogReport(0,75,function(pin,val){
-                                hardware.battery = Math.floor(val/2.55);
+                                console.log(val);
+                                hardware.battery = Math.floor((val-375)/3);
                                 });
+          hardware.batteryInt = setInterval(function(){
+                arduino.analogRead(0);
+          },100);
+          
        		if(hardware.initCB) hardware.initCB();
        }
        

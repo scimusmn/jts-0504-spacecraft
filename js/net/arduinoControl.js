@@ -41,6 +41,10 @@ define(['net/webSockets'],function(wsClient){
 		arduino.handlers[pin] = handler;
     }
 
+    arduino.analogRead = function(pin){
+        wsClient.send("r|analogRead("+pin+")");
+    }
+
     arduino.stopReport = function(pin){
 		wsClient.send("r|stopReport("+pin+")");
     }
