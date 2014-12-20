@@ -65,13 +65,18 @@ require(['jquery', 'net/AppData', 'net/Keyboard', 'net/Language', 'net/ControlMa
 
     function startSpaceStationOrbit() {
 
-        TweenMax.to( $("#space_station_container"), AppData.orbit_duration, { css: { rotation:360 }, ease:Linear.easeNone, repeat:-1, onUpdate: onStationRotateUpdate } );
+        //Orbit Earth
+        TweenMax.to( $(".space_station_container"), AppData.orbit_duration, { css: { rotation:360 }, ease:Linear.easeNone, repeat:-1, onUpdate: onStationRotateUpdate } );
+
+        //Pulse beacon light
+        TweenMax.set( $("#container_beacon"), { css: { opacity:0.6 }} );
+        TweenMax.to( $("#container_beacon"), 0.5, { css: { opacity:1 }, repeat:-1, yoyo:true } );
 
     }
 
     function onStationRotateUpdate() {
 
-        var rotation = $("#space_station_container")[0]._gsTransform.rotation;
+        var rotation = $(".space_station_container")[0]._gsTransform.rotation;
 
         if ( rotation < AppData.SHADOW_EXIT_ANGLE && rotation > AppData.SHADOW_ENTER_ANGLE ) {
 
@@ -82,6 +87,8 @@ require(['jquery', 'net/AppData', 'net/Keyboard', 'net/Language', 'net/ControlMa
                 $("#available").attr('id', 'unavailable');
                 Language.refreshTranslation($("#unavailable"));
                 $("#unavailable").removeClass('go-green').addClass('warning-red');
+                TweenMax.set( $("#unavailable"), { css: { scale:1, transformOrigin: "50% 50%" } } );
+                TweenMax.to( $("#unavailable"), 0.25, { css: { scale:1.25, transformOrigin: "50% 50%" }, ease:Power2.easeOut, repeat:1, yoyo:true } );
 
             }
 
@@ -94,6 +101,8 @@ require(['jquery', 'net/AppData', 'net/Keyboard', 'net/Language', 'net/ControlMa
                 $("#unavailable").attr('id', 'available');
                 Language.refreshTranslation($("#available"));
                 $("#available").removeClass('warning-red').addClass('go-green');
+                TweenMax.set( $("#available"), { css: { scale:1, transformOrigin: "50% 50%" } } );
+                TweenMax.to( $("#available"), 0.25, { css: { scale:1.25, transformOrigin: "50% 50%" }, ease:Power2.easeOut, repeat:1, yoyo:true } );
 
             }
 

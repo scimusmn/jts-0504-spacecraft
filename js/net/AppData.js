@@ -7,7 +7,7 @@ define([], function(){
 
     //Constants
     AppData.SHADOW_ENTER_ANGLE = 136; // Angle space-station enters shadow
-    AppData.SHADOW_EXIT_ANGLE = 275; // Angle space-station exits shadow
+    AppData.SHADOW_EXIT_ANGLE = 279; // Angle space-station exits shadow
 
     AppData.DIFFICULTY_EASY = 0;
     AppData.DIFFICULTY_HARD = 1;
@@ -26,8 +26,10 @@ define([], function(){
         this.orbit_duration = this.getInt('orbit_duration');
         this.o2_fill_rate = this.getFloat('o2_fill_rate');
         this.o2_depletion_rate = this.getFloat('o2_depletion_rate');
+        this.o2_update_rate = this.getFloat('o2_update_rate');
         this.circulation_fill_rate = this.getFloat('circulation_fill_rate');
         this.circulation_depletion_rate = this.getFloat('circulation_depletion_rate');
+        this.circulation_update_rate = this.getFloat('circulation_update_rate');
 
         //Global Vars
         this.currentStateId = '';

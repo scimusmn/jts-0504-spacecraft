@@ -8,10 +8,12 @@
 
 		<setting id="developerMode" value="false" />
 		<setting id="orbit_duration" value="90" />
-		<setting id="o2_fill_rate" value="2" />
+		<setting id="o2_fill_rate" value="1" />
 		<setting id="o2_depletion_rate" value="-1" />
-		<setting id="circulation_fill_rate" value="5" />
-		<setting id="circulation_depletion_rate" value="-5" />
+		<setting id="o2_update_rate" value="450" />
+		<setting id="circulation_fill_rate" value="1" />
+		<setting id="circulation_depletion_rate" value="-1" />
+		<setting id="circulation_update_rate" value="150" />
 
 	</settings>
 
@@ -65,7 +67,7 @@
 
 			<text id="tip_1">
 				<en><![CDATA[<i><b>TIP:</b> Solar collectors will provide you with electricity, but you have to rely on batteries as the station passes through the earth's shadow.</i>]]></en>
-				<es><![CDATA[<i><b>LOREM:</b> Morbi felis lacus, tristique et turpis at, auctor gravida lectus. Nullam finibus leo odio vel vehicula a, aliquet sed ante.Aliquet sed anteusto sem, pharetra vel sed anteusto sem, pharetra, pharetra vel vehicula a, pharetra vel vehicula a, aliquet sed ante</i>]]></es>
+				<es><![CDATA[<i><b>LOREM:</b> Morbi felis lacus, tristique et turpis at, auctor gravida lectus. Nullam finibus leo vel vehicula a, aliquet sed ante.Aliquet sed anteusto sem, pharetra vel sed anteusto sem, pharetra.</i>]]></es>
 			</text>
 
 		</window>
@@ -124,7 +126,7 @@
 		<window id="window_auxillary">
 
 			<text id="auxillary_equipment">
-				<en>AUXILLARY EQUIPMENT</en>
+				<en>AUXILIARY EQUIPMENT</en>
 				<es>LOREM IPSUM</es>
 			</text>
 

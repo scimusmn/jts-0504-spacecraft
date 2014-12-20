@@ -12,7 +12,7 @@ define(['tween', 'net/Language', 'net/Sound'], function( tween, Language, Sound 
   Battery.COLORS = ['#DF0E1F','#DF191E','#DC321A','#DF4A1D','#DC6D1A','#DE8018','#D29519','#AD961A','#A8951D','#98961D','#8F9320','#4F9126','#328B29','#288A2B'];
   Battery.TEXT_FEEDBACK = ['circulation_feedback_poor','circulation_feedback_fair','circulation_feedback_good','circulation_feedback_excellent'];
 
-  function Battery( containerDiv, useFeedbackText, alertDiv, sndId ){
+  function Battery( containerDiv, useFeedbackText, alertDiv, sndId, warningLevel ){
 
     this.alertDiv = alertDiv || null;
     this.containerDiv = containerDiv;
@@ -27,6 +27,7 @@ define(['tween', 'net/Language', 'net/Sound'], function( tween, Language, Sound 
     this.fillTimer = {};
     this.warningState = false;
     this.powerLevel = 100;
+    this.warningLevel = warningLevel || 25;
     this.useTextFeedback = useFeedbackText || false;
 
   }
@@ -63,7 +64,7 @@ define(['tween', 'net/Language', 'net/Sound'], function( tween, Language, Sound 
     // }
 
     //WARNING
-    if (this.powerLevel < 25 && this.powerLevel > 0 && this.warningState == false){
+    if (this.powerLevel < this.warningLevel && this.powerLevel > 0 && this.warningState == false){
 
       $(this.textDisplay).addClass('warning-red');
       TweenMax.set( $(this.textDisplay), { css: { scale:1, transformOrigin: "50% 50%" } } );
@@ -72,7 +73,7 @@ define(['tween', 'net/Language', 'net/Sound'], function( tween, Language, Sound 
       if(this.alertDiv) $(this.alertDiv).stop().fadeTo('slow',0);
 
     //NORMAL
-    } else if (this.powerLevel >= 25 && this.warningState == true) {
+    } else if (this.powerLevel >= this.warningLevel && this.warningState == true) {
 
       $(this.textDisplay).removeClass('warning-red');
       TweenMax.to( $(this.textDisplay), 0.25, { css: { scale:1, transformOrigin: "50% 50%" }} );
@@ -105,7 +106,7 @@ define(['tween', 'net/Language', 'net/Sound'], function( tween, Language, Sound 
     return Battery.TEXT_FEEDBACK[f];
   }
 
-  Battery.prototype.timedFill = function( increment ) {
+  Battery.prototype.timedFill = function( increment, updateRate ) {
 
     clearInterval(this.fillTimer);
 
@@ -114,7 +115,7 @@ define(['tween', 'net/Language', 'net/Sound'], function( tween, Language, Sound 
 
       thisRef.updateBatteryLevel(thisRef.powerLevel + increment);
 
-    }, 350);
+    }, updateRate);
 
   }
 

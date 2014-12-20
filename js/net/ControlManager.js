@@ -18,8 +18,8 @@ define(['net/AppData', 'net/ControlUI', 'net/Battery', 'net/BatteryPack', 'net/H
         ControlManager.controls.push( new ControlUI("#light_control", 3, true, 'lights') );
 
         ControlManager.batteryPack = new BatteryPack("#battery_left", "#battery_right", $('#batteries_depleted'));
-        ControlManager.o2Level = new Battery("#o2_level_container", false, $('#oxygen_depleted'), 'male-breathing');
-        ControlManager.fanLevel = new Battery("#fan_level", true, $('#circulation_depleted'), 'female-breathing');
+        ControlManager.o2Level = new Battery("#o2_level_container", false, $('#oxygen_depleted'), 'male-breathing', 25);
+        ControlManager.fanLevel = new Battery("#fan_level", true, $('#circulation_depleted'), 'female-breathing', 50);
 
         ControlManager.linkHardware();
 
@@ -126,17 +126,17 @@ define(['net/AppData', 'net/ControlUI', 'net/Battery', 'net/BatteryPack', 'net/H
         var c = ControlManager.getControlById( 'o2_control' );
 
         if (c.isActive){
-            this.o2Level.timedFill( AppData.o2_fill_rate );
+            this.o2Level.timedFill( AppData.o2_fill_rate, AppData.o2_update_rate );
         }else{
-            this.o2Level.timedFill( AppData.o2_depletion_rate );
+            this.o2Level.timedFill( AppData.o2_depletion_rate, AppData.o2_update_rate );
         }
 
         c = this.getControlById( 'fan_control' );
 
         if (c.isActive){
-            this.fanLevel.timedFill( AppData.circulation_fill_rate );
+            this.fanLevel.timedFill( AppData.circulation_fill_rate, AppData.circulation_update_rate );
         }else{
-            this.fanLevel.timedFill( AppData.circulation_depletion_rate );
+            this.fanLevel.timedFill( AppData.circulation_depletion_rate, AppData.circulation_update_rate );
         }
 
     }

@@ -267,13 +267,27 @@ p {
 	left: 0%;
 }
 
-#window_power #orbit_display #space_station_container {
+#window_power #orbit_display .space_station_container {
     top: 193px;
     left: 173px;
 
-    position: absolute;;
+    position: absolute;
     width:435px;
     height:92px;
+}
+
+#window_power #container_station {
+    z-index: 0;
+}
+#window_power #shadow {
+    z-index: 5;
+}
+#window_power #container_beacon {
+    z-index: 9;
+}
+#window_power #beacon {
+    top: 17px;
+    left: 11px;
 }
 
 #window_power #container_batteries{
@@ -332,12 +346,15 @@ p {
 
 #window_instructions #instructions_headline {
     color: #e6b630;
+    font-size: 2.8em;
 }
 
-
+#window_instructions #instructions_subhead {
+    font-size: 1.8em;
+}
 
 #window_instructions #console_text {
-	margin: 77px 100px;
+	margin: 77px 77px;
 	overflow-y: visible;
 }
 
