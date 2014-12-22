@@ -37,6 +37,7 @@ function(arduino){
        }
 
        hardware.battery = 0;
+       hardware.batteryState = false;
        hardware.initCB =null;
 
        hardware.link = function(cb){
@@ -45,6 +46,23 @@ function(arduino){
        }
 
        hardware.batteryInt =null;
+
+       hardware.switchTime = Date.now();
+
+       hardware.disableBattery = function(){
+        if(hardware.batteryState){
+          hardware.switchTime = Date.now();
+          arduino.digitalWrite(2,1);
+          hardware.batteryState=false;
+        }
+       }
+
+       hardware.enableBattery = function(){
+          if(Date.now()-hardware.switchTime>2000&&!hardware.batteryState){
+              hardware.batteryState=true;
+              arduino.digitalWrite(2,0);
+          }
+       }
 
        hardware.init = function(){
 
@@ -60,7 +78,13 @@ function(arduino){
 
            arduino.analogReport(0,75,function(pin,val){
                                 console.log(val);
-                                hardware.battery = Math.floor((val-375)/3);
+                                hardware.battery = Math.floor((val-400)/3);
+                                if(hardware.battery <= 0) {
+                                  hardware.disableBattery();
+                                }
+                                else if (hardware.battery>=5){
+                                  hardware.enableBattery();
+                                }
                                 });
           hardware.batteryInt = setInterval(function(){
                 arduino.analogRead(0);
