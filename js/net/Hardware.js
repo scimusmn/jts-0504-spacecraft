@@ -17,6 +17,11 @@ function(arduino){
                         self.state = (val)?0:2;
                         if(self.onchange) self.onchange();
                         });
+
+       self.update = function(){
+          arduino.digitalRead(solPin);
+          arduino.digitalRead(batPin);
+       }
        }
 
        function Switch(pin){
@@ -64,6 +69,15 @@ function(arduino){
           }
        }
 
+       hardware.update = function(){
+          hardware.oxygen.update();
+           hardware.fan.update();
+           hardware.food.update();
+           hardware.comm.update();
+           hardware.heat.update();
+           hardware.lights.update(); 
+       }
+
        hardware.init = function(){
 
            hardware.oxygen = new device(5,4);
@@ -76,25 +90,35 @@ function(arduino){
            hardware.language = new Switch(16);
            hardware.difficulty = new Switch(17);
 
-           arduino.analogReport(0,75,function(pin,val){
+           /*arduino.analogReport(0,75,function(pin,val){
                                 console.log(val);
-                                hardware.battery = Math.floor((val-400)/3);
+                                hardware.battery = Math.floor((val-500)/3);
                                 if(hardware.battery <= 0) {
                                   hardware.disableBattery();
                                 }
-                                else if (hardware.battery>=5){
+                                else if (hardware.battery>=20){
                                   hardware.enableBattery();
+                                }
+                                });*/
+          arduino.setHandler(0,function(pin,val){
+                                console.log(val);
+                                hardware.battery = Math.floor((val-375)/3.125);
+                                if(hardware.battery <= 0) {
+                                  hardware.disableBattery();
+                                }
+                                else if (hardware.battery>=20){
+                                  //hardware.enableBattery();
                                 }
                                 });
           hardware.batteryInt = setInterval(function(){
                 arduino.analogRead(0);
-          },100);
+          },500);
           
        		if(hardware.initCB) hardware.initCB();
        }
        
        var sunLevel = 100;
-       var snState =false;
+       var snState = true;
        var sunInt = null;
 
        hardware.sunState = function(mode){

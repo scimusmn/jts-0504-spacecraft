@@ -104,6 +104,7 @@ define(['animatesprite', 'net/AppData', 'net/Sound'], function( animateSprite, A
     Sound.stop(this.sndId);
     if(this.isActive == true){
       Sound.play(this.sndId);
+      console.log('control snd',this.sndId);
     }
 
   };

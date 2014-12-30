@@ -40,16 +40,31 @@ define(['net/AppData', 'net/ControlUI', 'net/Battery', 'net/BatteryPack', 'net/H
                         hardware.language.onchange = function(){Language.setLanguage(Language.convertState(this.state))};
                         hardware.difficulty.onchange = function(){ControlManager.setDifficulty(this.state)};
 
+                        hardware.update();
+
                       });
 
         setInterval(ControlManager.checkBatteries, 1000);
 
     }
 
+    var batteryGood = true;
+
     ControlManager.checkBatteries = function( ) {
 
         var reading = hardware.battery;
         var prevReading = AppData.currentPowerLevel;
+
+        AppData.currentPowerLevel = reading;
+        ControlManager.batteryPack.updatePackLevel( AppData.currentPowerLevel );
+
+        if (AppData.solarAvailable&&!hardware.batteryState) {
+            hardware.enableBattery();
+        }
+        else if(!hardware.batteryState){
+            prevReading
+            reading=0;
+        }
 
         AppData.currentPowerLevel = reading;
         ControlManager.batteryPack.updatePackLevel( AppData.currentPowerLevel );

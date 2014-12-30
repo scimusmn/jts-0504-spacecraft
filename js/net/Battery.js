@@ -91,6 +91,7 @@ define(['tween', 'net/Language', 'net/Sound'], function( tween, Language, Sound 
 
       Sound.play('alarms');
       Sound.play(this.sndId);
+      console.log('play snd', this.sndId);
 
     }
 

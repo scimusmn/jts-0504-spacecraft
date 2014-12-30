@@ -10,6 +10,7 @@ define(['net/webSockets'],function(wsClient){
         var dataRay = evt.data.split(/[\s|,()=]+/);
         switch(dataRay[0]){
             case "pinChange":
+            case "digitalRead":
             case "analogRead":
                 if(arduino.handlers[parseInt(dataRay[1])]) arduino.handlers[parseInt(dataRay[1])](parseInt(dataRay[1]),parseInt(dataRay[2]));
                 break;
@@ -26,6 +27,10 @@ define(['net/webSockets'],function(wsClient){
     arduino.digitalWrite = function(pin,dir){
         wsClient.send("r|digitalWrite("+pin+","+dir+")");
     }
+
+    arduino.digitalRead = function(pin,dir){
+        wsClient.send("r|digitalRead("+pin+")");
+    }
        
     arduino.analogWrite = function(pin,val){
        wsClient.send("r|analogWrite("+pin+","+val+")");
@@ -39,6 +44,10 @@ define(['net/webSockets'],function(wsClient){
     arduino.analogReport = function(pin,interval,handler){
         wsClient.send("r|analogReport("+pin+","+interval+")");
 		arduino.handlers[pin] = handler;
+    }
+
+    arduino.setHandler = function(pin,handler){
+        arduino.handlers[pin] = handler;
     }
 
     arduino.analogRead = function(pin){
