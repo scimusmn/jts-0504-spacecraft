@@ -12,6 +12,7 @@ define(['net/Battery', 'tween'], function( Battery, tween ){
     this.batteries = [ new Battery(containerDivLeft), new Battery(containerDivRight) ];
 
     this.warningState = false;
+    this.deadState = false;
     this.alertDiv = alertDiv || null;
 
   }
@@ -43,20 +44,22 @@ define(['net/Battery', 'tween'], function( Battery, tween ){
       if(this.alertDiv) $(this.alertDiv).stop().fadeTo('slow',0);
 
     //NORMAL
-    } else if (this.powerLevel >= 25 && this.warningState == true) {
+    } else if (this.powerLevel >= 25 && (this.warningState == true||this.deadState ==true) ) {
 
       $(this.textDisplay).removeClass('warning-red');
       TweenMax.to( $(this.textDisplay), 0.25, { css: { scale:1, transformOrigin: "50% 50%" }} );
       this.warningState = false;
+      this.deadState = false;
       if(this.alertDiv) $(this.alertDiv).stop().fadeTo('slow',0);
 
     //EMPTY
-    } else if (this.powerLevel <= 0  && this.warningState == true) {
+    } else if (this.powerLevel <= 0  && (this.warningState == true||this.deadState == false)) {
 
       $(this.textDisplay).addClass('warning-red');
       TweenMax.killTweensOf( $(this.textDisplay) );
       TweenMax.to( $(this.textDisplay), 0.5, { css: { scale:1, transformOrigin: "50% 50%" } } );
       this.warningState = false;
+      this.deadState =true;
       if(this.alertDiv) $(this.alertDiv).stop().fadeTo('fast',1);
 
     }

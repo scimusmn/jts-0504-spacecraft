@@ -55,14 +55,13 @@ define(['net/AppData', 'net/ControlUI', 'net/Battery', 'net/BatteryPack', 'net/H
         var reading = hardware.battery;
         var prevReading = AppData.currentPowerLevel;
 
-        AppData.currentPowerLevel = reading;
-        ControlManager.batteryPack.updatePackLevel( AppData.currentPowerLevel );
+        //AppData.currentPowerLevel = reading;
+        //ControlManager.batteryPack.updatePackLevel( AppData.currentPowerLevel );
 
         if (AppData.solarAvailable&&!hardware.batteryState) {
             hardware.enableBattery();
         }
         else if(!hardware.batteryState){
-            prevReading
             reading=0;
         }
 
@@ -70,10 +69,17 @@ define(['net/AppData', 'net/ControlUI', 'net/Battery', 'net/BatteryPack', 'net/H
         ControlManager.batteryPack.updatePackLevel( AppData.currentPowerLevel );
 
         //Update displays if there batteries have changed to or from an empty state
-        if (prevReading > 0 && reading <= 0){
+        /*if (prevReading > 0 && reading <= 0){
             ControlManager.refreshControlDisplays();
         } else if (prevReading <= 0 && reading > 0){
             ControlManager.refreshControlDisplays();
+        }*/
+        if((batteryGood&&!reading)||(!batteryGood&&reading)){
+            ControlManager.refreshControlDisplays();
+            ControlManager.batteryPack.warningState=(reading>25);
+            ControlManager.batteryPack.deadState=(reading>0);
+            ControlManager.batteryPack.refreshText();
+            batteryGood=reading;
         }
 
     }
