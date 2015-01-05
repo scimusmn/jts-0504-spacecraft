@@ -48,6 +48,7 @@ function(arduino){
        hardware.link = function(cb){
        		arduino.connect(hardware.init);
        		hardware.initCB=cb;
+          hardware.sunState(1);
        }
 
        hardware.batteryInt =null;

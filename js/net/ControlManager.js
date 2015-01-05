@@ -49,6 +49,16 @@ define(['net/AppData', 'net/ControlUI', 'net/Battery', 'net/BatteryPack', 'net/H
     }
 
     var batteryGood = true;
+    var incTimeout = null;
+
+    ControlManager.incrementUp = function(){
+        if(AppData.currentPowerLevel<hardware.battery){
+            AppData.currentPowerLevel++;
+            clearTimeout(incTimeout);
+            incTimeout=setTimeout(ControlManager.incrementUp,500);
+            ControlManager.batteryPack.updatePackLevel( AppData.currentPowerLevel );
+        } 
+    }
 
     ControlManager.checkBatteries = function( ) {
 
@@ -65,7 +75,9 @@ define(['net/AppData', 'net/ControlUI', 'net/Battery', 'net/BatteryPack', 'net/H
             reading=0;
         }
 
-        AppData.currentPowerLevel = reading;
+        if(AppData.solarAvailable) ControlManager.incrementUp();
+        else if(reading<prevReading) AppData.currentPowerLevel = reading;
+        
         ControlManager.batteryPack.updatePackLevel( AppData.currentPowerLevel );
 
         //Update displays if there batteries have changed to or from an empty state
