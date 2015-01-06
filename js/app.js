@@ -14,7 +14,7 @@ require.config({
 });
 
 
-require(['jquery', 'net/AppData', 'net/Keyboard', 'net/Language', 'net/ControlManager', 'net/Sound', 'tween' ], function( $, AppData, Keyboard, Language, ControlManager, Sound, tween ) {
+require(['jquery', 'net/AppData', 'net/Keyboard', 'net/Language', 'net/ControlManager', 'net/Sound', 'net/TimeTicker', 'tween' ], function( $, AppData, Keyboard, Language, ControlManager, Sound, TimeTicker, tween ) {
 
 	/*--------------*/
 	/* Initial Load */
@@ -67,6 +67,12 @@ require(['jquery', 'net/AppData', 'net/Keyboard', 'net/Language', 'net/ControlMa
 
         //Orbit Earth
         TweenMax.to( $(".space_station_container"), AppData.orbit_duration, { css: { rotation:360 }, ease:Linear.easeNone, repeat:-1, onUpdate: onStationRotateUpdate } );
+
+        //Time readout
+        //the Space Station orbits Earth (and sees a sunrise) once every 92 minutes
+        var minuteRatio = AppData.orbit_duration / (92*60);
+        var updateSpeed = Math.round(1000 * minuteRatio);
+        var t = new TimeTicker($("#time_clock"), updateSpeed);
 
         //Pulse beacon light
         TweenMax.set( $("#container_beacon"), { css: { opacity:0.6 }} );

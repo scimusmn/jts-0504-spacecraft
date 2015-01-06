@@ -76,7 +76,7 @@ function(arduino){
            hardware.food.update();
            hardware.comm.update();
            hardware.heat.update();
-           hardware.lights.update(); 
+           hardware.lights.update();
        }
 
        hardware.init = function(){
@@ -102,7 +102,7 @@ function(arduino){
                                 }
                                 });*/
           arduino.setHandler(0,function(pin,val){
-                                console.log(val);
+                                // console.log(val);
                                 hardware.battery = Math.floor((val-375)/3.125);
                                 if(hardware.battery <= 0) {
                                   hardware.disableBattery();
@@ -114,10 +114,10 @@ function(arduino){
           hardware.batteryInt = setInterval(function(){
                 arduino.analogRead(0);
           },500);
-          
+
        		if(hardware.initCB) hardware.initCB();
        }
-       
+
        var sunLevel = 100;
        var snState = true;
        var sunInt = null;
@@ -126,16 +126,16 @@ function(arduino){
        		snState=mode;
        		setTimeout(hardware.rampSun,10);
        }
-       
+
        hardware.rampSun = function(){
            if(snState&&sunLevel<255){
            		arduino.analogWrite(3,sunLevel++);
-       			console.log(sunLevel);
+       			// console.log(sunLevel);
            		if(sunLevel<255) setTimeout(hardware.rampSun,10);
            }
            else if(!snState&&sunLevel>100){
            		arduino.analogWrite(3,sunLevel--);
-       			console.log(sunLevel);
+       			// console.log(sunLevel);
            		if(sunLevel>100) setTimeout(hardware.rampSun,10);
            }
        }

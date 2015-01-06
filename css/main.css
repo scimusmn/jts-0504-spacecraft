@@ -308,6 +308,15 @@ p {
 	text-align: left;
 }
 
+#window_power #container_orbit #time_clock {
+    position: absolute;
+    top: 360px;
+    left: 40px;
+    font-size: 42px;
+    color: #797979;
+    font-family: 'aller_lightregular';
+}
+
 #window_power #battery_bars {
 	height: 85%;
 	width: 100%;
@@ -339,22 +348,21 @@ p {
 #window_instructions {
 	right: 0px;
 	width: 575px;
-
 	background: #3b6c95;
 	border-color: #3b6c95;
 }
 
 #window_instructions #instructions_headline {
     color: #e6b630;
-    font-size: 2.8em;
+    font-size: 3.2em;
 }
 
 #window_instructions #instructions_subhead {
-    font-size: 1.8em;
+    font-size: 2.2em;
 }
 
 #window_instructions #console_text {
-	margin: 77px 77px;
+	margin: 50px 50px;
 	overflow-y: visible;
 }
 
@@ -396,7 +404,6 @@ p {
 #window_life_support #level_bar_display #mask {
     top: 25px;
 }
-
 
 
 
@@ -502,6 +509,12 @@ p {
 .state_off .icon.active {width:81px; height:76px; background-position: -0px -0px}
 .state_off .icon.off {width:81px; height:76px; background-position: -81px -0px}
 
+/*Make off states darker by reducing opacity*/
+.icon.off{
+    opacity: 0.35;
+    filter: alpha(opacity=35); /* For IE8 and earlier */
+}
+
 /*
  * Animations
  */
@@ -571,18 +584,29 @@ p {
     top: 30px;
     left: 11px;
     width: 185px;
-    height: 135px;
+    height: 77px;
     color: white;
     padding: 15px 30px;
+    padding-top:76px;
     background-color: rgba(233,41,53,0.85);
+    background-image: url(../img/warning.png);
+    background-repeat: no-repeat;
+    background-position: center 15px;
     font-size: 16px;
 }
 
 #window_power .alert {
     top: 50px;
     width: 360px;
-    height: 280px;
+    height: 222px;
     font-size: 20px;
+    background-position: center 30px;
+}
+
+#window_auxillary .alert {
+    width: 172px;
+    padding-left: 15px;
+    padding-right: 15px;
 }
 
 

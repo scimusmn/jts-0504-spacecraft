@@ -12,10 +12,10 @@ define(['net/AppData', 'net/ControlUI', 'net/Battery', 'net/BatteryPack', 'net/H
         ControlManager.controls.push( new ControlUI("#o2_control", 32, true, 'bubbles') );
         ControlManager.controls.push( new ControlUI("#fan_control", 4, true, 'fan') );
 
-        ControlManager.controls.push( new ControlUI("#food_control", 67, false, 'rustling') );
-        ControlManager.controls.push( new ControlUI("#comm_control", 9, true, 'telecom') );
-        ControlManager.controls.push( new ControlUI("#heat_control", 15, true, 'cooking') );
-        ControlManager.controls.push( new ControlUI("#light_control", 3, true, 'lights') );
+        ControlManager.controls.push( new ControlUI("#food_control", 67, false, 'rustling', $('#food_warning'), AppData.orbit_duration * 3));
+        ControlManager.controls.push( new ControlUI("#comm_control", 9, true, 'telecom', $('#comm_warning'), AppData.orbit_duration * 1));
+        ControlManager.controls.push( new ControlUI("#heat_control", 15, true, 'cooking', $('#heat_warning'), AppData.orbit_duration * 5));
+        ControlManager.controls.push( new ControlUI("#light_control", 3, true, 'lights', $('#lights_warning'), AppData.orbit_duration * 1));
 
         ControlManager.batteryPack = new BatteryPack("#battery_left", "#battery_right", $('#batteries_depleted'));
         ControlManager.o2Level = new Battery("#o2_level_container", false, $('#oxygen_depleted'), 'male-breathing', 25);
@@ -45,6 +45,7 @@ define(['net/AppData', 'net/ControlUI', 'net/Battery', 'net/BatteryPack', 'net/H
                       });
 
         setInterval(ControlManager.checkBatteries, 1000);
+        setInterval(ControlManager.checkAuxiliaryEquipment, 1000);
 
     }
 
@@ -57,7 +58,7 @@ define(['net/AppData', 'net/ControlUI', 'net/Battery', 'net/BatteryPack', 'net/H
             clearTimeout(incTimeout);
             incTimeout=setTimeout(ControlManager.incrementUp,500);
             ControlManager.batteryPack.updatePackLevel( AppData.currentPowerLevel );
-        } 
+        }
     }
 
     ControlManager.checkBatteries = function( ) {
@@ -77,7 +78,7 @@ define(['net/AppData', 'net/ControlUI', 'net/Battery', 'net/BatteryPack', 'net/H
 
         if(AppData.solarAvailable) ControlManager.incrementUp();
         else if(reading<prevReading) AppData.currentPowerLevel = reading;
-        
+
         ControlManager.batteryPack.updatePackLevel( AppData.currentPowerLevel );
 
         //Update displays if there batteries have changed to or from an empty state
@@ -93,6 +94,16 @@ define(['net/AppData', 'net/ControlUI', 'net/Battery', 'net/BatteryPack', 'net/H
             ControlManager.batteryPack.refreshText();
             batteryGood=reading;
         }
+
+    }
+
+    ControlManager.checkAuxiliaryEquipment = function( ) {
+
+        for (var i = 0; i < ControlManager.controls.length; i++) {
+
+            ControlManager.controls[i].checkFailureTimeout();
+
+        };
 
     }
 

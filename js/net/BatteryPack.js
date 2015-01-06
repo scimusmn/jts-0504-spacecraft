@@ -41,7 +41,7 @@ define(['net/Battery', 'tween'], function( Battery, tween ){
       TweenMax.set( $(this.textDisplay), { css: { scale:1, transformOrigin: "50% 50%" } } );
       TweenMax.to( $(this.textDisplay), 0.5, { css: { scale:1.5, transformOrigin: "50% 50%" }, repeat:-1, yoyo:true } );
       this.warningState = true;
-      if(this.alertDiv) $(this.alertDiv).stop().fadeTo('slow',0);
+      this.alertDisplay(false);
 
     //NORMAL
     } else if (this.powerLevel >= 25 && (this.warningState == true||this.deadState ==true) ) {
@@ -50,7 +50,7 @@ define(['net/Battery', 'tween'], function( Battery, tween ){
       TweenMax.to( $(this.textDisplay), 0.25, { css: { scale:1, transformOrigin: "50% 50%" }} );
       this.warningState = false;
       this.deadState = false;
-      if(this.alertDiv) $(this.alertDiv).stop().fadeTo('slow',0);
+      this.alertDisplay(false);
 
     //EMPTY
     } else if (this.powerLevel <= 0  && (this.warningState == true||this.deadState == false)) {
@@ -60,10 +60,21 @@ define(['net/Battery', 'tween'], function( Battery, tween ){
       TweenMax.to( $(this.textDisplay), 0.5, { css: { scale:1, transformOrigin: "50% 50%" } } );
       this.warningState = false;
       this.deadState =true;
-      if(this.alertDiv) $(this.alertDiv).stop().fadeTo('fast',1);
+      this.alertDisplay(true);
 
     }
 
+  }
+
+  BatteryPack.prototype.alertDisplay = function( doShow ) {
+    if(!this.alertDiv) return;
+    if (doShow) {
+      TweenMax.set( $(this.alertDiv), { css: { opacity:0 } } );
+      TweenMax.to( $(this.alertDiv), 0.3, { css: { opacity:1 }, repeat:6, yoyo:true, ease:Power3.EaseOut } );
+      $(this.alertDiv).show();
+    } else {
+      TweenMax.to( $(this.alertDiv), 0.3, { css: { opacity:0 } } );
+    }
   }
 
   // setFailStates() | Turn on/off fail states for each battery

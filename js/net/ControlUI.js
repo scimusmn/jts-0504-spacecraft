@@ -2,21 +2,24 @@
    ControlUI
    ===================================================================================== */
 
-define(['animatesprite', 'net/AppData', 'net/Sound'], function( animateSprite, AppData, Sound ){
+define(['animatesprite', 'net/AppData', 'net/Sound', 'tween'], function( animateSprite, AppData, Sound, tween ){
 
   //STATES
   ControlUI.STATE_OFF = 0;
   ControlUI.STATE_SOLAR = 1;
   ControlUI.STATE_BATTERY = 2;
 
-  function ControlUI( containerDiv, numFrames, loopActiveAnimation, sndId ){
+  function ControlUI( containerDiv, numFrames, loopActiveAnimation, sndId, alertDiv, failureTimeout ){
 
     this.containerDiv = containerDiv;
     this.numFrames = numFrames;
     this.sndId = sndId || '';
+    this.alertDiv = alertDiv || null;
     this.id = $(this.containerDiv).attr('id');
     this.setState(ControlUI.STATE_OFF);
     this.isActive = false;
+    this.timeInFailState = 0;
+    this.failureTimeout = failureTimeout || 90;
 
     //setup animation
     this.controlAnimation = $(this.containerDiv).find(".animation").first();
@@ -70,6 +73,7 @@ define(['animatesprite', 'net/AppData', 'net/Sound'], function( animateSprite, A
           $( this.controlAnimation ).animateSprite('play', 'active' );
           $(this.containerDiv).find('.state_solar .icon').first().removeClass('off red').addClass('active');
           this.isActive = true;
+          this.checkFailureTimeout();
 
         } else {
 
@@ -87,6 +91,7 @@ define(['animatesprite', 'net/AppData', 'net/Sound'], function( animateSprite, A
           $( this.controlAnimation ).animateSprite('play', 'active' );
           $(this.containerDiv).find('.state_battery .icon').first().removeClass('off red').addClass('active');
           this.isActive = true;
+          this.checkFailureTimeout();
 
         } else {
 
@@ -102,12 +107,44 @@ define(['animatesprite', 'net/AppData', 'net/Sound'], function( animateSprite, A
 
     //Play sound if necessary
     Sound.stop(this.sndId);
-    if(this.isActive == true){
+    if(this.isActive == true) {
       Sound.play(this.sndId);
-      console.log('control snd',this.sndId);
     }
 
   };
+
+  // checkFailureTimeout()
+  ControlUI.prototype.checkFailureTimeout = function( ) {
+
+    if (this.isActive == false) {
+
+      this.timeInFailState++;
+      if (this.timeInFailState == this.failureTimeout) {
+        this.alertDisplay(true);
+      } else if (this.timeInFailState == this.failureTimeout + 15) {
+        //Hide after 15 seconds
+        this.alertDisplay(false);
+      }
+
+    } else {
+
+      this.timeInFailState = 0;
+      this.alertDisplay(false);
+
+    }
+
+  }
+
+  ControlUI.prototype.alertDisplay = function( doShow ) {
+    if(!this.alertDiv) return;
+    if (doShow) {
+      TweenMax.set( $(this.alertDiv), { css: { opacity:0 } } );
+      TweenMax.to( $(this.alertDiv), 0.3, { css: { opacity:1 }, repeat:6, yoyo:true, ease:Power3.EaseOut } );
+      $(this.alertDiv).show();
+    } else {
+      TweenMax.to( $(this.alertDiv), 0.3, { css: { opacity:0 } } );
+    }
+  }
 
   return ControlUI;
 

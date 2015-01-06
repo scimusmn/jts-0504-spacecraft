@@ -10,7 +10,7 @@
 		<setting id="orbit_duration" value="90" />
 		<setting id="o2_fill_rate" value="1" />
 		<setting id="o2_depletion_rate" value="-1" />
-		<setting id="o2_update_rate" value="450" />
+		<setting id="o2_update_rate" value="550" />
 		<setting id="circulation_fill_rate" value="1" />
 		<setting id="circulation_depletion_rate" value="-1" />
 		<setting id="circulation_update_rate" value="150" />
@@ -101,13 +101,8 @@
 			</text>
 
 			<text id="circulation_feedback_poor">
-				<en>WARNING</en>
+				<en>POOR</en>
 				<es>LOREM</es>
-			</text>
-
-			<text id="circulation_feedback_fair">
-				<en>FAIR</en>
-				<es>DOLOR</es>
 			</text>
 
 			<text id="circulation_feedback_good">
@@ -167,6 +162,26 @@
 
 			<text id="circulation_depleted">
 				<en>Turn on the fan before you suffocate.</en>
+				<es>LOREM IPSUM</es>
+			</text>
+
+			<text id="food_warning">
+				<en>Without a little light your plants will die.</en>
+				<es>LOREM IPSUM</es>
+			</text>
+
+			<text id="comm_warning">
+				<en>Don’t forget to check in with mission control.</en>
+				<es>LOREM IPSUM</es>
+			</text>
+
+			<text id="heat_warning">
+				<en>A hot meal would sure taste good.</en>
+				<es>LOREM IPSUM</es>
+			</text>
+
+			<text id="lights_warning">
+				<en>You need light to see.</en>
 				<es>LOREM IPSUM</es>
 			</text>
 

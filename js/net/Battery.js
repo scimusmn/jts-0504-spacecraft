@@ -10,7 +10,7 @@ define(['tween', 'net/Language', 'net/Sound'], function( tween, Language, Sound 
   Battery.STATE_DEPLETING = 'depleting';
 
   Battery.COLORS = ['#DF0E1F','#DF191E','#DC321A','#DF4A1D','#DC6D1A','#DE8018','#D29519','#AD961A','#A8951D','#98961D','#8F9320','#4F9126','#328B29','#288A2B'];
-  Battery.TEXT_FEEDBACK = ['circulation_feedback_poor','circulation_feedback_fair','circulation_feedback_good','circulation_feedback_excellent'];
+  Battery.TEXT_FEEDBACK = ['circulation_feedback_poor','circulation_feedback_good','circulation_feedback_excellent'];
 
   function Battery( containerDiv, useFeedbackText, alertDiv, sndId, warningLevel ){
 
@@ -56,12 +56,12 @@ define(['tween', 'net/Language', 'net/Sound'], function( tween, Language, Sound 
 
   Battery.prototype.refreshText = function( ) {
 
-    // if (this.useTextFeedback==false){
+    if (this.useTextFeedback==false){
       $(this.textDisplay).html(this.powerLevel+"%");
-    // } else {
-    //   $(this.textDisplay).attr('id', this.currentLevelFeedback());
-    //   Language.refreshTranslation($(this.textDisplay));
-    // }
+    } else {
+      $(this.textDisplay).attr('id', this.currentLevelFeedback());
+      Language.refreshTranslation($(this.textDisplay));
+    }
 
     //WARNING
     if (this.powerLevel < this.warningLevel && this.powerLevel > 0 && this.warningState == false){
@@ -70,7 +70,7 @@ define(['tween', 'net/Language', 'net/Sound'], function( tween, Language, Sound 
       TweenMax.set( $(this.textDisplay), { css: { scale:1, transformOrigin: "50% 50%" } } );
       TweenMax.to( $(this.textDisplay), 0.5, { css: { scale:1.5, transformOrigin: "50% 50%" }, repeat:-1, yoyo:true } );
       this.warningState = true;
-      if(this.alertDiv) $(this.alertDiv).stop().fadeTo('slow',0);
+      this.alertDisplay(false);
 
     //NORMAL
     } else if (this.powerLevel >= this.warningLevel && this.warningState == true) {
@@ -78,7 +78,7 @@ define(['tween', 'net/Language', 'net/Sound'], function( tween, Language, Sound 
       $(this.textDisplay).removeClass('warning-red');
       TweenMax.to( $(this.textDisplay), 0.25, { css: { scale:1, transformOrigin: "50% 50%" }} );
       this.warningState = false;
-      if(this.alertDiv) $(this.alertDiv).stop().fadeTo('slow',0);
+      this.alertDisplay(false);
 
     //EMPTY
     } else if (this.powerLevel <= 0 && this.warningState == true) {
@@ -87,14 +87,24 @@ define(['tween', 'net/Language', 'net/Sound'], function( tween, Language, Sound 
       TweenMax.killTweensOf( $(this.textDisplay) );
       TweenMax.to( $(this.textDisplay), 0.5, { css: { scale:1, transformOrigin: "50% 50%" } } );
       this.warningState = false;
-      if(this.alertDiv) $(this.alertDiv).stop().fadeTo('fast',1);
+      this.alertDisplay(true);
 
       Sound.play('alarms');
       Sound.play(this.sndId);
-      console.log('play snd', this.sndId);
 
     }
 
+  }
+
+  Battery.prototype.alertDisplay = function( doShow ) {
+    if(!this.alertDiv) return;
+    if (doShow) {
+      TweenMax.set( $(this.alertDiv), { css: { opacity:0 } } );
+      TweenMax.to( $(this.alertDiv), 0.3, { css: { opacity:1 }, repeat:6, yoyo:true, ease:Power3.EaseOut } );
+      $(this.alertDiv).show();
+    } else {
+      TweenMax.to( $(this.alertDiv), 0.3, { css: { opacity:0 } } );
+    }
   }
 
   Battery.prototype.currentLevelColor = function( ) {
@@ -103,7 +113,14 @@ define(['tween', 'net/Language', 'net/Sound'], function( tween, Language, Sound 
   }
 
   Battery.prototype.currentLevelFeedback = function( ) {
-    var f = Math.floor((this.powerLevel/100) * Battery.TEXT_FEEDBACK.length);
+    var f;
+    if (this.powerLevel > 80){
+      f = 2;
+    } else if (this.powerLevel > 50){
+      f = 1;
+    } else {
+      f = 0;
+    }
     return Battery.TEXT_FEEDBACK[f];
   }
 

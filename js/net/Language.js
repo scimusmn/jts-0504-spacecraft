@@ -25,14 +25,14 @@ define(['net/AppData'], function(AppData){
 	/* setLanguage() | Find and replace all text by translation ids */
 	Language.setLanguage = function( languageId ){
 
+		Language.currentLanguage = languageId;
+
 		//Find all swappable language
 		$("#wrapper").find("p,h1,h2,h3,span").each(function(){
 
 			Language.refreshTranslation(this);
 
 		});
-
-		Language.currentLanguage = languageId;
 
 	}
 
