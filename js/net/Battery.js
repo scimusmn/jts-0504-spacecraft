@@ -2,7 +2,7 @@
    Battery
    ===================================================================================== */
 
-define(['tween', 'net/Language', 'net/Sound'], function( tween, Language, Sound ){
+define(['tween', 'net/Language', 'net/Sound', 'net/AppData'], function( tween, Language, Sound, AppData ){
 
   //STATES
   Battery.STATE_DEAD = 'dead';
@@ -15,6 +15,7 @@ define(['tween', 'net/Language', 'net/Sound'], function( tween, Language, Sound 
   function Battery( containerDiv, useFeedbackText, alertDiv, sndId, warningLevel ){
 
     this.alertDiv = alertDiv || null;
+    if(this.alertDiv) AppData.registerFailureAlert($(this.alertDiv));
     this.containerDiv = containerDiv;
     this.sndId = sndId || '';
     this.mask = $(this.containerDiv).find("#mask");

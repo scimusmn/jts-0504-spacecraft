@@ -38,6 +38,11 @@ define([], function(){
         this.currentPowerLevel = 100;
         this.currentDifficulty = AppData.DIFFICULTY_EASY;
 
+        this.failureCount = 0;
+        this.failureState = false;
+        AppData.failureAlerts = [];
+        setInterval(AppData.checkFailureState, 1000);
+
     };
 
     AppData.getInt = function(id){
@@ -85,6 +90,58 @@ define([], function(){
         return this.currentDifficulty;
 
     };
+
+    AppData.registerFailureAlert = function(aDiv){
+
+        AppData.failureAlerts.push(aDiv);
+        console.log('registerFailureAlert', this.failureAlerts);
+
+    }
+
+    AppData.checkFailureState = function(){
+
+        if (!AppData.failureAlerts) return;
+
+        var fstate = false;
+        for (var i = 0; i < AppData.failureAlerts.length; i++) {
+
+            var isShowing = $(AppData.failureAlerts[i]).is(":visible");
+            var opac = $(AppData.failureAlerts[i]).css("opacity");
+            if (isShowing == true && opac == 1) {
+                fstate = true;
+                break;
+            }
+        };
+
+        if (fstate == false && this.failureState == true){
+            AppData.showFailure(false);
+        }
+
+        this.failureState = fstate;
+
+        if (this.failureState == true) {
+            this.failureCount++;
+        } else {
+            this.failureCount=0;
+        }
+
+        if (this.failureCount==15){
+            AppData.showFailure(true);
+        } else if (this.failureCount==15+10) {
+            AppData.showFailure(false);
+        }
+
+        console.log('checkFailState', this.failureCount);
+
+    }
+
+    AppData.showFailure = function(doShow){
+        if (doShow) {
+            $("#popup_you_are_dead").stop().fadeIn('slow');
+        }else{
+            $("#popup_you_are_dead").stop().fadeOut('slow');
+        }
+    }
 
     return AppData;
 

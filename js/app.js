@@ -71,7 +71,7 @@ require(['jquery', 'net/AppData', 'net/Keyboard', 'net/Language', 'net/ControlMa
         //Time readout
         //the Space Station orbits Earth (and sees a sunrise) once every 92 minutes
         var minuteRatio = AppData.orbit_duration / (92*60);
-        var updateSpeed = Math.round(1000 * minuteRatio);
+        var updateSpeed = Math.floor(1000 * minuteRatio);
         var t = new TimeTicker($("#time_clock"), updateSpeed);
 
         //Pulse beacon light

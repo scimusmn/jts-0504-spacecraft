@@ -150,8 +150,18 @@
 		<!-- Alerts and Pop-up Messages -->
 		<alerts id="alerts">
 
+			<text id="popup_dead_header">
+				<en><![CDATA[Life support failure!]]></en>
+				<es>LOREM IPSUM</es>
+			</text>
+
+			<text id="popup_dead_sub">
+				<en><![CDATA[ ]]></en>
+				<es> </es>
+			</text>
+
 			<text id="batteries_depleted">
-				<en><![CDATA[<br/>Your battery power is completely drained. Turn everything off so they can recharge during next solar cycle.]]></en>
+				<en><![CDATA[<br/>Your batteries are completely drained! Turn off some equipment so they can recharge.]]></en>
 				<es>LOREM IPSUM</es>
 			</text>
 
@@ -166,7 +176,7 @@
 			</text>
 
 			<text id="food_warning">
-				<en>Without a little light your plants will die.</en>
+				<en>Keep your plants alive.</en>
 				<es>LOREM IPSUM</es>
 			</text>
 
@@ -176,12 +186,12 @@
 			</text>
 
 			<text id="heat_warning">
-				<en>A hot meal would sure taste good.</en>
+				<en>Time for a hot meal.</en>
 				<es>LOREM IPSUM</es>
 			</text>
 
 			<text id="lights_warning">
-				<en>You need light to see.</en>
+				<en>It's dark! Turn on the lights.</en>
 				<es>LOREM IPSUM</es>
 			</text>
 

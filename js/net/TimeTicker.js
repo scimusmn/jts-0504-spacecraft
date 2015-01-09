@@ -8,11 +8,11 @@ define(['tween'], function( tween ){
 
     this.containerDiv = containerDiv;
 
-    this.h=0;
+    this.h=1;
     this.m=0;
-    this.s=0;
-    this.timeStr = "00:00:00";
+    this.timeStr = "00:00";
     this.updateSpeed = updateSpeed || 1000;
+    this.updateSpeed *= 60;
 
     var thisRef = this;
     setInterval(function(){
@@ -24,30 +24,27 @@ define(['tween'], function( tween ){
 
   TimeTicker.prototype.update = function(){
 
-    this.s++;
+    this.m++;
 
-    if (this.s>59) {
-        this.m++;
-        this.s=0;
-    }
     if (this.m>59) {
         this.h++;
         this.m=0;
     }
-    if (this.h>23){
-        this.h=0;
+    if (this.h>12){
+        this.h=1;
     }
 
-    //seconds is jibberish (too fast to make sense)
-    // this.s = Math.floor(Math.random()*60);
-
-    this.timeStr = pad(this.h)+':'+pad(this.m)+':'+pad(this.s);
+    this.timeStr = padSpace(this.h)+':'+pad(this.m);
     $(this.containerDiv).html(this.timeStr);
 
   }
 
     function pad(num) {
         return (num < 10 ? '0' : '') + num;
+    }
+
+    function padSpace(num) {
+        return (num < 10 ? '&nbsp;' : '') + num;
     }
 
 
