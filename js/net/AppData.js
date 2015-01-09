@@ -125,13 +125,12 @@ define([], function(){
             this.failureCount=0;
         }
 
+        //Show for 10 seconds once a critical life support is empty for 15 seconds.
         if (this.failureCount==15){
             AppData.showFailure(true);
         } else if (this.failureCount==15+10) {
             AppData.showFailure(false);
         }
-
-        console.log('checkFailState', this.failureCount);
 
     }
 
