@@ -124,6 +124,7 @@ define(['animatesprite', 'net/AppData', 'net/Sound', 'tween'], function( animate
       } else if (this.timeInFailState == this.failureTimeout + 15) {
         //Hide after 15 seconds
         this.alertDisplay(false);
+        this.timeInFailState = 0;//Reset alarm
       }
 
     } else {
