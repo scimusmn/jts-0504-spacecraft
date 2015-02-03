@@ -148,6 +148,11 @@ p {
 	font-size: 1.2em;
 }
 
+.smaller{
+    font-size: 80%;
+    line-height: 80%;
+}
+
 .warning-red{
     color:#cb242c !important;
 }
@@ -201,16 +206,19 @@ p {
 .window .window_title h1 {
 	margin: 0px;
 	padding-top: 6px;
+    text-transform: uppercase;
 }
 .window .window_title h2 {
 	margin: 0px;
 	padding-top: 8px;
+    text-transform: uppercase;
 }
 
 .window .control_title {
 	position: absolute;
 	text-align: center;
 	width: 100%;
+    text-transform: uppercase;
 }
 .window .control_title.top {
 	top: 0%;
@@ -351,6 +359,7 @@ p {
 #window_instructions #instructions_headline {
     color: #e6b630;
     font-size: 3.2em;
+    text-transform: uppercase;
 }
 
 #window_instructions #instructions_subhead {
@@ -486,6 +495,7 @@ p {
     z-index: 9;
     background: rgba(0,0,0,0.4);
     overflow: hidden;
+    margin: 0pxf;
 
 }
 

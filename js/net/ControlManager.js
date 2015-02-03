@@ -12,10 +12,10 @@ define(['net/AppData', 'net/ControlUI', 'net/Battery', 'net/BatteryPack', 'net/H
         ControlManager.controls.push( new ControlUI("#o2_control", 32, true, 'bubbles') );
         ControlManager.controls.push( new ControlUI("#fan_control", 4, true, 'fan') );
 
-        ControlManager.controls.push( new ControlUI("#food_control", 67, false, 'rustling', $('#food_warning'), AppData.orbit_duration * 3));
-        ControlManager.controls.push( new ControlUI("#comm_control", 9, true, 'telecom', $('#comm_warning'), AppData.orbit_duration * 1));
-        ControlManager.controls.push( new ControlUI("#heat_control", 15, true, 'cooking', $('#heat_warning'), AppData.orbit_duration * 4));
-        ControlManager.controls.push( new ControlUI("#light_control", 3, true, 'lights', $('#lights_warning'), AppData.orbit_duration * 1));
+        ControlManager.controls.push( new ControlUI("#food_control", 67, false, 'rustling', $('#food_warning'), AppData.orbit_duration * 1.5));
+        ControlManager.controls.push( new ControlUI("#comm_control", 9, true, 'telecom', $('#comm_warning'), AppData.orbit_duration * 0.5));
+        ControlManager.controls.push( new ControlUI("#heat_control", 15, true, 'cooking', $('#heat_warning'), AppData.orbit_duration * 2));
+        ControlManager.controls.push( new ControlUI("#light_control", 3, true, 'lights', $('#lights_warning'), AppData.orbit_duration * 0.5));
 
         ControlManager.batteryPack = new BatteryPack("#battery_left", "#battery_right", $('#batteries_depleted'));
         ControlManager.o2Level = new Battery("#o2_level_container", false, $('#oxygen_depleted'), 'male-breathing', 25);

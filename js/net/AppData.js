@@ -39,6 +39,7 @@ define([], function(){
         this.currentDifficulty = AppData.DIFFICULTY_EASY;
 
         this.failureCount = 0;
+        AppData.secsForFailureState = 7;
         this.failureState = false;
         AppData.failureAlerts = [];
         setInterval(AppData.checkFailureState, 1000);
@@ -94,7 +95,6 @@ define([], function(){
     AppData.registerFailureAlert = function(aDiv){
 
         AppData.failureAlerts.push(aDiv);
-        console.log('registerFailureAlert', this.failureAlerts);
 
     }
 
@@ -125,10 +125,10 @@ define([], function(){
             this.failureCount=0;
         }
 
-        //Show for 10 seconds once a critical life support is empty for 15 seconds.
-        if (this.failureCount==15){
+        //Show for 10 seconds once a critical life support is empty for [this.secsForFailureState] seconds.
+        if (this.failureCount==AppData.secsForFailureState){
             AppData.showFailure(true);
-        } else if (this.failureCount==15+10) {
+        } else if (this.failureCount==AppData.secsForFailureState+10) {
             AppData.showFailure(false);
         }
 

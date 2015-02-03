@@ -11,6 +11,7 @@ define(['tween'], function( tween ){
     this.h=1;
     this.m=0;
     this.timeStr = "00:00";
+    this.meridiem = "AM";
     this.updateSpeed = updateSpeed || 1000;
     this.updateSpeed *= 60;
 
@@ -24,6 +25,8 @@ define(['tween'], function( tween ){
 
   TimeTicker.prototype.update = function(){
 
+    var prevH = this.h;
+
     this.m++;
 
     if (this.m>59) {
@@ -34,7 +37,15 @@ define(['tween'], function( tween ){
         this.h=1;
     }
 
-    this.timeStr = padSpace(this.h)+':'+pad(this.m);
+    if (prevH==11&&this.h==12){
+      if (this.meridiem=="AM"){
+        this.meridiem="PM";
+      } else {
+        this.meridiem="AM";
+      }
+    }
+
+    this.timeStr = padSpace(this.h)+':'+pad(this.m)+this.meridiem;
     $(this.containerDiv).html(this.timeStr);
 
   }
