@@ -310,6 +310,7 @@ p {
 	left: 54%;
 	position: absolute;
 	text-align: left;
+    text-transform: uppercase;
 }
 
 #window_power #container_orbit #time_clock {

@@ -42,7 +42,7 @@
 
 			<text id="unavailable">
 				<en>NOT AVAILABLE</en>
-				<es>NO DISPONIBLE</es>
+				<es>No está disponible</es>
 			</text>
 
 			<text id="batteries">
@@ -102,12 +102,12 @@
 
 			<text id="circulation_feedback_poor">
 				<en>POOR</en>
-				<es>POBRE</es>
+				<es>MAL</es>
 			</text>
 
 			<text id="circulation_feedback_good">
 				<en>GOOD</en>
-				<es>BUENO</es>
+				<es>BIEN</es>
 			</text>
 
 			<text id="circulation_feedback_excellent">
@@ -192,7 +192,7 @@
 
 			<text id="lights_warning">
 				<en>It's dark! Turn on the lights.</en>
-				<es>¡Todo está oscuro! Enciende las luces.</es>
+				<es>¡Está oscuro! Enciende las luces.</es>
 			</text>
 
 		</alerts>
