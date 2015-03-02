@@ -62,7 +62,7 @@
 
 			<text id="instructions_subhead">
 				<en><![CDATA[Stay alive. Manage your space station’s power and maintain life-support levels.]]></en>
-				<es><![CDATA[<span class="smaller">Mantenerte vivo. Administra la energía de tu estación espacial y mantén los niveles de apoyo vital.</span>]]></es>
+				<es><![CDATA[<span class="smaller">Mantenerte vivo. Administra la energía de tu estación espacial y mantén los niveles de soporte vital.</span>]]></es>
 			</text>
 
 			<text id="tip_1">
@@ -77,7 +77,7 @@
 
 			<text id="life_support_equipment">
 				<en><![CDATA[LIFE-SUPPORT EQUIPMENT]]></en>
-				<es>Equipos de apoyo vital</es>
+				<es>Niveles de soporte vital</es>
 			</text>
 
 			<text id="oxygen_generator">
@@ -102,12 +102,12 @@
 
 			<text id="circulation_feedback_poor">
 				<en>POOR</en>
-				<es>MAL</es>
+				<es>MALA</es>
 			</text>
 
 			<text id="circulation_feedback_good">
 				<en>GOOD</en>
-				<es>BIEN</es>
+				<es>BUENA</es>
 			</text>
 
 			<text id="circulation_feedback_excellent">
