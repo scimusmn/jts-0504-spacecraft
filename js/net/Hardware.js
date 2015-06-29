@@ -91,18 +91,7 @@ function(arduino) {
     hardware.language = new Switch(16);
     hardware.difficulty = new Switch(17);
 
-    /*arduino.analogReport(0,75,function(pin,val){
-                         console.log(val);
-                         hardware.battery = Math.floor((val-500)/3);
-                         if(hardware.battery <= 0) {
-                           hardware.disableBattery();
-                         }
-                         else if (hardware.battery>=20){
-                           hardware.enableBattery();
-                         }
-                         });*/
     arduino.setHandler(0, function(pin, val) {
-      // console.log(val);
       hardware.battery = Math.floor((val - 375) / 3.125);
       if (hardware.battery <= 0) {
         hardware.disableBattery();
@@ -131,11 +120,9 @@ function(arduino) {
   hardware.rampSun = function() {
     if (snState && sunLevel < 255) {
       arduino.analogWrite(3, sunLevel++);
-      // console.log(sunLevel);
       if (sunLevel < 255) setTimeout(hardware.rampSun, 10);
     } else if (!snState && sunLevel > 100) {
       arduino.analogWrite(3, sunLevel--);
-      // console.log(sunLevel);
       if (sunLevel > 100) setTimeout(hardware.rampSun, 10);
     }
   }
