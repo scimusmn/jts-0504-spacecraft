@@ -49,7 +49,7 @@ function(arduino) {
     arduino.connect(hardware.init);
     hardware.initCB = cb;
     hardware.sunState(1);
-  }
+  };
 
   hardware.batteryInt = null;
 
@@ -61,14 +61,14 @@ function(arduino) {
       arduino.digitalWrite(2, 1);
       hardware.batteryState = false;
     }
-  }
+  };
 
   hardware.enableBattery = function() {
     if (Date.now() - hardware.switchTime > 2000 && !hardware.batteryState) {
       hardware.batteryState = true;
       arduino.digitalWrite(2, 0);
     }
-  }
+  };
 
   hardware.update = function() {
     hardware.oxygen.update();
@@ -77,7 +77,7 @@ function(arduino) {
     hardware.comm.update();
     hardware.heat.update();
     hardware.lights.update();
-  }
+  };
 
   hardware.init = function() {
 
@@ -106,7 +106,7 @@ function(arduino) {
     }, 500);
 
     if (hardware.initCB) hardware.initCB();
-  }
+  };
 
   var sunLevel = 100;
   var snState = true;
@@ -115,7 +115,7 @@ function(arduino) {
   hardware.sunState = function(mode) {
     snState = mode;
     setTimeout(hardware.rampSun, 10);
-  }
+  };
 
   hardware.rampSun = function() {
     if (snState && sunLevel < 255) {
@@ -125,7 +125,7 @@ function(arduino) {
       arduino.analogWrite(3, sunLevel--);
       if (sunLevel > 100) setTimeout(hardware.rampSun, 10);
     }
-  }
+  };
 
   return hardware;
 

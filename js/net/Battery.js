@@ -97,7 +97,7 @@ define(['tween', 'net/Language', 'net/Sound', 'net/AppData'], function(tween, La
 
     }
 
-  }
+  };
 
   Battery.prototype.alertDisplay = function(doShow) {
     if (!this.alertDiv) return;
@@ -108,12 +108,12 @@ define(['tween', 'net/Language', 'net/Sound', 'net/AppData'], function(tween, La
     } else {
       TweenMax.to($(this.alertDiv), 0.3, {css: {opacity:0}});
     }
-  }
+  };
 
   Battery.prototype.currentLevelColor = function() {
     var c = Math.floor((this.powerLevel / 100) * Battery.COLORS.length);
     return Battery.COLORS[c];
-  }
+  };
 
   Battery.prototype.currentLevelFeedback = function() {
     var f;
@@ -126,7 +126,7 @@ define(['tween', 'net/Language', 'net/Sound', 'net/AppData'], function(tween, La
     }
 
     return Battery.TEXT_FEEDBACK[f];
-  }
+  };
 
   Battery.prototype.timedFill = function(increment, updateRate) {
 
@@ -139,21 +139,21 @@ define(['tween', 'net/Language', 'net/Sound', 'net/AppData'], function(tween, La
 
     }, updateRate);
 
-  }
+  };
 
   Battery.prototype.clearFailState = function() {
 
     $(this.failState).parent().children().show();
     $(this.failState).hide();
 
-  }
+  };
 
   Battery.prototype.showFailState = function() {
 
     $(this.failState).parent().children().hide();
     $(this.failState).show();
 
-  }
+  };
 
   function snapToFourth(value) {
 

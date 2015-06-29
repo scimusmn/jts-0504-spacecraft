@@ -43,12 +43,12 @@ define(['net/Language', 'net/ControlManager', 'net/ControlUI', 'net/AppData'], f
     jwerty.key('9', function() { ControlManager.setControlState('light_control', ControlUI.STATE_OFF); });
     jwerty.key('0', function() { ControlManager.setControlState('light_control', ControlUI.STATE_BATTERY); });
 
-  }
+  };
 
   //instance method
   Keyboard.prototype.methodName = function() {
 
-  }
+  };
 
   return Keyboard;
 

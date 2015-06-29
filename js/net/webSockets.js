@@ -18,7 +18,7 @@ define([], function() {
       ws.onopen = function() {
         // Web Socket is connected, send data using send()
         clearInterval(wsClient.connectInterval);
-        if (customCB) ws.onmessage = customCB
+        if (customCB) ws.onmessage = customCB;
         else ws.onmessage = function(evt) {
           //console.log(evt.data);
         };
@@ -38,16 +38,16 @@ define([], function() {
       clearInterval(wsClient.connectInterval);
       console.log("Websocket not supported");
     }
-  }
+  };
 
   wsClient.setMsgCallback = function(cb) {
     customCB = cb;
     if (ws) ws.onmessage = cb;
-  }
+  };
 
   wsClient.send = function(msg) {
     if (ws) ws.send(msg);
-  }
+  };
 
   return wsClient;
 });

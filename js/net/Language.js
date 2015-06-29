@@ -20,7 +20,7 @@ define(['net/AppData'], function(AppData) {
     //default to english
     Language.setLanguage(Language.ENGLISH);
 
-  }
+  };
 
   /* setLanguage() | Find and replace all text by translation ids */
   Language.setLanguage = function(languageId) {
@@ -34,7 +34,7 @@ define(['net/AppData'], function(AppData) {
 
     });
 
-  }
+  };
 
   /**
   	Figure out the differences between these two. A physical wire might be crossed
@@ -45,7 +45,7 @@ define(['net/AppData'], function(AppData) {
     } else {
       Language.setLanguage(Language.SPANISH);
     }
-  }
+  };
 
   Language.refreshTranslation = function(translateElement) {
 
@@ -70,7 +70,7 @@ define(['net/AppData'], function(AppData) {
 
     return Language.currentLanguage;
 
-  }
+  };
 
   return Language;
 

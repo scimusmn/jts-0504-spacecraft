@@ -64,7 +64,7 @@ define(['net/Battery', 'tween'], function(Battery, tween) {
 
     }
 
-  }
+  };
 
   BatteryPack.prototype.alertDisplay = function(doShow) {
     if (!this.alertDiv) return;
@@ -75,7 +75,7 @@ define(['net/Battery', 'tween'], function(Battery, tween) {
     } else {
       TweenMax.to($(this.alertDiv), 0.3, {css: {opacity:0}});
     }
-  }
+  };
 
   // setFailStates() | Turn on/off fail states for each battery
   BatteryPack.prototype.setFailStates = function(battLeftFail, battRightFail) {

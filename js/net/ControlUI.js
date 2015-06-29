@@ -48,7 +48,7 @@ define(['animatesprite', 'net/AppData', 'net/Sound', 'tween'], function(animateS
     this.currentState = stateId;
     this.refreshStateDisplay();
 
-  }
+  };
 
   // refreshStateDisplay() | refresh animation and icons to match current state.
   ControlUI.prototype.refreshStateDisplay = function() {
@@ -134,7 +134,7 @@ define(['animatesprite', 'net/AppData', 'net/Sound', 'tween'], function(animateS
 
     }
 
-  }
+  };
 
   ControlUI.prototype.alertDisplay = function(doShow) {
     if (!this.alertDiv) return;
@@ -145,7 +145,7 @@ define(['animatesprite', 'net/AppData', 'net/Sound', 'tween'], function(animateS
     } else {
       TweenMax.to($(this.alertDiv), 0.3, {css: {opacity:0}});
     }
-  }
+  };
 
   return ControlUI;
 

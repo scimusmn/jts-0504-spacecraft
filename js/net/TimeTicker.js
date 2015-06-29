@@ -32,22 +32,23 @@ define(['tween'], function(tween) {
       this.h++;
       this.m = 0;
     }
+
     if (this.h > 12) {
       this.h = 1;
     }
 
     if (prevH == 11 && this.h == 12) {
-      if (this.meridiem == "AM") {
-        this.meridiem = "PM";
+      if (this.meridiem == 'AM') {
+        this.meridiem = 'PM';
       } else {
-        this.meridiem = "AM";
+        this.meridiem = 'AM';
       }
     }
 
     this.timeStr = padSpace(this.h) + ':' + pad(this.m) + this.meridiem;
     $(this.containerDiv).html(this.timeStr);
 
-  }
+  };
 
   function pad(num) {
     return (num < 10 ? '0' : '') + num;

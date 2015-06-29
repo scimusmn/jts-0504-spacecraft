@@ -15,7 +15,7 @@ define(['net/AppData', 'howler'], function(AppData, Howler) {
       });
     };
 
-  }
+  };
 
   //Play a preloaded sound right now
   Sound.play = function(sndId) {
@@ -27,7 +27,7 @@ define(['net/AppData', 'howler'], function(AppData, Howler) {
       // console.log('Sound '+sndId+' not found.');
     }
 
-  }
+  };
 
   //Stop a sound if it is currently playing
   Sound.stop = function(sndId, quickFade) {
@@ -39,7 +39,7 @@ define(['net/AppData', 'howler'], function(AppData, Howler) {
       // console.log('Sound ['+sndId+'] not found.');
     }
 
-  }
+  };
 
   Sound.loadAndPlaySound = function(sndURLs) {
 
@@ -47,7 +47,7 @@ define(['net/AppData', 'howler'], function(AppData, Howler) {
           urls: sndURLs
         }).play();
 
-  }
+  };
 
   return Sound;
 

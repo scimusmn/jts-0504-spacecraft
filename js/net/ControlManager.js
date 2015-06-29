@@ -23,7 +23,7 @@ define(['net/AppData', 'net/ControlUI', 'net/Battery', 'net/BatteryPack', 'net/H
 
     ControlManager.linkHardware();
 
-  }
+  };
 
   /* linkHardware() | Connect hardware functions to front-end*/
   ControlManager.linkHardware = function() {
@@ -47,7 +47,7 @@ define(['net/AppData', 'net/ControlUI', 'net/Battery', 'net/BatteryPack', 'net/H
     setInterval(ControlManager.checkBatteries, 1000);
     setInterval(ControlManager.checkAuxiliaryEquipment, 1000);
 
-  }
+  };
 
   var batteryGood = true;
   var incTimeout = null;
@@ -59,7 +59,7 @@ define(['net/AppData', 'net/ControlUI', 'net/Battery', 'net/BatteryPack', 'net/H
       incTimeout = setTimeout(ControlManager.incrementUp, 500);
       ControlManager.batteryPack.updatePackLevel(AppData.currentPowerLevel);
     }
-  }
+  };
 
   ControlManager.checkBatteries = function() {
 
@@ -94,7 +94,7 @@ define(['net/AppData', 'net/ControlUI', 'net/Battery', 'net/BatteryPack', 'net/H
       batteryGood = reading;
     }
 
-  }
+  };
 
   ControlManager.checkAuxiliaryEquipment = function() {
 
@@ -104,7 +104,7 @@ define(['net/AppData', 'net/ControlUI', 'net/Battery', 'net/BatteryPack', 'net/H
 
     };
 
-  }
+  };
 
   /* getControlById() | Setup the state of a specific control by id */
   ControlManager.getControlById = function(controlId) {
@@ -124,7 +124,7 @@ define(['net/AppData', 'net/ControlUI', 'net/Battery', 'net/BatteryPack', 'net/H
 
     return control;
 
-  }
+  };
 
   /* setSolarAvailable() */
   ControlManager.setSolarAvailable = function(value) {
@@ -135,7 +135,7 @@ define(['net/AppData', 'net/ControlUI', 'net/Battery', 'net/BatteryPack', 'net/H
 
     this.refreshControlDisplays();
 
-  }
+  };
 
   /* setControlState() | Set state of specific control */
   ControlManager.setControlState = function(controlId, stateId) {
@@ -148,7 +148,7 @@ define(['net/AppData', 'net/ControlUI', 'net/Battery', 'net/BatteryPack', 'net/H
 
     }
 
-  }
+  };
 
   /* refreshControlDisplays() | Refresh all control displays against current states */
   ControlManager.refreshControlDisplays = function() {
@@ -161,7 +161,7 @@ define(['net/AppData', 'net/ControlUI', 'net/Battery', 'net/BatteryPack', 'net/H
 
     this.refreshFillBars();
 
-  }
+  };
 
   /* refreshFillBars() | Start filling or depleting fill bars based on current state */
   ControlManager.refreshFillBars = function() {
@@ -182,7 +182,7 @@ define(['net/AppData', 'net/ControlUI', 'net/Battery', 'net/BatteryPack', 'net/H
       this.fanLevel.timedFill(AppData.circulation_depletion_rate, AppData.circulation_update_rate);
     }
 
-  }
+  };
 
   /* setDifficulty() | Update control states and levels based on new difficulty */
   ControlManager.setDifficulty = function(value) {
