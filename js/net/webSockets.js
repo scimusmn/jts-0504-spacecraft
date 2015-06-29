@@ -1,7 +1,5 @@
 define([], function() {
-
-  function wsClient() {
-    }
+  function wsClient() { }
 
   var ws = null;
 
