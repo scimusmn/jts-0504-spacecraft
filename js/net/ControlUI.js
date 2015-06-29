@@ -2,14 +2,14 @@
    ControlUI
    ===================================================================================== */
 
-define(['animatesprite', 'net/AppData', 'net/Sound', 'tween'], function( animateSprite, AppData, Sound, tween ){
+define(['animatesprite', 'net/AppData', 'net/Sound', 'tween'], function(animateSprite, AppData, Sound, tween) {
 
-  //STATES
+  // STATES
   ControlUI.STATE_OFF = 0;
   ControlUI.STATE_SOLAR = 1;
   ControlUI.STATE_BATTERY = 2;
 
-  function ControlUI( containerDiv, numFrames, loopActiveAnimation, sndId, alertDiv, failureTimeout ){
+  function ControlUI(containerDiv, numFrames, loopActiveAnimation, sndId, alertDiv, failureTimeout) {
 
     this.containerDiv = containerDiv;
     this.numFrames = numFrames;
@@ -21,29 +21,29 @@ define(['animatesprite', 'net/AppData', 'net/Sound', 'tween'], function( animate
     this.timeInFailState = 0;
     this.failureTimeout = failureTimeout || 90;
 
-    //setup animation
+    // Setup animation
     this.controlAnimation = $(this.containerDiv).find(".animation").first();
 
-    //Create active frames array (assume every frame after first is for active animation)
+    // Create active frames array (assume every frame after first is for active animation)
     var activeFrames = [];
-    for (var i = 1; i < numFrames-1; i++) {
-      activeFrames.push(i+1);
+    for (var i = 1; i < numFrames - 1; i++) {
+      activeFrames.push(i + 1);
     };
 
-    $( this.controlAnimation ).animateSprite({
-        fps: 12,
-        animations: {
-            off: [0], // first frame is always off state
-            unavailable: [1], // second frame is always unavailable state
-            active: activeFrames
-        },
-        loop: loopActiveAnimation
+    $(this.controlAnimation).animateSprite({
+      fps: 12,
+      animations: {
+        off: [0], // First frame is always off state
+        unavailable: [1], // Second frame is always unavailable state
+        active: activeFrames
+      },
+      loop: loopActiveAnimation
     });
 
   }
 
   // setState() | Update the control's display state.
-  ControlUI.prototype.setState = function( stateId ) {
+  ControlUI.prototype.setState = function(stateId) {
 
     this.currentState = stateId;
     this.refreshStateDisplay();
@@ -51,7 +51,7 @@ define(['animatesprite', 'net/AppData', 'net/Sound', 'tween'], function( animate
   }
 
   // refreshStateDisplay() | refresh animation and icons to match current state.
-  ControlUI.prototype.refreshStateDisplay = function( ) {
+  ControlUI.prototype.refreshStateDisplay = function() {
 
     $(this.containerDiv).find('.state_off').parent().find('div .icon').removeClass('red').removeClass('active').addClass('off');
     this.isActive = false;
@@ -60,8 +60,8 @@ define(['animatesprite', 'net/AppData', 'net/Sound', 'tween'], function( animate
 
       case ControlUI.STATE_OFF:
 
-        $( this.controlAnimation ).animateSprite('frame', 0);
-        $( this.controlAnimation ).animateSprite('play', 'off' );
+        $(this.controlAnimation).animateSprite('frame', 0);
+        $(this.controlAnimation).animateSprite('play', 'off');
         $(this.containerDiv).find('.state_off .icon').first().removeClass('off').addClass('active');
 
       break;
@@ -69,16 +69,16 @@ define(['animatesprite', 'net/AppData', 'net/Sound', 'tween'], function( animate
 
         if (AppData.solarAvailable == true) {
 
-          $( this.controlAnimation ).animateSprite('frame', 1);
-          $( this.controlAnimation ).animateSprite('play', 'active' );
+          $(this.controlAnimation).animateSprite('frame', 1);
+          $(this.controlAnimation).animateSprite('play', 'active');
           $(this.containerDiv).find('.state_solar .icon').first().removeClass('off red').addClass('active');
           this.isActive = true;
           this.checkFailureTimeout();
 
         } else {
 
-          $( this.controlAnimation ).animateSprite('frame', 1);
-          $( this.controlAnimation ).animateSprite('play', 'unavailable');
+          $(this.controlAnimation).animateSprite('frame', 1);
+          $(this.controlAnimation).animateSprite('play', 'unavailable');
           $(this.containerDiv).find('.state_solar .icon').first().removeClass('off active').addClass('red');
 
         }
@@ -87,16 +87,16 @@ define(['animatesprite', 'net/AppData', 'net/Sound', 'tween'], function( animate
 
         if (AppData.currentPowerLevel > 0) {
 
-          $( this.controlAnimation ).animateSprite('frame', 1);
-          $( this.controlAnimation ).animateSprite('play', 'active' );
+          $(this.controlAnimation).animateSprite('frame', 1);
+          $(this.controlAnimation).animateSprite('play', 'active');
           $(this.containerDiv).find('.state_battery .icon').first().removeClass('off red').addClass('active');
           this.isActive = true;
           this.checkFailureTimeout();
 
         } else {
 
-          $( this.controlAnimation ).animateSprite('frame', 1);
-          $( this.controlAnimation ).animateSprite('play', 'unavailable');
+          $(this.controlAnimation).animateSprite('frame', 1);
+          $(this.controlAnimation).animateSprite('play', 'unavailable');
           $(this.containerDiv).find('.state_battery .icon').first().removeClass('off active').addClass('red');
 
         }
@@ -107,14 +107,14 @@ define(['animatesprite', 'net/AppData', 'net/Sound', 'tween'], function( animate
 
     //Play sound if necessary
     Sound.stop(this.sndId);
-    if(this.isActive == true) {
+    if (this.isActive == true) {
       Sound.play(this.sndId);
     }
 
   };
 
   // checkFailureTimeout()
-  ControlUI.prototype.checkFailureTimeout = function( ) {
+  ControlUI.prototype.checkFailureTimeout = function() {
 
     if (this.isActive == false) {
 
@@ -122,9 +122,9 @@ define(['animatesprite', 'net/AppData', 'net/Sound', 'tween'], function( animate
       if (this.timeInFailState == this.failureTimeout) {
         this.alertDisplay(true);
       } else if (this.timeInFailState == this.failureTimeout + 15) {
-        //Hide after 15 seconds
+        // Hide after 15 seconds
         this.alertDisplay(false);
-        this.timeInFailState = 0;//Reset alarm
+        this.timeInFailState = 0; // Reset alarm
       }
 
     } else {
@@ -136,14 +136,14 @@ define(['animatesprite', 'net/AppData', 'net/Sound', 'tween'], function( animate
 
   }
 
-  ControlUI.prototype.alertDisplay = function( doShow ) {
-    if(!this.alertDiv) return;
+  ControlUI.prototype.alertDisplay = function(doShow) {
+    if (!this.alertDiv) return;
     if (doShow) {
-      TweenMax.set( $(this.alertDiv), { css: { opacity:0 } } );
-      TweenMax.to( $(this.alertDiv), 0.3, { css: { opacity:1 }, repeat:6, yoyo:true, ease:Power3.EaseOut } );
+      TweenMax.set($(this.alertDiv), {css: {opacity:0}});
+      TweenMax.to($(this.alertDiv), 0.3, {css: {opacity:1}, repeat:6, yoyo:true, ease:Power3.EaseOut});
       $(this.alertDiv).show();
     } else {
-      TweenMax.to( $(this.alertDiv), 0.3, { css: { opacity:0 } } );
+      TweenMax.to($(this.alertDiv), 0.3, {css: {opacity:0}});
     }
   }
 
