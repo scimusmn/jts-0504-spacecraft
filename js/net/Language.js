@@ -36,6 +36,9 @@ define(['net/AppData'], function(AppData){
 
 	}
 
+	/**
+	Figure out the differences between these two. A physical wire might be crossed
+	*/
 	Language.convertState = function(state){
 		if (state == 0) {
             Language.setLanguage(Language.ENGLISH);
