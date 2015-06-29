@@ -10,8 +10,8 @@ define(['tween'], function(tween) {
 
     this.h = 1;
     this.m = 0;
-    this.timeStr = "00:00";
-    this.meridiem = "AM";
+    this.timeStr = '00:00';
+    this.meridiem = 'AM';
     this.updateSpeed = updateSpeed || 1000;
     this.updateSpeed *= 60;
 

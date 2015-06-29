@@ -7,36 +7,36 @@ define([], function() {
 
   wsClient.connectInterval;
 
-  var addr = "ws://localhost:8080/";
+  var addr = 'ws://localhost:8080/';
 
   var customCB = null;
 
   wsClient.connect = function(connectCB) {
-    if ("WebSocket" in window) {
-      ws = new WebSocket(addr); //ws://echo.websocket.org is the default testing server
+    if ('WebSocket' in window) {
+      // Default testing server is ws://echo.websocket.org
+      ws = new WebSocket(addr);
 
       ws.onopen = function() {
         // Web Socket is connected, send data using send()
         clearInterval(wsClient.connectInterval);
         if (customCB) ws.onmessage = customCB;
         else ws.onmessage = function(evt) {
-          //console.log(evt.data);
         };
-        if (connectCB) connectCB(), "connected";
+
+        if (connectCB) connectCB(), 'connected';
       };
 
       ws.onerror = function(error) {
-        if ("WebSocket" in window) wsClient.connectInterval = setInterval(this.connect, 2000);
-      }
+        if ('WebSocket' in window) wsClient.connectInterval = setInterval(this.connect, 2000);
+      };
 
       ws.onclose = function() {
-        // websocket is closed.
-        //alert("Connection is closed...");
+        // Websocket is closed.
         wsClient.connectInterval = setInterval(self.connect.bind(self), 2000);
       };
     } else {
       clearInterval(wsClient.connectInterval);
-      console.log("Websocket not supported");
+      console.log('Websocket not supported');
     }
   };
 
