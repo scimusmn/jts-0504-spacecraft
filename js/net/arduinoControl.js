@@ -1,8 +1,6 @@
 define(['net/webSockets'], function(wsClient) {
 
-  function arduino() {
-
-  }
+  function arduino() { }
 
   arduino.handlers = [];
 
@@ -17,7 +15,7 @@ define(['net/webSockets'], function(wsClient) {
       default:
         break;
     }
-  };;
+  };
 
   arduino.connect = function(cb) {
     wsClient.setMsgCallback(arduino.onMessage);

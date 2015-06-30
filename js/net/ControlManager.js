@@ -222,4 +222,5 @@ define(
     return ControlManager;
 
   }
+
 );
