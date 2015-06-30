@@ -5,10 +5,10 @@ require.config({
 
   // Setup up shortcuts for commonly used libraries and components
   paths: {
-    'jquery': 'vendor/jquery/jquery.min',
-    'tween': 'vendor/gsap/src/minified/TweenMax.min',
-    'animatesprite': 'vendor/animatesprite/scripts/jquery.animateSprite',
-    'howler': 'vendor/howler/howler.min'
+    jquery: 'vendor/jquery/jquery.min',
+    tween: 'vendor/gsap/src/minified/TweenMax.min',
+    animatesprite: 'vendor/animatesprite/scripts/jquery.animateSprite',
+    howler: 'vendor/howler/howler.min'
   }
 
 });
