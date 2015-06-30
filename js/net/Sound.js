@@ -13,7 +13,7 @@ define(['net/AppData', 'howler'], function(AppData, Howler) {
       sounds[names[i]] = new Howl({
         urls: [directory + names[i] + '.ogg']
       });
-    };
+    }
 
   };
 
