@@ -2,37 +2,37 @@ define(['net/arduinoControl'],
 
 function(arduino) {
   function device(solPin, batPin) {
-    var self = this;
-    self.state = 0;
+    var _this = this;
+    _this.state = 0;
 
-    self.onchange = null;
+    _this.onchange = null;
 
     arduino.watchPin(solPin, function(pin, val) {
-      self.state = (val) ? 0 : 1;
-      if (self.onchange) self.onchange();
+      _this.state = (val) ? 0 : 1;
+      if (_this.onchange) _this.onchange();
 
     });
 
     arduino.watchPin(batPin, function(pin, val) {
-      self.state = (val) ? 0 : 2;
-      if (self.onchange) self.onchange();
+      _this.state = (val) ? 0 : 2;
+      if (_this.onchange) _this.onchange();
     });
 
-    self.update = function() {
+    _this.update = function() {
       arduino.digitalRead(solPin);
       arduino.digitalRead(batPin);
     }
   }
 
   function Switch(pin) {
-    var self = this;
-    self.state = 0;
+    var _this = this;
+    _this.state = 0;
 
-    self.onchange = null;
+    _this.onchange = null;
 
     arduino.watchPin(pin, function(pin, val) {
-      self.state = val;
-      if (self.onchange) self.onchange();
+      _this.state = val;
+      if (_this.onchange) _this.onchange();
 
     });
   }
