@@ -7,7 +7,7 @@ define(['net/Battery', 'tween'], function(Battery, tween) {
   function BatteryPack(containerDivLeft, containerDivRight, alertDiv) {
 
     this.powerLevel = 100;
-    this.textDisplay = $(containerDivLeft).parent().parent().find("#batteries_level_percent").last();
+    this.textDisplay = $(containerDivLeft).parent().parent().find('#batteries_level_percent').last();
 
     this.batteries = [new Battery(containerDivLeft), new Battery(containerDivRight)];
 
@@ -32,14 +32,14 @@ define(['net/Battery', 'tween'], function(Battery, tween) {
 
   BatteryPack.prototype.refreshText = function() {
 
-    $(this.textDisplay).html(this.powerLevel + "%");
+    $(this.textDisplay).html(this.powerLevel + '%');
 
     // WARNING
     if (this.powerLevel < 25 && this.powerLevel > 0 && this.warningState == false) {
 
       $(this.textDisplay).addClass('warning-red');
-      TweenMax.set($(this.textDisplay), {css: {scale:1, transformOrigin: "50% 50%"}});
-      TweenMax.to($(this.textDisplay), 0.5, {css: {scale:1.5, transformOrigin: "50% 50%"}, repeat:-1, yoyo:true});
+      TweenMax.set($(this.textDisplay), {css: {scale:1, transformOrigin: '50% 50%'}});
+      TweenMax.to($(this.textDisplay), 0.5, {css: {scale:1.5, transformOrigin: '50% 50%'}, repeat:-1, yoyo:true});
       this.warningState = true;
       this.alertDisplay(false);
 
@@ -47,7 +47,7 @@ define(['net/Battery', 'tween'], function(Battery, tween) {
     } else if (this.powerLevel >= 25 && (this.warningState == true || this.deadState == true)) {
 
       $(this.textDisplay).removeClass('warning-red');
-      TweenMax.to($(this.textDisplay), 0.25, {css: {scale:1, transformOrigin: "50% 50%"}});
+      TweenMax.to($(this.textDisplay), 0.25, {css: {scale:1, transformOrigin: '50% 50%'}});
       this.warningState = false;
       this.deadState = false;
       this.alertDisplay(false);
@@ -57,7 +57,7 @@ define(['net/Battery', 'tween'], function(Battery, tween) {
 
       $(this.textDisplay).addClass('warning-red');
       TweenMax.killTweensOf($(this.textDisplay));
-      TweenMax.to($(this.textDisplay), 0.5, {css: {scale:1, transformOrigin: "50% 50%"}});
+      TweenMax.to($(this.textDisplay), 0.5, {css: {scale:1, transformOrigin: '50% 50%'}});
       this.warningState = false;
       this.deadState = true;
       this.alertDisplay(true);

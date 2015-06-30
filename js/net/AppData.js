@@ -19,13 +19,13 @@ define([], function() {
 
     // Settings from XML
     this.developerMode = this.getBool('developerMode');
-    this.orbit_duration = this.getInt('orbit_duration');
-    this.o2_fill_rate = this.getFloat('o2_fill_rate');
-    this.o2_depletion_rate = this.getFloat('o2_depletion_rate');
-    this.o2_update_rate = this.getFloat('o2_update_rate');
-    this.circulation_fill_rate = this.getFloat('circulation_fill_rate');
-    this.circulation_depletion_rate = this.getFloat('circulation_depletion_rate');
-    this.circulation_update_rate = this.getFloat('circulation_update_rate');
+    this.orbitDuration = this.getInt('orbitDuration');
+    this.o2FillRate = this.getFloat('o2FillRate');
+    this.o2DepletionRate = this.getFloat('o2DepletionRate');
+    this.o2UpdateRate = this.getFloat('o2UpdateRate');
+    this.circulationFillRate = this.getFloat('circulationFillRate');
+    this.circulationDepletionRate = this.getFloat('circulationDepletionRate');
+    this.circulationUpdateRate = this.getFloat('circulationUpdateRate');
 
     // Global Vars
     this.currentStateId = '';

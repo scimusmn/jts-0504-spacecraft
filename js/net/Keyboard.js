@@ -2,6 +2,7 @@ define(['net/Language', 'net/ControlManager', 'net/ControlUI', 'net/AppData'], f
 
   // Initialize Keyboard
   function Keyboard() {}
+
   Keyboard.init = function() {
     var backdropVid = $('#backdrop_vid');
 

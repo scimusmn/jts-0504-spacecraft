@@ -28,7 +28,7 @@ define(['net/webSockets'], function(wsClient) {
     wsClient.send('r|digitalWrite(' + pin + ',' + dir + ')');
   };
 
-  arduino.digitalRead = function(pin, dir) {
+  arduino.digitalRead = function(pin) {
     wsClient.send('r|digitalRead(' + pin + ')');
   };
 

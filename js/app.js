@@ -66,11 +66,11 @@ require(['jquery', 'net/AppData', 'net/Keyboard', 'net/Language', 'net/ControlMa
     function startSpaceStationOrbit() {
 
         //Orbit Earth
-        TweenMax.to( $(".space_station_container"), AppData.orbit_duration, { css: { rotation:360 }, ease:Linear.easeNone, repeat:-1, onUpdate: onStationRotateUpdate } );
+        TweenMax.to( $(".space_station_container"), AppData.orbitDuration, { css: { rotation:360 }, ease:Linear.easeNone, repeat:-1, onUpdate: onStationRotateUpdate } );
 
         //Time readout
         //the Space Station orbits Earth (and sees a sunrise) once every 92 minutes
-        var minuteRatio = AppData.orbit_duration / (92*60);
+        var minuteRatio = AppData.orbitDuration / (92*60);
         var updateSpeed = Math.floor(1000 * minuteRatio);
         var t = new TimeTicker($("#time_clock"), updateSpeed);
 
