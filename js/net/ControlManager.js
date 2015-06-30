@@ -30,15 +30,38 @@ define(['net/AppData', 'net/ControlUI', 'net/Battery', 'net/BatteryPack', 'net/H
 
     hardware.link(function() {
 
-      hardware.oxygen.onchange = function() {ControlManager.setControlState('o2_control', this.state); console.log('State:' + this.state)};
-      hardware.fan.onchange = function() {ControlManager.setControlState('fan_control', this.state)};
-      hardware.food.onchange = function() {ControlManager.setControlState('food_control', this.state)};
-      hardware.comm.onchange = function() {ControlManager.setControlState('comm_control', this.state)};
-      hardware.heat.onchange = function() {ControlManager.setControlState('heat_control', this.state)};
-      hardware.lights.onchange = function() {ControlManager.setControlState('light_control', this.state)};
+      hardware.oxygen.onchange = function() {
+        ControlManager.setControlState('o2_control', this.state);
+        console.log('State:' + this.state)
+      };
 
-      hardware.language.onchange = function() {Language.setLanguage(Language.convertState(this.state))};
-      hardware.difficulty.onchange = function() {ControlManager.setDifficulty(this.state)};
+      hardware.fan.onchange = function() {
+        ControlManager.setControlState('fan_control', this.state)
+      };
+
+      hardware.food.onchange = function() {
+        ControlManager.setControlState('food_control', this.state)
+      };
+
+      hardware.comm.onchange = function() {
+        ControlManager.setControlState('com' + 'm_control', this.state)
+      };
+
+      hardware.heat.onchange = function() {
+        ControlManager.setControlState('heat_control', this.state)
+      };
+
+      hardware.lights.onchange = function() {
+        ControlManager.setControlState('light_control', this.state)
+      };
+
+      hardware.language.onchange = function() {
+        Language.setLanguage(Language.convertState(this.state))
+      };
+
+      hardware.difficulty.onchange = function() {
+        ControlManager.setDifficulty(this.state)
+      };
 
       hardware.update();
 
@@ -102,7 +125,7 @@ define(['net/AppData', 'net/ControlUI', 'net/Battery', 'net/BatteryPack', 'net/H
 
       ControlManager.controls[i].checkFailureTimeout();
 
-    };
+    }
 
   };
 
@@ -111,16 +134,11 @@ define(['net/AppData', 'net/ControlUI', 'net/Battery', 'net/BatteryPack', 'net/H
 
     var control = {};
     for (var i = 0; i < ControlManager.controls.length; i++) {
-
       if (ControlManager.controls[i].id == controlId) {
-
         control = ControlManager.controls[i];
-
         break;
-
       }
-
-    };
+    }
 
     return control;
 
@@ -143,9 +161,7 @@ define(['net/AppData', 'net/ControlUI', 'net/Battery', 'net/BatteryPack', 'net/H
     ControlManager.getControlById(controlId).setState(stateId);
 
     if (controlId == 'o2_control' || controlId == 'fan_control') {
-
       this.refreshFillBars();
-
     }
 
   };
@@ -154,10 +170,8 @@ define(['net/AppData', 'net/ControlUI', 'net/Battery', 'net/BatteryPack', 'net/H
   ControlManager.refreshControlDisplays = function() {
 
     for (var i = 0; i < this.controls.length; i++) {
-
       this.controls[i].refreshStateDisplay();
-
-    };
+    }
 
     this.refreshFillBars();
 
