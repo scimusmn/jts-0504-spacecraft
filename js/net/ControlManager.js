@@ -9,17 +9,17 @@ define(['net/AppData', 'net/ControlUI', 'net/Battery', 'net/BatteryPack', 'net/H
   /* setup() | Setup all controls */
   ControlManager.setupControls = function() {
 
-    ControlManager.controls.push(new ControlUI("#o2_control", 32, true, 'bubbles'));
-    ControlManager.controls.push(new ControlUI("#fan_control", 4, true, 'fan'));
+    ControlManager.controls.push(new ControlUI('#o2_control', 32, true, 'bubbles'));
+    ControlManager.controls.push(new ControlUI('#fan_control', 4, true, 'fan'));
 
-    ControlManager.controls.push(new ControlUI("#food_control", 67, false, 'rustling', $('#food_warning'), AppData.orbitDuration * 1.5));
-    ControlManager.controls.push(new ControlUI("#comm_control", 9, true, 'telecom', $('#comm_warning'), AppData.orbitDuration * 0.5));
-    ControlManager.controls.push(new ControlUI("#heat_control", 15, true, 'cooking', $('#heat_warning'), AppData.orbitDuration * 2));
-    ControlManager.controls.push(new ControlUI("#light_control", 3, true, 'lights', $('#lights_warning'), AppData.orbitDuration * 0.5));
+    ControlManager.controls.push(new ControlUI('#food_control', 67, false, 'rustling', $('#food_warning'), AppData.orbitDuration * 1.5));
+    ControlManager.controls.push(new ControlUI('#comm_control', 9, true, 'telecom', $('#comm_warning'), AppData.orbitDuration * 0.5));
+    ControlManager.controls.push(new ControlUI('#heat_control', 15, true, 'cooking', $('#heat_warning'), AppData.orbitDuration * 2));
+    ControlManager.controls.push(new ControlUI('#light_control', 3, true, 'lights', $('#lights_warning'), AppData.orbitDuration * 0.5));
 
-    ControlManager.batteryPack = new BatteryPack("#battery_left", "#battery_right", $('#batteries_depleted'));
-    ControlManager.o2Level = new Battery("#o2_level_container", false, $('#oxygen_depleted'), 'male-breathing', 25);
-    ControlManager.fanLevel = new Battery("#fan_level", true, $('#circulation_depleted'), 'female-breathing', 50);
+    ControlManager.batteryPack = new BatteryPack('#battery_left', '#battery_right', $('#batteries_depleted'));
+    ControlManager.o2Level = new Battery('#o2_level_container', false, $('#oxygen_depleted'), 'male-breathing', 25);
+    ControlManager.fanLevel = new Battery('#fan_level', true, $('#circulation_depleted'), 'female-breathing', 50);
 
     ControlManager.linkHardware();
 
@@ -30,12 +30,12 @@ define(['net/AppData', 'net/ControlUI', 'net/Battery', 'net/BatteryPack', 'net/H
 
     hardware.link(function() {
 
-      hardware.oxygen.onchange = function() {ControlManager.setControlState("o2_control", this.state); console.log("State:" + this.state)};
-      hardware.fan.onchange = function() {ControlManager.setControlState("fan_control", this.state)};
-      hardware.food.onchange = function() {ControlManager.setControlState("food_control", this.state)};
-      hardware.comm.onchange = function() {ControlManager.setControlState("comm_control", this.state)};
-      hardware.heat.onchange = function() {ControlManager.setControlState("heat_control", this.state)};
-      hardware.lights.onchange = function() {ControlManager.setControlState("light_control", this.state)};
+      hardware.oxygen.onchange = function() {ControlManager.setControlState('o2_control', this.state); console.log('State:' + this.state)};
+      hardware.fan.onchange = function() {ControlManager.setControlState('fan_control', this.state)};
+      hardware.food.onchange = function() {ControlManager.setControlState('food_control', this.state)};
+      hardware.comm.onchange = function() {ControlManager.setControlState('comm_control', this.state)};
+      hardware.heat.onchange = function() {ControlManager.setControlState('heat_control', this.state)};
+      hardware.lights.onchange = function() {ControlManager.setControlState('light_control', this.state)};
 
       hardware.language.onchange = function() {Language.setLanguage(Language.convertState(this.state))};
       hardware.difficulty.onchange = function() {ControlManager.setDifficulty(this.state)};

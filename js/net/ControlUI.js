@@ -22,7 +22,7 @@ define(['animatesprite', 'net/AppData', 'net/Sound', 'tween'], function(animateS
     this.failureTimeout = failureTimeout || 90;
 
     // Setup animation
-    this.controlAnimation = $(this.containerDiv).find(".animation").first();
+    this.controlAnimation = $(this.containerDiv).find('.animation').first();
 
     // Create active frames array (assume every frame after first is for active animation)
     var activeFrames = [];

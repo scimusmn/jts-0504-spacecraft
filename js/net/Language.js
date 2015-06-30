@@ -28,7 +28,7 @@ define(['net/AppData'], function(AppData) {
     Language.currentLanguage = languageId;
 
     //Find all swappable language
-    $("#wrapper").find("p,h1,h2,h3,span").each(function() {
+    $('#wrapper').find('p,h1,h2,h3,span').each(function() {
 
       Language.refreshTranslation(this);
 

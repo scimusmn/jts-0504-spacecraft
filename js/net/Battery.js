@@ -18,11 +18,11 @@ define(['tween', 'net/Language', 'net/Sound', 'net/AppData'], function(tween, La
     if (this.alertDiv) AppData.registerFailureAlert($(this.alertDiv));
     this.containerDiv = containerDiv;
     this.sndId = sndId || '';
-    this.mask = $(this.containerDiv).find("#mask");
-    this.levelBar = $(this.containerDiv).find("#level_bar");
-    this.textDisplay = $(this.containerDiv).find(".bottom").last();
+    this.mask = $(this.containerDiv).find('#mask');
+    this.levelBar = $(this.containerDiv).find('#level_bar');
+    this.textDisplay = $(this.containerDiv).find('.bottom').last();
 
-    this.failState = $(this.containerDiv).find("#fail");
+    this.failState = $(this.containerDiv).find('#fail');
     $(this.failState).hide();
 
     this.fillTimer = {};
@@ -49,7 +49,7 @@ define(['tween', 'net/Language', 'net/Sound', 'net/AppData'], function(tween, La
 
     var levelScale = 1 - (visLevel / 100);
 
-    TweenLite.to($(this.mask), 0.3, {css: {scaleY:levelScale, transformOrigin: "50% 0%"}, ease:Linear.easeNone});
+    TweenLite.to($(this.mask), 0.3, {css: {scaleY:levelScale, transformOrigin: '50% 0%'}, ease:Linear.easeNone});
 
     if (this.textDisplay.length > 0) {
       this.refreshText();
@@ -60,7 +60,7 @@ define(['tween', 'net/Language', 'net/Sound', 'net/AppData'], function(tween, La
   Battery.prototype.refreshText = function() {
 
     if (this.useTextFeedback == false) {
-      $(this.textDisplay).html(this.powerLevel + "%");
+      $(this.textDisplay).html(this.powerLevel + '%');
     } else {
       $(this.textDisplay).attr('id', this.currentLevelFeedback());
       Language.refreshTranslation($(this.textDisplay));
@@ -70,8 +70,8 @@ define(['tween', 'net/Language', 'net/Sound', 'net/AppData'], function(tween, La
     if (this.powerLevel < this.warningLevel && this.powerLevel > 0 && this.warningState == false) {
 
       $(this.textDisplay).addClass('warning-red');
-      TweenMax.set($(this.textDisplay), {css: {scale:1, transformOrigin: "50% 50%"}});
-      TweenMax.to($(this.textDisplay), 0.5, {css: {scale:1.5, transformOrigin: "50% 50%"}, repeat:-1, yoyo:true});
+      TweenMax.set($(this.textDisplay), {css: {scale:1, transformOrigin: '50% 50%'}});
+      TweenMax.to($(this.textDisplay), 0.5, {css: {scale:1.5, transformOrigin: '50% 50%'}, repeat:-1, yoyo:true});
       this.warningState = true;
       this.alertDisplay(false);
 
@@ -79,7 +79,7 @@ define(['tween', 'net/Language', 'net/Sound', 'net/AppData'], function(tween, La
     } else if (this.powerLevel >= this.warningLevel && this.warningState == true) {
 
       $(this.textDisplay).removeClass('warning-red');
-      TweenMax.to($(this.textDisplay), 0.25, {css: {scale:1, transformOrigin: "50% 50%"}});
+      TweenMax.to($(this.textDisplay), 0.25, {css: {scale:1, transformOrigin: '50% 50%'}});
       this.warningState = false;
       this.alertDisplay(false);
 
@@ -88,7 +88,7 @@ define(['tween', 'net/Language', 'net/Sound', 'net/AppData'], function(tween, La
 
       $(this.textDisplay).addClass('warning-red');
       TweenMax.killTweensOf($(this.textDisplay));
-      TweenMax.to($(this.textDisplay), 0.5, {css: {scale:1, transformOrigin: "50% 50%"}});
+      TweenMax.to($(this.textDisplay), 0.5, {css: {scale:1, transformOrigin: '50% 50%'}});
       this.warningState = false;
       this.alertDisplay(true);
 
