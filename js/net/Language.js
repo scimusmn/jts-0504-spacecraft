@@ -60,7 +60,7 @@ define(['net/AppData'], function(AppData) {
 
   Language.getTranslation = function(translationId) {
 
-    return translationText = $(Language.translationXML).find('text[id="' + translationId + '"]').children(Language.currentLanguage).first().text();
+    return $(Language.translationXML).find('text[id="' + translationId + '"]').children(Language.currentLanguage).first().text();
 
   };
 
