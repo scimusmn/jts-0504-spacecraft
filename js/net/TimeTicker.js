@@ -15,9 +15,9 @@ define(['tween'], function(tween) {
     this.updateSpeed = updateSpeed || 1000;
     this.updateSpeed *= 60;
 
-    var thisRef = this;
+    var _this = this;
     setInterval(function() {
-      thisRef.update();
+      _this.update();
     }, this.updateSpeed);
 
   }
