@@ -132,10 +132,10 @@ define(['tween', 'net/Language', 'net/Sound', 'net/AppData'], function(tween, La
 
     clearInterval(this.fillTimer);
 
-    var thisRef = this;
-    thisRef.fillTimer = setInterval(function() {
+    var _this = this;
+    _this.fillTimer = setInterval(function() {
 
-      thisRef.updateBatteryLevel(thisRef.powerLevel + increment);
+      _this.updateBatteryLevel(_this.powerLevel + increment);
 
     }, updateRate);
 
