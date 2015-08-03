@@ -29,7 +29,7 @@ require(
      * Initial load
      */
 
-    // Load config settings as well as English and Spanish copy
+    // Load config settings
     $.ajax({
       type: 'GET',
       url: 'data/settings.xml',
@@ -39,19 +39,8 @@ require(
         // Load settings data into the application
         AppData.updateSettings(xml);
 
-        // Get English and Spanish copy
-        $.ajax({
-          type: 'GET',
-          url: 'data/copy.xml',
-          dataType: 'xml',
-          success: function(xml) {
-            // Load English and Spanish copy into the application
-            AppData.updateLanguage(xml);
-
-            // Now that the settings and copy are loaded, start the application
-            initialize();
-          }
-        });
+        // Now that the settings and copy are loaded, initialize the application
+        initialize();
       },
 
       error: function(jqXHR, textStatus, errorThrown) {
@@ -63,7 +52,16 @@ require(
     function initialize() {
 
       Keyboard.init();
-      Language.setupTranslations($(AppData.configXML).find('component').first());
+
+      // Load English and Spanish copy
+      $.ajax({
+        type: 'GET',
+        url: 'data/copy.xml',
+        dataType: 'xml',
+        success: function(xml) {
+          Language.setupTranslations($(xml).find('component').first());
+        }
+      });
 
       ControlManager.setupControls();
 
