@@ -29,16 +29,29 @@ require(
      * Initial load
      */
 
-    // Load XML
+    // Load config settings as well as English and Spanish copy
     $.ajax({
       type: 'GET',
-      url: 'data/config.xml',
+      url: 'data/settings.xml',
       dataType: 'xml',
       success: function(xml) {
 
+        // Load settings data into the application
         AppData.updateSettings(xml);
-        initialize();
 
+        // Get English and Spanish copy
+        $.ajax({
+          type: 'GET',
+          url: 'data/copy.xml',
+          dataType: 'xml',
+          success: function(xml) {
+            // Load English and Spanish copy into the application
+            AppData.updateLanguage(xml);
+
+            // Now that the settings and copy are loaded, start the application
+            initialize();
+          }
+        });
       },
 
       error: function(jqXHR, textStatus, errorThrown) {

@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<config>
+
+	<!-- ======== -->
+	<!-- SETTINGS -->
+	<!-- ======== -->
+	<settings>
+
+		<setting id="developerMode" value="false" />
+		<setting id="orbitDuration" value="90" />
+		<setting id="o2FillRate" value="1" />
+		<setting id="o2DepletionRate" value="-1" />
+		<setting id="o2UpdateRate" value="550" />
+		<setting id="circulationFillRate" value="1" />
+		<setting id="circulationDepletionRate" value="-1" />
+		<setting id="circulationUpdateRate" value="100" />
+
+	</settings>
+
+</config>
