@@ -15,6 +15,13 @@
 		<setting id="circulationDepletionRate" value="-1" />
 		<setting id="circulationUpdateRate" value="100" />
 
+        <!-- Setting for variations in the switch wiring per component -->
+		<setting id="invertedSwitches" value="true" />
+
+        <!-- Customized battery multipliers, to allow for different sized solar arrays per component -->
+		<setting id="batteryScale" value="2.75" />
+		<setting id="batteryOffset" value="260" />
+
 	</settings>
 
 </config>
