@@ -15,41 +15,44 @@ function DummyDev(num) {
   _this.timer = null;
   var oldDevState = 0;
   var oldState = 0;
-  self.onChange = null;
+  _this.onChange = null;
 
-  self.toggle = function() {
+  _this.toggle = function() {
     var newState = random(0, 3);
     while (newState == oldDevState) newState = random(0, 3);
-    self.state = newState % 2;
-    if (self.bound) {
-      self.bound.state = ((newState == 2) ? 1 : 0);
-      self.bound.checkChange();
+    _this.state = newState % 2;
+    if (_this.bound) {
+      _this.bound.state = ((newState == 2) ? 1 : 0);
+      _this.bound.checkChange();
     }
 
-    self.checkChange();
-    self.timer = setTimeout(self.toggle, random(7000, 30000));
+    _this.checkChange();
+    _this.timer = setTimeout(_this.toggle, random(7000, 30000));
     oldDevState = newState;
   }
 
-  self.checkChange = function() {
-    if (self.onChange && oldState != self.state) self.onChange(self), oldState = self.state;
-  }
+  _this.checkChange = function() {
+    if (_this.onChange && oldState != _this.state) {
+      _this.onChange(_this);
+      oldState = _this.state;
+    }
+  };
 
-  self.bind = function(tie) {
-    self.bound = tie;
-    tie.bound = self;
+  _this.bind = function(tie) {
+    _this.bound = tie;
+    tie.bound = _this;
     clearTimeout(tie.timer);
   }
 
-  self.timer = setTimeout(self.toggle, random(7000, 30000));
+  _this.timer = setTimeout(_this.toggle, random(7000, 30000));
 }
 
 var dummyParse = new function() {
-  var self = this;
+  var _this = this;
   var pins = [];
   self.lights = 1;
   var analogInt = null;
-  self.battLevel = 0;
+  _this.battLevel = 0;
 
   function setup() {
     for (var i = 0; i < 20; i++) {
@@ -68,15 +71,15 @@ var dummyParse = new function() {
     console.log("pinChange(" + dev.pin + "," + dev.state + ")");
   }
 
-  self.fakeBattery = function() {
-    if (self.lights > 0) {
-      if (self.battLevel++ >= 255) self.battLevel = 255;
+  _this.fakeBattery = function() {
+    if (_this.lights > 0) {
+      if (_this.battLevel++ >= 255) _this.battLevel = 255;
     }
-    else if ((self.battLevel -= 3) <= 0) self.battLevel = 0;
-    if (webSock) webSock.send("r|analogRead(0)=" + self.battLevel);
-  }
+    else if ((_this.battLevel -= 3) <= 0) _this.battLevel = 0;
+    if (webSock) webSock.send('r|analogRead(0)=' + _this.battLevel);
+  };
 
-  self.parse = function(message) {
+  _this.parse = function(message) {
     var spl = message.split(/[\s,()=]+/);
     switch (spl[0]){
       case "watchPin":
