@@ -87,12 +87,12 @@ function(AppData, arduino) {
 
   hardware.init = function() {
 
-    hardware.oxygen = new device(5, 4);
-    hardware.fan = new device(7, 6);
-    hardware.food = new device(9, 8);
-    hardware.comm = new device(11, 10);
-    hardware.heat = new device(13, 12);
-    hardware.lights = new device(19, 18);
+    hardware.oxygen = new Device(5, 4);
+    hardware.fan = new Device(7, 6);
+    hardware.food = new Device(9, 8);
+    hardware.comm = new Device(11, 10);
+    hardware.heat = new Device(13, 12);
+    hardware.lights = new Device(19, 18);
 
     hardware.language = new Switch(16);
     hardware.difficulty = new Switch(17);
