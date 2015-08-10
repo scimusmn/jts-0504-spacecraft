@@ -26,6 +26,9 @@ define([], function() {
     this.circulationFillRate = this.getFloat('circulationFillRate');
     this.circulationDepletionRate = this.getFloat('circulationDepletionRate');
     this.circulationUpdateRate = this.getFloat('circulationUpdateRate');
+    this.invertedSwitches = this.getBool('invertedSwitches');
+    this.batteryScale = this.getFloat('batteryScale');
+    this.batteryOffset = this.getFloat('batteryOffset');
 
     // Global Vars
     this.currentStateId = '';
