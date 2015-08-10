@@ -7,12 +7,12 @@ function random(low, high) {
   return Math.floor(Math.random() * (high - low) + low);
 }
 
-function dummyDev(num) {
-  var self = this;
-  self.pin = num;
-  self.state = 0;
-  self.bound = null;
-  self.timer = null;
+function DummyDev(num) {
+  var _this = this;
+  _this.pin = num;
+  _this.state = 0;
+  _this.bound = null;
+  _this.timer = null;
   var oldDevState = 0;
   var oldState = 0;
   self.onChange = null;
@@ -53,7 +53,7 @@ var dummyParse = new function() {
 
   function setup() {
     for (var i = 0; i < 20; i++) {
-      pins[i] = new dummyDev(i);
+      pins[i] = new DummyDev(i);
     }
 
     for (var i = 2; i < 20; i += 2) {
