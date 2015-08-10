@@ -1,7 +1,13 @@
-define(['net/arduinoControl'],
+define(['net/AppData', 'net/arduinoControl'],
 
-function(arduino) {
-  function device(solPin, batPin) {
+function(AppData, arduino) {
+  function Device(solPin, batPin) {
+    if (AppData.invertedSwitches) {
+      var temp = batPin;
+      batPin = solPin;
+      solPin = temp;
+    }
+
     var _this = this;
     _this.state = 0;
 
@@ -92,7 +98,7 @@ function(arduino) {
     hardware.difficulty = new Switch(17);
 
     arduino.setHandler(0, function(pin, val) {
-      hardware.battery = Math.floor((val - 375) / 3.125);
+      hardware.battery = Math.floor((val - AppData.batteryOffset) / AppData.batteryScale);
       if (hardware.battery <= 0) {
         hardware.disableBattery();
       } else if (hardware.battery >= 20) {
