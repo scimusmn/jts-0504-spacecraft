@@ -145,7 +145,7 @@ wss.on('connection', function(ws) {
 
   ws.on('error', function(error) {
     webSock = null;
-    console.log("Error: " + error);
+    console.log('Error: ' + error);
   });
 
 });
