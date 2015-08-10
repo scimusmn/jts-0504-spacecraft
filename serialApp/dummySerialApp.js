@@ -1,3 +1,8 @@
+/**
+ * Generate a fake serial connection for testing the front end application
+ * when the real Arduino serial connection is not in place.
+ */
+
 function random(low, high) {
   return Math.floor(Math.random() * (high - low) + low);
 }
