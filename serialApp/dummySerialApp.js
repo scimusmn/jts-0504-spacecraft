@@ -50,7 +50,7 @@ function DummyDev(num) {
 var dummyParse = new function() {
   var _this = this;
   var pins = [];
-  self.lights = 1;
+  _this.lights = 1;
   var analogInt = null;
   _this.battLevel = 0;
 
