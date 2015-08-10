@@ -8,7 +8,7 @@ You can install this application using the private SMM Boxen repo. This requires
 First, install the basic boxen repo, using our [Boxen setup script](https://github.com/scimusmn/boxen-setup). 
 Once the Boxen script has run through without errors, you can run the custom Powering you Spacecraft install.
 
-    boxen space_0504_energy_management
+    boxen space_0504_power_spacecraft
 
 ## Manual Installation
 
