@@ -1,12 +1,5 @@
-/**
- * Set the address and port of the Camera control computer server
- * var HOST = '10.75.135.37';
- * var PORT = 11999;
- */
-
-/**
- * You should not have to edit below this point
- */
+var serialLookup = require('../data/serialPort.js')
+var portName = serialLookup.serialPort();
 
 /**
  * For websockets, require 'ws'.Server
@@ -55,7 +48,7 @@ wss.on('connection', function(ws) {
 var com = require('serialport');
 var bufSize = 512;
 
-sp = new com.SerialPort('/dev/tty.usbserial-FTT3L200', {
+sp = new com.SerialPort(portName, {
   baudrate: 9600,
   parser: com.parsers.readline('\r\n'),
   buffersize:bufSize
