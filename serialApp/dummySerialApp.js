@@ -149,24 +149,3 @@ wss.on('connection', function(ws) {
   });
 
 });
-
-////////////////////////////////////////////////////////
-// Use the library                                    //
-// git://github.com/voodootikigod/node-serialport.git //
-// to read the serial port where arduino is sitting.  //
-////////////////////////////////////////////////////////
-/*var com = require("serialport");
- var bufSize = 512;
-
- sp = new com.SerialPort("/dev/cu.usbmodemfd121", {
- baudrate: 9600,
- parser: com.parsers.readline('\r\n'),
- buffersize:bufSize
- });
-
- sp.on('open',function() {
- sp.on('data', function(data) {
- if(webSock) webSock.send("r|"+data);
- });
-
- });*/
