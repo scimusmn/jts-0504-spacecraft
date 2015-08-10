@@ -40,6 +40,7 @@ require(
         AppData.updateSettings(xml);
 
         // Now that the settings and copy are loaded, initialize the application
+        loadLanguage();
         initialize();
       },
 
@@ -48,11 +49,7 @@ require(
 
       }
     });
-
-    function initialize() {
-
-      Keyboard.init();
-
+    function loadLanguage() {
       // Load English and Spanish copy
       $.ajax({
         type: 'GET',
@@ -62,15 +59,33 @@ require(
           Language.setupTranslations($(xml).find('component').first());
         }
       });
+    }
 
-      ControlManager.setupControls();
-
+    function initialize() {
+      // Load sound effects
       Sound.preloadSounds('sounds/', [
         'alarms', 'rustling', 'cooking', 'fan', 'lights', 'telecom',
         'male-breathing', 'female-breathing', 'bubbles'
       ]);
 
-      startSpaceStationOrbit();
+      /**
+       * Wait a few seconds for the audio files to completely load
+       *
+       * Without this delay, there are intermittent audio loading issues
+       * causing some of the sound effect to fail.
+       */
+      setTimeout(function() {
+
+        // Setup development keyboard commands. For testing only.
+        Keyboard.init();
+
+        // Setup the knob settings and their on-screen visuals
+        ControlManager.setupControls();
+
+        // Start space station animation
+        startSpaceStationOrbit();
+
+      }, 5000);
     }
 
     function startSpaceStationOrbit() {
