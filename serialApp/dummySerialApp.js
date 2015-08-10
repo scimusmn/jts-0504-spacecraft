@@ -1,4 +1,3 @@
-
 function random(low, high) {
   return Math.floor(Math.random() * (high - low) + low);
 }
@@ -96,8 +95,8 @@ var dummyParse = new function() {
 //dummyParse.parse("watchPin(2)");
 
 /*******************************************
-// For websockets, require 'ws'.Server
-********************************************/
+ // For websockets, require 'ws'.Server
+ ********************************************/
 
 var WebSocketServer = require('ws').Server, wss = new WebSocketServer({port: 8080});
 
@@ -111,21 +110,21 @@ wss.on('connection', function(ws) {
   webSock = ws;
 
   ws.on('message', function(message) {
-    	var data = message.split("|");
+    var data = message.split("|");
     switch (data[0]){
       case "c":
-        		for (var i in wss.clients) {
+        for (var i in wss.clients) {
           wss.clients[i].send(message);
           console.log(i);
-        		}
+        }
 
-        		break;
+        break;
       case "r":
 
-        		//if(sp) sp.write(data[1]+"|");
+        //if(sp) sp.write(data[1]+"|");
         console.log(data[1]);
         dummyParse.parse(data[1]);
-        		break;
+        break;
       default:
 
         break;
@@ -149,17 +148,17 @@ wss.on('connection', function(ws) {
 // to read the serial port where arduino is sitting.  //
 ////////////////////////////////////////////////////////
 /*var com = require("serialport");
-var bufSize = 512;
+ var bufSize = 512;
 
-sp = new com.SerialPort("/dev/cu.usbmodemfd121", {
-    baudrate: 9600,
-    parser: com.parsers.readline('\r\n'),
-    buffersize:bufSize
-  });
+ sp = new com.SerialPort("/dev/cu.usbmodemfd121", {
+ baudrate: 9600,
+ parser: com.parsers.readline('\r\n'),
+ buffersize:bufSize
+ });
 
-sp.on('open',function() {
-  sp.on('data', function(data) {
-    if(webSock) webSock.send("r|"+data);
-  });
+ sp.on('open',function() {
+ sp.on('data', function(data) {
+ if(webSock) webSock.send("r|"+data);
+ });
 
-});*/
+ });*/
