@@ -2,13 +2,13 @@ var serialLookup = require('../data/serialPort.js')
 var portName = serialLookup.serialPort();
 
 /**
- * For websockets, require 'ws'.Server
+ * For WebSockets, require 'ws'.Server
  */
 
 var WebSocketServer = require('ws').Server;
 var wss = new WebSocketServer({port: 8080});
 
-//Tell the wsServer what to do on connection to a client;
+// Tell the wsServer what to do on connection to a client;
 
 var webSock = null;
 var sp = null;
@@ -42,7 +42,7 @@ wss.on('connection', function(ws) {
 /**
  * Use the cool library
  * git://github.com/voodootikigod/node-serialport.git
- * to read the serial port where arduino is sitting.
+ * to read the serial port where Arduino is sitting.
  */
 
 var com = require('serialport');

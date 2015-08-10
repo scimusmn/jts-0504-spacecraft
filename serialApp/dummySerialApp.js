@@ -29,7 +29,7 @@ function DummyDev(num) {
     _this.checkChange();
     _this.timer = setTimeout(_this.toggle, random(7000, 30000));
     oldDevState = newState;
-  }
+  };
 
   _this.checkChange = function() {
     if (_this.onChange && oldState != _this.state) {
@@ -42,7 +42,7 @@ function DummyDev(num) {
     _this.bound = tie;
     tie.bound = _this;
     clearTimeout(tie.timer);
-  }
+  };
 
   _this.timer = setTimeout(_this.toggle, random(7000, 30000));
 }
@@ -59,17 +59,17 @@ var dummyParse = new function() {
       pins[i] = new DummyDev(i);
     }
 
-    for (var i = 2; i < 20; i += 2) {
-      pins[i].bind(pins[i + 1]);
+    for (var j = 2; j < 20; j += 2) {
+      pins[j].bind(pins[j + 1]);
     }
   }
 
   setup();
 
   var onChange = function(dev) {
-    if (webSock) webSock.send("r|pinChange(" + dev.pin + "," + dev.state + ")");
-    console.log("pinChange(" + dev.pin + "," + dev.state + ")");
-  }
+    if (webSock) webSock.send('r|pinChange(' + dev.pin + ',' + dev.state + ')');
+    console.log('pinChange(' + dev.pin + ',' + dev.state + ')');
+  };
 
   _this.fakeBattery = function() {
     if (_this.lights > 0) {
@@ -82,33 +82,34 @@ var dummyParse = new function() {
   _this.parse = function(message) {
     var spl = message.split(/[\s,()=]+/);
     switch (spl[0]){
-      case "watchPin":
+      case 'watchPin':
         pins[parseInt(spl[1])].onChange = onChange;
-        console.log("watching pin " + spl[1]);
+        console.log('watching pin ' + spl[1]);
         break;
-      case "digitalWrite":
-        self.lights = spl[2];
-        console.log(self.lights);
+      case 'digitalWrite':
+        _this.lights = spl[2];
+        console.log(_this.lights);
         break;
-      case "analogReport":
-        analogInt = setInterval(self.fakeBattery.bind(this), parseInt(spl[2]));
-        console.log("Reporting battery");
+      case 'analogReport':
+        analogInt = setInterval(_this.fakeBattery.bind(this), parseInt(spl[2]));
+        console.log('Reporting battery');
         break;
       default:
         break;
     }
   }
-}
+};
 
 //dummyParse.parse("watchPin(2)");
 
 /*******************************************
- // For websockets, require 'ws'.Server
+ // For WebSockets, require 'ws'.Server
  ********************************************/
 
-var WebSocketServer = require('ws').Server, wss = new WebSocketServer({port: 8080});
+var WebSocketServer = require('ws').Server;
+var wss = new WebSocketServer({port: 8080});
 
-//Tell the wsServer what to do on connnection to a client;
+//Tell the wsServer what to do on connection to a client;
 
 var webSock = null;
 var sp = null;
@@ -118,23 +119,22 @@ wss.on('connection', function(ws) {
   webSock = ws;
 
   ws.on('message', function(message) {
-    var data = message.split("|");
+    var data = message.split('|');
     switch (data[0]){
-      case "c":
+      case 'c':
         for (var i in wss.clients) {
           wss.clients[i].send(message);
           console.log(i);
         }
 
         break;
-      case "r":
 
-        //if(sp) sp.write(data[1]+"|");
+      case 'r':
         console.log(data[1]);
         dummyParse.parse(data[1]);
         break;
-      default:
 
+      default:
         break;
     }
   });
