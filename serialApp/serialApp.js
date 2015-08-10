@@ -8,7 +8,7 @@ var portName = serialLookup.serialPort();
 var WebSocketServer = require('ws').Server;
 var wss = new WebSocketServer({port: 8080});
 
-//Tell the wsServer what to do on connnection to a client;
+//Tell the wsServer what to do on connection to a client;
 
 var webSock = null;
 var sp = null;
