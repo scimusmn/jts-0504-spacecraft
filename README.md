@@ -29,4 +29,4 @@ Edit the serialPort.js file, defining the name of the USB serial device.
 TODO: Define how to find this.
 
 # Run the application
-The application should start correctly when after rebooting the computer.
+The application should start correctly after rebooting the computer.
