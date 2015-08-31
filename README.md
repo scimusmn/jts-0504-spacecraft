@@ -9,41 +9,24 @@ First, install the basic boxen repo, using our [Boxen setup script](https://gith
 Once the Boxen script has run through without errors, you can run the custom Powering you Spacecraft install.
 
     boxen space_0504_power_spacecraft
+    
+After running the Boxen install script you will still need to manually configure the software. 
 
-## Manual Installation
+## Configure the application
 
-### Install the application
-
-    cd ~/Desktop
-    git clone https://github.com/scimusmn/jts-0504-spacecraft.git source
-    cd ~/Desktop/source
-    bower install
-
-TODO: Document the correct answer to the bower jquery version issue.
-
-### Configure the application
-
-   cd ~/Desktop/source/data
-   cp settings.default.xml settings.xml
+    cd ~/Desktop/power-spacecraft/data
+    cp settings.default.xml settings.xml
 
 Edit the settings.xml file, defining the correct values for this physical
 install of the Energy Management component. Most of the default values are
 fine, but you may need to adjust the wiring toggle and the solar panel
 multipliers, depending on the physical exhibit.
 
-### Install Stele (kiosk browser)
+    cp serialPort.default.js serialPort.js
+    
+Edit the serialPort.js file, defining the name of the USB serial device.
 
-    cd ~/Desktop
-    git clone https://github.com/scimusmn/stele.git
+TODO: Define how to find this.
 
-### Configure Stele
-
-    cd ~/Desktop/stele/cfg
-    cp browser.cfg.default browser.cfg
-
-Edit the Stele config file, making the relevant entries match the values below.
-
-    delay: true
-    delay_seconds: 60
-    home_url: file://localhost/Users/exhibits/Desktop/source/index.html
-    kiosk: true
+# Run the application
+The application should start correctly when after rebooting the computer.
