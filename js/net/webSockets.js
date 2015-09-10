@@ -7,13 +7,16 @@ define(
 
     wsClient.connectInterval;
 
+    //set the address of the local web socket server, usually running at
+    //'ws://localhost:8080'
+    // Default testing server is ws://echo.websocket.org
+    
     var addr = 'ws://localhost:8080/';
 
     var customCB = null;
 
     wsClient.connect = function(connectCB) {
       if ('WebSocket' in window) {
-        // Default testing server is ws://echo.websocket.org
         ws = new WebSocket(addr);
 
         ws.onopen = function() {
