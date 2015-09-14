@@ -115,53 +115,37 @@ require(
 
     function onStationRotateUpdate() {
 
-      var rotation = $('.space_station_container')[0]._gsTransform.rotation;
-      var unavailable = $('#unavailable');
-      var available = $('#available');
+      var rotation = $(".space_station_container")[0]._gsTransform.rotation;
 
       if (rotation < AppData.SHADOW_EXIT_ANGLE && rotation > AppData.SHADOW_ENTER_ANGLE) {
 
-        // In Earth's shadow
+        //In Earth's shadow
         if (AppData.getSolarAvailable() == true) {
 
           ControlManager.setSolarAvailable(false);
-          available.attr('id', 'unavailable');
-          Language.refreshTranslation(unavailable);
-          unavailable.removeClass('go-green').addClass('warning-red');
-          TweenMax.set(unavailable, {
-            css: { scale:1, transformOrigin: '50% 50%' }
-          });
-          TweenMax.to(unavailable, 0.25, {
-            css: { scale:1.25, transformOrigin: '50% 50%' },
-            ease:Power2.easeOut,
-            repeat:1,
-            yoyo:true
-          });
+          $("#available").attr('id', 'unavailable');
+          Language.refreshTranslation($("#unavailable"));
+          $("#unavailable").removeClass('go-green').addClass('warning-red');
+          TweenMax.set($("#unavailable"), { css: { scale:1, transformOrigin: "50% 50%" } });
+          TweenMax.to($("#unavailable"), 0.25, { css: { scale:1.25, transformOrigin: "50% 50%" }, ease:Power2.easeOut, repeat:1, yoyo:true });
 
         }
 
       } else {
 
-        // In Sun's light
+        //In Sun's light
         if (AppData.getSolarAvailable() == false) {
 
           ControlManager.setSolarAvailable(true);
-          unavailable.attr('id', 'available');
-          Language.refreshTranslation(available);
-          available.removeClass('warning-red').addClass('go-green');
-          TweenMax.set(available, {
-            css: { scale:1, transformOrigin: '50% 50%' }
-          });
-          TweenMax.to(available, 0.25, {
-            css: { scale:1.25, transformOrigin: '50% 50%' },
-            ease:Power2.easeOut,
-            repeat:1,
-            yoyo:true
-          });
+          $("#unavailable").attr('id', 'available');
+          Language.refreshTranslation($("#available"));
+          $("#available").removeClass('warning-red').addClass('go-green');
+          TweenMax.set($("#available"), { css: { scale:1, transformOrigin: "50% 50%" } });
+          TweenMax.to($("#available"), 0.25, { css: { scale:1.25, transformOrigin: "50% 50%" }, ease:Power2.easeOut, repeat:1, yoyo:true });
 
         }
+
       }
     }
-  }
 
 );
