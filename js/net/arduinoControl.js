@@ -4,12 +4,14 @@ define(['net/webSockets'], function(wsClient) {
 
   arduino.handlers = [];
 
+  //function to handle messages received from the websocket connection
   arduino.onMessage = function(evt) {
     var dataRay = evt.data.split(/[\s|,()=]+/);
     switch (dataRay[0]){
       case 'pinChange':
       case 'digitalRead':
       case 'analogRead':
+        //pass data from the packet to the appropriate handler.
         if (arduino.handlers[parseInt(dataRay[1])]) arduino.handlers[parseInt(dataRay[1])](parseInt(dataRay[1]), parseInt(dataRay[2]));
         break;
       default:
@@ -17,11 +19,15 @@ define(['net/webSockets'], function(wsClient) {
     }
   };
 
+  //call this function to connect the websocket client to the server; also sets \
+  // the message callback for the ws client
   arduino.connect = function(cb) {
     wsClient.setMsgCallback(arduino.onMessage);
     wsClient.connect(cb);
   };
 
+  //arduino command functions follow; each sends instructions to the arduino,
+  //via the websocket connection and the node.js program.
   arduino.digitalWrite = function(pin, dir) {
     wsClient.send('r|digitalWrite(' + pin + ',' + dir + ')');
   };
