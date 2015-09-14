@@ -29,12 +29,12 @@ require(
      * Initial load
      */
 
-    // Load config settings
+      // Load config settings
     $.ajax({
       type: 'GET',
       url: 'data/settings.xml',
       dataType: 'xml',
-      success: function(xml) {
+      success: function (xml) {
 
         // Load settings data into the application
         AppData.updateSettings(xml);
@@ -44,7 +44,7 @@ require(
         initialize();
       },
 
-      error: function(jqXHR, textStatus, errorThrown) {
+      error: function (jqXHR, textStatus, errorThrown) {
         // Show error message if desired
 
       }
@@ -55,7 +55,7 @@ require(
         type: 'GET',
         url: 'data/copy.xml',
         dataType: 'xml',
-        success: function(xml) {
+        success: function (xml) {
           Language.setupTranslations($(xml).find('component').first());
         }
       });
@@ -74,7 +74,7 @@ require(
        * Without this delay, there are intermittent audio loading issues
        * causing some of the sound effect to fail.
        */
-      setTimeout(function() {
+      setTimeout(function () {
 
         // Setup development keyboard commands. For testing only.
         Keyboard.init();
@@ -93,9 +93,9 @@ require(
 
       //Orbit Earth
       TweenMax.to($('.space_station_container'), AppData.orbitDuration, {
-        css: { rotation:360 },
-        ease:Linear.easeNone,
-        repeat:-1,
+        css: {rotation: 360},
+        ease: Linear.easeNone,
+        repeat: -1,
         onUpdate: onStationRotateUpdate
       });
 
@@ -106,9 +106,9 @@ require(
       var t = new TimeTicker($('#time_clock'), updateSpeed);
 
       //Pulse beacon light
-      TweenMax.set(containerBeacon, { css: { opacity:0.6 }});
+      TweenMax.set(containerBeacon, {css: {opacity: 0.6}});
       TweenMax.to(containerBeacon, 0.5, {
-        css: { opacity:1 }, repeat:-1, yoyo:true
+        css: {opacity: 1}, repeat: -1, yoyo: true
       });
 
     }
@@ -126,8 +126,18 @@ require(
           $("#available").attr('id', 'unavailable');
           Language.refreshTranslation($("#unavailable"));
           $("#unavailable").removeClass('go-green').addClass('warning-red');
-          TweenMax.set($("#unavailable"), { css: { scale:1, transformOrigin: "50% 50%" } });
-          TweenMax.to($("#unavailable"), 0.25, { css: { scale:1.25, transformOrigin: "50% 50%" }, ease:Power2.easeOut, repeat:1, yoyo:true });
+          TweenMax.set($("#unavailable"), {
+            css: {
+              scale: 1,
+              transformOrigin: "50% 50%"
+            }
+          });
+          TweenMax.to($("#unavailable"), 0.25, {
+            css: {
+              scale: 1.25,
+              transformOrigin: "50% 50%"
+            }, ease: Power2.easeOut, repeat: 1, yoyo: true
+          });
 
         }
 
@@ -140,12 +150,23 @@ require(
           $("#unavailable").attr('id', 'available');
           Language.refreshTranslation($("#available"));
           $("#available").removeClass('warning-red').addClass('go-green');
-          TweenMax.set($("#available"), { css: { scale:1, transformOrigin: "50% 50%" } });
-          TweenMax.to($("#available"), 0.25, { css: { scale:1.25, transformOrigin: "50% 50%" }, ease:Power2.easeOut, repeat:1, yoyo:true });
+          TweenMax.set($("#available"), {
+            css: {
+              scale: 1,
+              transformOrigin: "50% 50%"
+            }
+          });
+          TweenMax.to($("#available"), 0.25, {
+            css: {
+              scale: 1.25,
+              transformOrigin: "50% 50%"
+            }, ease: Power2.easeOut, repeat: 1, yoyo: true
+          });
 
         }
 
       }
     }
+  }
 
 );
