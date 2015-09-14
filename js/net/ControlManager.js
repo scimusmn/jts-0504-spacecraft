@@ -59,7 +59,7 @@ define(
         };
 
         hardware.language.onchange = function() {
-          Language.setLanguage(Language.convertState(this.state))
+          Language.convertState(this.state);
         };
 
         hardware.difficulty.onchange = function() {

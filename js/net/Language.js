@@ -42,7 +42,7 @@ define(
      Figure out the differences between these two. A physical wire might be crossed
      */
     Language.convertState = function(state) {
-      if (state == 0) {
+      if (state === 0) {
         Language.setLanguage(Language.ENGLISH);
       } else {
         Language.setLanguage(Language.SPANISH);
