@@ -27,6 +27,7 @@ define([], function() {
     this.circulationDepletionRate = this.getFloat('circulationDepletionRate');
     this.circulationUpdateRate = this.getFloat('circulationUpdateRate');
     this.invertedSwitches = this.getBool('invertedSwitches');
+    this.invertedLanguageSwitches = this.getBool('invertedLanguageSwitches');
     this.batteryScale = this.getFloat('batteryScale');
     this.batteryOffset = this.getFloat('batteryOffset');
 
