@@ -49,7 +49,7 @@ define(
         langState = 0;
       }
 
-      if (state == 0) {
+      if (state == langState) {
         Language.setLanguage(Language.ENGLISH);
       } else {
         Language.setLanguage(Language.SPANISH);
