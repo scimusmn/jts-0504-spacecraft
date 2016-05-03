@@ -29,12 +29,12 @@ require(
      * Initial load
      */
 
-    // Load config settings
+      // Load config settings
     $.ajax({
       type: 'GET',
       url: 'data/settings.xml',
       dataType: 'xml',
-      success: function(xml) {
+      success: function (xml) {
 
         // Load settings data into the application
         AppData.updateSettings(xml);
@@ -44,7 +44,7 @@ require(
         initialize();
       },
 
-      error: function(jqXHR, textStatus, errorThrown) {
+      error: function (jqXHR, textStatus, errorThrown) {
         // Show error message if desired
 
       }
@@ -55,7 +55,7 @@ require(
         type: 'GET',
         url: 'data/copy.xml',
         dataType: 'xml',
-        success: function(xml) {
+        success: function (xml) {
           Language.setupTranslations($(xml).find('component').first());
         }
       });
@@ -74,7 +74,7 @@ require(
        * Without this delay, there are intermittent audio loading issues
        * causing some of the sound effect to fail.
        */
-      setTimeout(function() {
+      setTimeout(function () {
 
         // Setup development keyboard commands. For testing only.
         Keyboard.init();
@@ -93,9 +93,9 @@ require(
 
       //Orbit Earth
       TweenMax.to($('.space_station_container'), AppData.orbitDuration, {
-        css: { rotation:360 },
-        ease:Linear.easeNone,
-        repeat:-1,
+        css: {rotation: 360},
+        ease: Linear.easeNone,
+        repeat: -1,
         onUpdate: onStationRotateUpdate
       });
 
@@ -106,60 +106,65 @@ require(
       var t = new TimeTicker($('#time_clock'), updateSpeed);
 
       //Pulse beacon light
-      TweenMax.set(containerBeacon, { css: { opacity:0.6 }});
+      TweenMax.set(containerBeacon, {css: {opacity: 0.6}});
       TweenMax.to(containerBeacon, 0.5, {
-        css: { opacity:1 }, repeat:-1, yoyo:true
+        css: {opacity: 1}, repeat: -1, yoyo: true
       });
 
     }
 
     function onStationRotateUpdate() {
 
-      var rotation = $('.space_station_container')[0]._gsTransform.rotation;
-      var unavailable = $('#unavailable');
-      var available = $('#available');
+      var rotation = $(".space_station_container")[0]._gsTransform.rotation;
 
       if (rotation < AppData.SHADOW_EXIT_ANGLE && rotation > AppData.SHADOW_ENTER_ANGLE) {
 
-        // In Earth's shadow
+        //In Earth's shadow
         if (AppData.getSolarAvailable() == true) {
 
           ControlManager.setSolarAvailable(false);
-          available.attr('id', 'unavailable');
-          Language.refreshTranslation(unavailable);
-          unavailable.removeClass('go-green').addClass('warning-red');
-          TweenMax.set(unavailable, {
-            css: { scale:1, transformOrigin: '50% 50%' }
+          $("#available").attr('id', 'unavailable');
+          Language.refreshTranslation($("#unavailable"));
+          $("#unavailable").removeClass('go-green').addClass('warning-red');
+          TweenMax.set($("#unavailable"), {
+            css: {
+              scale: 1,
+              transformOrigin: "50% 50%"
+            }
           });
-          TweenMax.to(unavailable, 0.25, {
-            css: { scale:1.25, transformOrigin: '50% 50%' },
-            ease:Power2.easeOut,
-            repeat:1,
-            yoyo:true
+          TweenMax.to($("#unavailable"), 0.25, {
+            css: {
+              scale: 1.25,
+              transformOrigin: "50% 50%"
+            }, ease: Power2.easeOut, repeat: 1, yoyo: true
           });
 
         }
 
       } else {
 
-        // In Sun's light
+        //In Sun's light
         if (AppData.getSolarAvailable() == false) {
 
           ControlManager.setSolarAvailable(true);
-          unavailable.attr('id', 'available');
-          Language.refreshTranslation(available);
-          available.removeClass('warning-red').addClass('go-green');
-          TweenMax.set(available, {
-            css: { scale:1, transformOrigin: '50% 50%' }
+          $("#unavailable").attr('id', 'available');
+          Language.refreshTranslation($("#available"));
+          $("#available").removeClass('warning-red').addClass('go-green');
+          TweenMax.set($("#available"), {
+            css: {
+              scale: 1,
+              transformOrigin: "50% 50%"
+            }
           });
-          TweenMax.to(available, 0.25, {
-            css: { scale:1.25, transformOrigin: '50% 50%' },
-            ease:Power2.easeOut,
-            repeat:1,
-            yoyo:true
+          TweenMax.to($("#available"), 0.25, {
+            css: {
+              scale: 1.25,
+              transformOrigin: "50% 50%"
+            }, ease: Power2.easeOut, repeat: 1, yoyo: true
           });
 
         }
+
       }
     }
   }

@@ -59,7 +59,7 @@ define(
         };
 
         hardware.language.onchange = function() {
-          Language.setLanguage(Language.convertState(this.state))
+          Language.convertState(this.state);
         };
 
         hardware.difficulty.onchange = function() {
@@ -78,6 +78,14 @@ define(
     var batteryGood = true;
     var incTimeout = null;
 
+    /***********************************
+     * Function: incrementUp
+     * Arguments: None
+     * Description: As long as hardware.battery is greater than
+     * AppData.currentPowerLevel, increment currentPowerLevel, update the display,
+     * wait half a second, and do this function again.
+     ***********************************/
+
     ControlManager.incrementUp = function() {
       if (AppData.currentPowerLevel < hardware.battery) {
         AppData.currentPowerLevel++;
@@ -95,13 +103,19 @@ define(
       //AppData.currentPowerLevel = reading;
       //ControlManager.batteryPack.updatePackLevel( AppData.currentPowerLevel );
 
+      // if the sun is on, and the battery pack is turned off, turn it on
       if (AppData.solarAvailable && !hardware.batteryState) {
         hardware.enableBattery();
-      } else if (!hardware.batteryState) {
+      }
+      //else, if the battery pack is inactive, keep the reading at 0
+      else if (!hardware.batteryState) {
         reading = 0;
       }
 
+      // if the sun is on, check the try to increment the power level
       if (AppData.solarAvailable) ControlManager.incrementUp();
+      // if we're in the night pass, don't let the battery voltage spring back up
+      // when a device is turned off.
       else if (reading < prevReading) AppData.currentPowerLevel = reading;
 
       ControlManager.batteryPack.updatePackLevel(AppData.currentPowerLevel);
