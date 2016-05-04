@@ -17,14 +17,13 @@ require(
   [
     'jquery',
     'net/AppData',
-    'net/Keyboard',
     'net/Language',
     'net/ControlManager',
     'net/Sound',
     'net/TimeTicker',
     'tween'
   ],
-  function($, AppData, Keyboard, Language, ControlManager, Sound, TimeTicker, tween) {
+  function($, AppData, Language, ControlManager, Sound, TimeTicker, tween) {
     /**
      * Initial load
      */
@@ -75,9 +74,6 @@ require(
        * causing some of the sound effect to fail.
        */
       setTimeout(function () {
-
-        // Setup development keyboard commands. For testing only.
-        Keyboard.init();
 
         // Setup the knob settings and their on-screen visuals
         ControlManager.setupControls();
