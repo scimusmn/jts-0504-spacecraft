@@ -12,31 +12,31 @@
             <text id="power_supply">
                 <en>POWER SUPPLY</en>
                 <es>Suministro de energía</es>
-                <fr>French words here</fr>
+                <fr><![CDATA[Alimentation électrique]]></fr>
             </text>
 
             <text id="solar">
                 <en>SOLAR:</en>
                 <es>SOLAR:</es>
-                <fr>French words here</fr>
+                <fr><![CDATA[Solaire]]></fr>
             </text>
 
             <text id="available">
                 <en>AVAILABLE</en>
                 <es>DISPONIBLE</es>
-                <fr>French words here</fr>
+                <fr><![CDATA[(FR) Available]]></fr>
             </text>
 
             <text id="unavailable">
                 <en>NOT AVAILABLE</en>
                 <es>No está disponible</es>
-                <fr>French words here</fr>
+                <fr><![CDATA[(Fr) Not available]]></fr>
             </text>
 
             <text id="batteries">
                 <en>BATTERIES</en>
                 <es><![CDATA[Baterías]]></es>
-                <fr>French words here</fr>
+                <fr><![CDATA[Batterie]]></fr>
             </text>
 
         </window>
@@ -47,19 +47,19 @@
             <text id="instructions_headline">
                 <en>YOUR MISSION:</en>
                 <es>Tu misión:</es>
-                <fr>French words here</fr>
+                <fr><![CDATA[Votre mission:]]></fr>
             </text>
 
             <text id="instructions_subhead">
                 <en><![CDATA[Stay alive. Manage your space station’s power and maintain life-support levels.]]></en>
                 <es><![CDATA[<span class="smaller">Mantenerte vivo. Administra la energía de tu estación espacial y mantén los niveles de soporte vital.</span>]]></es>
-                <fr>French words here</fr>
+                <fr><![CDATA[Restez en vie. Gérez l’énergie de votre station spatiale et maintenez le système de support de vie fonctionnel.]]></fr>
             </text>
 
             <text id="tip_1">
                 <en><![CDATA[To succeed, keep electricity flowing to critical equipment from either the solar panels or the station’s battery.]]></en>
                 <es><![CDATA[Para lograrlo, mantén la electricidad fluyendo hacia los equipos que son fundamentales, ya sea de los paneles solares o de la batería de la estación.]]></es>
-                <fr>French words here</fr>
+                <fr><![CDATA[Pour réussir, gardez les équipements critiques bien alimentés en électricité provenant des panneaux solaires ou de la batterie de la station.]]></fr>
             </text>
 
         </window>
@@ -70,49 +70,49 @@
             <text id="life_support_equipment">
                 <en><![CDATA[LIFE-SUPPORT EQUIPMENT]]></en>
                 <es>Niveles de soporte vital</es>
-                <fr>French words here</fr>
+                <fr><![CDATA[Équipement de support de vie]]></fr>
             </text>
 
             <text id="oxygen_generator">
                 <en>OXYGEN GENERATOR</en>
                 <es>Generador de oxígeno</es>
-                <fr>French words here</fr>
+                <fr><![CDATA[Niveau d’oxygène]]></fr>
             </text>
 
             <text id="o2_level">
                 <en><![CDATA[O<sub>2</sub> LEVEL]]></en>
                 <es><![CDATA[Nivel de O<sub>2</sub>]]></es>
-                <fr>French words here</fr>
+                <fr><![CDATA[Niveau d’oxygène en réserve]]></fr>
             </text>
 
             <text id="fan">
                 <en>FAN</en>
                 <es>Ventilador</es>
-                <fr>French words here</fr>
+                <fr><![CDATA[Ventilateur]]></fr>
             </text>
 
             <text id="circulation">
                 <en>CIRCULATION</en>
                 <es>Circulación</es>
-                <fr>French words here</fr>
+                <fr><![CDATA[Circulation de l’air]]></fr>
             </text>
 
             <text id="circulation_feedback_poor">
                 <en>POOR</en>
                 <es>MALA</es>
-                <fr>French words here</fr>
+                <fr><![CDATA[XXFRENCHXX P]]></fr>
             </text>
 
             <text id="circulation_feedback_good">
                 <en>GOOD</en>
                 <es>BUENA</es>
-                <fr>French words here</fr>
+                <fr><![CDATA[XXFRENCHXX G]]></fr>
             </text>
 
             <text id="circulation_feedback_excellent">
                 <en>EXCELLENT</en>
                 <es>EXCELENTE</es>
-                <fr>French words here</fr>
+                <fr><![CDATA[XXFRENCHXX E]]></fr>
             </text>
 
         </window>
@@ -123,31 +123,31 @@
             <text id="auxillary_equipment">
                 <en>AUXILIARY EQUIPMENT</en>
                 <es>Equipo auxiliar</es>
-                <fr>French words here</fr>
+                <fr><![CDATA[Équipement auxiliaire]]></fr>
             </text>
 
             <text id="growing_food">
                 <en>GROWING FOOD</en>
                 <es>Cultivo de alimentos</es>
-                <fr>French words here</fr>
+                <fr><![CDATA[Culture des aliments]]></fr>
             </text>
 
             <text id="communication">
                 <en>COMMUNICATION</en>
                 <es>Comunicaciones</es>
-                <fr>French words here</fr>
+                <fr><![CDATA[Communication]]></fr>
             </text>
 
             <text id="heat_to_cook">
                 <en>HEAT TO COOK</en>
                 <es>Calor para cocinar</es>
-                <fr>French words here</fr>
+                <fr><![CDATA[Chaleur pour la cuisson]]></fr>
             </text>
 
             <text id="interior_lights">
                 <en>INTERIOR LIGHTS</en>
                 <es>Luces interiores</es>
-                <fr>French words here</fr>
+                <fr><![CDATA[Lumières intérieures]]></fr>
             </text>
 
         </window>
@@ -158,7 +158,7 @@
             <text id="popup_dead_header">
                 <en><![CDATA[Life support failure!]]></en>
                 <es><![CDATA[<span class="smaller">¡Hay una falla en el sistema de soporte vital!<span>]]></es>
-                <fr>French words here</fr>
+                <fr><![CDATA[XXFRENCHXX]]></fr>
             </text>
 
             <text id="popup_dead_sub">
@@ -170,43 +170,43 @@
             <text id="batteries_depleted">
                 <en><![CDATA[<br/>Your batteries are completely drained! Turn off some equipment so they can recharge.]]></en>
                 <es><![CDATA[<br/>¡Las baterías están completamente descargadas! Apaga algunos de los equipos para que puedan recargarse.]]></es>
-                <fr>French words here</fr>
+                <fr><![CDATA[XXFRENCHXX]]></fr>
             </text>
 
             <text id="oxygen_depleted">
                 <en><![CDATA[Turn on the oxygen!]]></en>
                 <es>¡Enciende el oxígeno!</es>
-                <fr>French words here</fr>
+                <fr><![CDATA[XXFRENCHXX]]></fr>
             </text>
 
             <text id="circulation_depleted">
                 <en>Turn on the fan before you suffocate.</en>
                 <es>Enciende el ventilador antes de que te asfixies.</es>
-                <fr>French words here</fr>
+                <fr><![CDATA[XXFRENCHXX]]></fr>
             </text>
 
             <text id="food_warning">
                 <en>Keep your plants alive.</en>
                 <es>Mantén tus plantas vivas.</es>
-                <fr>French words here</fr>
+                <fr><![CDATA[XXFRENCHXX]]></fr>
             </text>
 
             <text id="comm_warning">
                 <en>Don’t forget to check in with mission control.</en>
                 <es>No olvides ponerte en contacto con el centro de control.</es>
-                <fr>French words here</fr>
+                <fr><![CDATA[XXFRENCHXX]]></fr>
             </text>
 
             <text id="heat_warning">
                 <en>Time for a hot meal.</en>
                 <es>Es hora de una comida caliente.</es>
-                <fr>French words here</fr>
+                <fr><![CDATA[XXFRENCHXX]]></fr>
             </text>
 
             <text id="lights_warning">
                 <en>It's dark! Turn on the lights.</en>
                 <es>¡Está oscuro! Enciende las luces.</es>
-                <fr>French words here</fr>
+                <fr><![CDATA[XXFRENCHXX]]></fr>
             </text>
 
         </alerts>
