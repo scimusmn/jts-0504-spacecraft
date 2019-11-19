@@ -29,8 +29,8 @@ Edit the serialPort.js file, defining the name of the USB serial device.
 TODO: Define how to find this.
 
 
-### English/French Mode (Optional)
-The application defaults to using English/Spanish. To switch to English/French, add or edit the `secondaryLanguage` setting a the value of `fr`: 
+### EFrench Mode (Optional)
+The application defaults to using English/Spanish. To use English/French, add or edit a `secondaryLanguage` setting with a the value of `fr`: 
 ```xml
 <setting id="secondaryLanguage" value="fr" />
 ```
