@@ -18,7 +18,7 @@
             <text id="solar">
                 <en>SOLAR:</en>
                 <es>SOLAR:</es>
-                <fr><![CDATA[Solaire]]></fr>
+                <fr><![CDATA[Solaire:]]></fr>
             </text>
 
             <text id="available">
@@ -47,13 +47,13 @@
             <text id="instructions_headline">
                 <en>YOUR MISSION:</en>
                 <es>Tu misión:</es>
-                <fr><![CDATA[Votre mission:]]></fr>
+                <fr><![CDATA[<span class="smaller">Votre mission:</span>]]></fr>
             </text>
 
             <text id="instructions_subhead">
                 <en><![CDATA[Stay alive. Manage your space station’s power and maintain life-support levels.]]></en>
                 <es><![CDATA[<span class="smaller">Mantenerte vivo. Administra la energía de tu estación espacial y mantén los niveles de soporte vital.</span>]]></es>
-                <fr><![CDATA[Restez en vie. Gérez l’énergie de votre station spatiale et maintenez le système de support de vie fonctionnel.]]></fr>
+                <fr><![CDATA[<span class="smaller">Restez en vie. Gérez l’énergie de votre station spatiale et maintenez le système de support de vie fonctionnel.</span>]]></fr>
             </text>
 
             <text id="tip_1">
