@@ -18,7 +18,7 @@
             <text id="solar">
                 <en>SOLAR:</en>
                 <es>SOLAR:</es>
-                <fr><![CDATA[Solaire:]]></fr>
+                <fr><![CDATA[Solaire&#8202;:]]></fr>
             </text>
 
             <text id="available">
@@ -47,7 +47,7 @@
             <text id="instructions_headline">
                 <en>YOUR MISSION:</en>
                 <es>Tu misión:</es>
-                <fr><![CDATA[<span class="smaller">Votre mission:</span>]]></fr>
+                <fr><![CDATA[<span class="smaller">Votre mission&#8202;:</span>]]></fr>
             </text>
 
             <text id="instructions_subhead">
@@ -82,7 +82,7 @@
             <text id="o2_level">
                 <en><![CDATA[O<sub>2</sub> LEVEL]]></en>
                 <es><![CDATA[Nivel de O<sub>2</sub>]]></es>
-                <fr><![CDATA[Niveau d’oxygène en réserve]]></fr>
+                <fr><![CDATA[RÉSERVE D’OXYGÈNE]]></fr>
             </text>
 
             <text id="fan">
@@ -158,7 +158,7 @@
             <text id="popup_dead_header">
                 <en><![CDATA[Life support failure!]]></en>
                 <es><![CDATA[<span class="smaller">¡Hay una falla en el sistema de soporte vital!<span>]]></es>
-                <fr><![CDATA[Échec du système de survie !]]></fr>
+                <fr><![CDATA[Échec du système de survie&#8202;!]]></fr>
             </text>
 
             <text id="popup_dead_sub">
@@ -170,13 +170,13 @@
             <text id="batteries_depleted">
                 <en><![CDATA[<br/>Your batteries are completely drained! Turn off some equipment so they can recharge.]]></en>
                 <es><![CDATA[<br/>¡Las baterías están completamente descargadas! Apaga algunos de los equipos para que puedan recargarse.]]></es>
-                <fr><![CDATA[Vos batteries sont complètement à plat ! Éteignez certains équipements pour leur permettre de se recharger.]]></fr>
+                <fr><![CDATA[Vos batteries sont complètement à plat&#8202;! Éteignez certains équipements pour leur permettre de se recharger.]]></fr>
             </text>
 
             <text id="oxygen_depleted">
                 <en><![CDATA[Turn on the oxygen!]]></en>
                 <es>¡Enciende el oxígeno!</es>
-                <fr><![CDATA[Activez l’oxygène !]]></fr>
+                <fr><![CDATA[Activez l’oxygène&#8202;!]]></fr>
             </text>
 
             <text id="circulation_depleted">
@@ -206,7 +206,7 @@
             <text id="lights_warning">
                 <en>It's dark! Turn on the lights.</en>
                 <es>¡Está oscuro! Enciende las luces.</es>
-                <fr><![CDATA[Il fait noir ! Allumez les lumières.]]></fr>
+                <fr><![CDATA[Il fait noir&#8202;! Allumez les lumières.]]></fr>
             </text>
 
         </alerts>

@@ -60,7 +60,7 @@ define(['tween', 'net/Language', 'net/Sound', 'net/AppData'], function(tween, La
   Battery.prototype.refreshText = function() {
 
     if (this.useTextFeedback == false) {
-      $(this.textDisplay).html(this.powerLevel + '%');
+      $(this.textDisplay).html(this.powerLevel + '&#8202;%');
     } else {
       $(this.textDisplay).attr('id', this.currentLevelFeedback());
       Language.refreshTranslation($(this.textDisplay));
