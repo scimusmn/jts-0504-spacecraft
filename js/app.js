@@ -24,7 +24,7 @@ require(
     'net/TimeTicker',
     'tween'
   ],
-  function($, AppData, Keyboard, Language, ControlManager, Sound, TimeTicker, tween) {
+  function($, AppData, Language, ControlManager, Sound, TimeTicker, tween) {
   // function($, AppData, Keyboard, Language, ControlManager, Sound, TimeTicker, tween) {
     /**
      * Initial load
