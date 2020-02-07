@@ -30,7 +30,7 @@ TODO: Define how to find this.
 
 
 ### Secondary Language
-To change the secondary language (which defaults to Spanish), edit the `secondaryLanguage` setting in settings.xml:
+To change the secondary language (English is always primary), edit the `secondaryLanguage` setting in settings.xml:
 
 Spanish:
 ```xml
