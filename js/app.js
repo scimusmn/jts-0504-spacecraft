@@ -17,7 +17,7 @@ require(
   [
     'jquery',
     'net/AppData',
-    'net/Keyboard',
+    // 'net/Keyboard',
     'net/Language',
     'net/ControlManager',
     'net/Sound',
@@ -25,6 +25,7 @@ require(
     'tween'
   ],
   function($, AppData, Keyboard, Language, ControlManager, Sound, TimeTicker, tween) {
+  // function($, AppData, Keyboard, Language, ControlManager, Sound, TimeTicker, tween) {
     /**
      * Initial load
      */
@@ -80,7 +81,7 @@ require(
         ControlManager.setupControls();
 
         // Setup development keyboard commands. For testing only. 
-        Keyboard.init();
+        // Keyboard.init();
 
         // Start space station animation
         startSpaceStationOrbit();
