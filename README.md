@@ -29,13 +29,14 @@ Edit the serialPort.js file, defining the name of the USB serial device.
 TODO: Define how to find this.
 
 
-##Secondary Language
-To change the secondary language (which defaults to Spanish) add (or edit) the `secondaryLanguage` setting in settings.xml with a language key as the value. Examples:
-Spanish:
+### Secondary Language
+To change the secondary language (defaults to Spanish) edit the `secondaryLanguage` setting in settings.xml with a language key. Examples:
+
+Spanish (es):
 ```xml
 <setting id="secondaryLanguage" value="es" />
 ```
-French:
+French (fr):
 ```xml
 <setting id="secondaryLanguage" value="fr" />
 ```
