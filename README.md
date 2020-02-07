@@ -28,5 +28,19 @@ Edit the serialPort.js file, defining the name of the USB serial device.
 
 TODO: Define how to find this.
 
+
+### Secondary Language
+To change the secondary language (English is always primary), edit the `secondaryLanguage` setting in settings.xml:
+
+Spanish:
+```xml
+<setting id="secondaryLanguage" value="es" />
+```
+French:
+```xml
+<setting id="secondaryLanguage" value="fr" />
+```
+
+
 # Run the application
 The application should start correctly after rebooting the computer.

@@ -1,5 +1,4 @@
-define([], function() {
-
+define([], () => {
   function AppData() { }
 
   // Constants
@@ -13,11 +12,12 @@ define([], function() {
   AppData.WARNING_RED = '#cb242c';
   AppData.GO_GREEN = '#cb242c';
 
-  AppData.updateSettings = function(configXML) {
-
+  AppData.updateSettings = function (configXML) {
     this.configXML = configXML;
 
     // Settings from XML
+    this.secondaryLanguage = this.getSetting('secondaryLanguage');
+    if (!this.secondaryLanguage) this.secondaryLanguage = 'es';
     this.developerMode = this.getBool('developerMode');
     this.orbitDuration = this.getInt('orbitDuration');
     this.o2FillRate = this.getFloat('o2FillRate');
@@ -43,70 +43,55 @@ define([], function() {
     this.failureState = false;
     AppData.failureAlerts = [];
     setInterval(AppData.checkFailureState, 1000);
-
   };
 
-  AppData.getInt = function(id) {
+  AppData.getInt = function (id) {
     return parseInt(this.getSetting(id));
   };
 
-  AppData.getFloat = function(id) {
+  AppData.getFloat = function (id) {
     return parseFloat(this.getSetting(id));
   };
 
-  AppData.getBool = function(id) {
+  AppData.getBool = function (id) {
     return (this.getSetting(id) == 'true');
   };
 
-  AppData.getSetting = function(id) {
-    return $(this.configXML).find('setting[id=' + id + ']').attr('value');
+  AppData.getSetting = function (id) {
+    return $(this.configXML).find(`setting[id=${id}]`).attr('value');
   };
 
-  AppData.setCurrentState = function(stateId) {
-
+  AppData.setCurrentState = function (stateId) {
     this.currentStateId = stateId;
-
   };
 
-  AppData.setSolarAvailable = function(value) {
-
+  AppData.setSolarAvailable = function (value) {
     this.solarAvailable = value;
-
   };
 
-  AppData.getSolarAvailable = function() {
-
+  AppData.getSolarAvailable = function () {
     return this.solarAvailable;
-
   };
 
-  AppData.setDifficulty = function(value) {
-
+  AppData.setDifficulty = function (value) {
     this.currentDifficulty = value;
-
   };
 
-  AppData.getDifficulty = function() {
-
+  AppData.getDifficulty = function () {
     return this.currentDifficulty;
-
   };
 
-  AppData.registerFailureAlert = function(aDiv) {
-
+  AppData.registerFailureAlert = function (aDiv) {
     AppData.failureAlerts.push(aDiv);
-
   };
 
-  AppData.checkFailureState = function() {
-
+  AppData.checkFailureState = function () {
     if (!AppData.failureAlerts) return;
 
-    var fstate = false;
-    for (var i = 0; i < AppData.failureAlerts.length; i++) {
-
-      var isShowing = $(AppData.failureAlerts[i]).is(':visible');
-      var opac = $(AppData.failureAlerts[i]).css('opacity');
+    let fstate = false;
+    for (let i = 0; i < AppData.failureAlerts.length; i++) {
+      const isShowing = $(AppData.failureAlerts[i]).is(':visible');
+      const opac = $(AppData.failureAlerts[i]).css('opacity');
       if (isShowing == true && opac == 1) {
         fstate = true;
         break;
@@ -131,18 +116,15 @@ define([], function() {
     } else if (this.failureCount == AppData.secsForFailureState + 10) {
       AppData.showFailure(false);
     }
-
   };
 
-  AppData.showFailure = function(doShow) {
+  AppData.showFailure = function (doShow) {
     if (doShow) {
       $('#popup_you_are_dead').stop().fadeIn('slow');
-
-    }else {
+    } else {
       $('#popup_you_are_dead').stop().fadeOut('slow');
     }
   };
 
   return AppData;
-
 });

@@ -1,3 +1,9 @@
+/**
+ * Development tools for triggering some of the serial actions with Keyboard
+ * commands. This isn't imported by default, now that the app is in production.
+ * All of these functions are normally handled by the serial communication
+ * with the microcontroller.
+ */
 define(
   ['net/Language', 'net/ControlManager', 'net/ControlUI', 'net/AppData'],
   function(Language, ControlManager, ControlUI, AppData) {

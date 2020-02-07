@@ -8,7 +8,12 @@ define(
 
     //Language Keys
     Language.ENGLISH = 'en';
-    Language.SPANISH = 'es';
+    Language.SPANISH = AppData.secondaryLanguage;
+  
+    // Hack to wait for app start      
+    setTimeout(function () {
+      Language.SPANISH = AppData.secondaryLanguage;
+    }, 5500);
 
     function Language() {
 

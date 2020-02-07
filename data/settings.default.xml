@@ -17,6 +17,7 @@
 
         <!-- Setting for variations in the switch wiring per component -->
         <setting id="invertedSwitches" value="true" />
+        <setting id="invertedLanguageSwitches" value="true" />
 
         <!-- Customized battery multipliers, to allow for different sized solar arrays per component -->
         <!-- These settings adjust the readings of the battery voltage from the arduino.

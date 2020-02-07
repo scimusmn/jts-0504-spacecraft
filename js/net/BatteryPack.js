@@ -30,7 +30,7 @@ define(
 
     BatteryPack.prototype.refreshText = function() {
 
-      $(this.textDisplay).html(this.powerLevel + '%');
+      $(this.textDisplay).html(this.powerLevel + '&#8202;%');
 
       // WARNING
       if (this.powerLevel < 25 && this.powerLevel > 0 && this.warningState == false) {
