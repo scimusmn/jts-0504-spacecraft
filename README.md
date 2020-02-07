@@ -30,13 +30,13 @@ TODO: Define how to find this.
 
 
 ### Secondary Language
-To change the secondary language (defaults to Spanish) edit the `secondaryLanguage` setting in settings.xml with a language key. Examples:
+To change the secondary language (which defaults to Spanish), edit the `secondaryLanguage` setting in settings.xml:
 
-Spanish (es):
+Spanish:
 ```xml
 <setting id="secondaryLanguage" value="es" />
 ```
-French (fr):
+French:
 ```xml
 <setting id="secondaryLanguage" value="fr" />
 ```
