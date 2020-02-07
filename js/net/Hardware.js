@@ -99,7 +99,7 @@ define(['net/AppData', 'net/arduinoControl'],function(AppData, arduino) {
   // if the battery is currently active, record the current time, tell the arduino to
   // shut off the relay to the batteries, and set the flag that the battery is inactive
   hardware.disableBattery = function() {
-    if (hardware.batteryState) {
+    if (hardware.batteryState && !AppData.getSolarAvailable()) {
       hardware.switchTime = Date.now();
       arduino.digitalWrite(2, 1);
       hardware.batteryState = false;
@@ -114,7 +114,7 @@ define(['net/AppData', 'net/arduinoControl'],function(AppData, arduino) {
    * batteries.
    */
   hardware.enableBattery = function() {
-    if (Date.now() - hardware.switchTime > 2000 && !hardware.batteryState) {
+    if ((Date.now() - hardware.switchTime > 2000 && !hardware.batteryState) || AppData.getSolarAvailable()) {
       hardware.batteryState = true;
       arduino.digitalWrite(2, 0);
     }

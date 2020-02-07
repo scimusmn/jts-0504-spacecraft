@@ -104,7 +104,7 @@ define(
       //ControlManager.batteryPack.updatePackLevel( AppData.currentPowerLevel );
 
       // if the sun is on, and the battery pack is turned off, turn it on
-      if (AppData.solarAvailable && !hardware.batteryState) {
+      if (AppData.solarAvailable) {
         hardware.enableBattery();
       }
       //else, if the battery pack is inactive, keep the reading at 0
