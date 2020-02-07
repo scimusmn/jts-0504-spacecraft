@@ -662,6 +662,11 @@ p {
     padding-right: 15px;
 }
 
+/*  Debug Classes */
+
+/*.alert {
+    display: block !important; /*  Show all alerts *
+}*/
 
 
 /* ==========================================================================
