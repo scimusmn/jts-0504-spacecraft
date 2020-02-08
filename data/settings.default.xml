@@ -6,6 +6,9 @@
     <!-- ======== -->
     <settings>
 
+        <!-- Set whether secondary language is Spanish or French ('es' or 'fr') -->
+        <setting id="secondaryLanguage" value="es" />
+
         <setting id="developerMode" value="false" />
         <setting id="orbitDuration" value="90" />
         <setting id="o2FillRate" value="1" />
