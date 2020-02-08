@@ -58,7 +58,7 @@ define([], function() {
   };
 
   AppData.getSetting = function (id) {
-    return $(this.configXML).find(`setting[id=${id}]`).attr('value');
+    return $(this.configXML).find('setting[id=' + id + ']').attr('value');
   };
 
   AppData.setCurrentState = function (stateId) {
