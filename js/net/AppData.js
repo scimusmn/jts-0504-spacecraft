@@ -88,10 +88,10 @@ define([], function() {
   AppData.checkFailureState = function () {
     if (!AppData.failureAlerts) return;
 
-    let fstate = false;
-    for (let i = 0; i < AppData.failureAlerts.length; i++) {
-      const isShowing = $(AppData.failureAlerts[i]).is(':visible');
-      const opac = $(AppData.failureAlerts[i]).css('opacity');
+    var fstate = false;
+    for (var i = 0; i < AppData.failureAlerts.length; i++) {
+      var isShowing = $(AppData.failureAlerts[i]).is(':visible');
+      var opac = $(AppData.failureAlerts[i]).css('opacity');
       if (isShowing == true && opac == 1) {
         fstate = true;
         break;
